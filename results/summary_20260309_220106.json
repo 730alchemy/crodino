@@ -1,0 +1,407 @@
+{
+  "run_id": "20260309_220106",
+  "target_model": "claude-haiku-4-5",
+  "n_trials": 1,
+  "n_tasks": 28,
+  "overall_pass_rate": 0.5714285714285714,
+  "pass_at_k": {
+    "1": 0.5714285714285714
+  },
+  "pass_hat_k": {
+    "1": 0.5714285714285714
+  },
+  "task_results": {
+    "context_awareness": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "evaluation": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "goal_management": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "self_awareness": {
+      "pass_rate": 0.0,
+      "mean_score": 0.3333,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.3333
+      ]
+    },
+    "strategy_selection": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "compositionality": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "conceptual_processing": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "logical_coherence": {
+      "pass_rate": 0.0,
+      "mean_score": 0.2857,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.2857
+      ]
+    },
+    "productivity": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "abstraction": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "adaptive_detail_management": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "backtracking": {
+      "pass_rate": 0.0,
+      "mean_score": 0.3333,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.3333
+      ]
+    },
+    "backward_chaining": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "context_alignment": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "decomposition_and_integration": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "forward_chaining": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "knowledge_alignment": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "pattern_recognition": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "representational_restructuring": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "selective_attention": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "verification": {
+      "pass_rate": 0.0,
+      "mean_score": 0.2857,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.2857
+      ]
+    },
+    "causal_organization": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "hierarchical_organization": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "network_organization": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "ordinal_organization": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "sequential_organization": {
+      "pass_rate": 0.0,
+      "mean_score": 0.4000000000000001,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 0.0
+      },
+      "pass_hat_k": {
+        "1": 0.0
+      },
+      "scores": [
+        0.4000000000000001
+      ]
+    },
+    "spatial_organization": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    },
+    "temporal_organization": {
+      "pass_rate": 1.0,
+      "mean_score": 1.0,
+      "std_score": 0.0,
+      "pass_at_k": {
+        "1": 1.0
+      },
+      "pass_hat_k": {
+        "1": 1.0
+      },
+      "scores": [
+        1.0
+      ]
+    }
+  }
+}

@@ -1,0 +1,802 @@
+[
+  {
+    "element_id": "context_awareness",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:02Z",
+    "prompt": "You are asked to explain the concept of \"interest rates\" three times \u2014 once for\neach of the following contexts. Critically, your explanation must be appropriately\ncalibrated to each context's constraints, audience, and purpose.\n\nContext A: A 10-year-old asking why their parents are stressed about the mortgage.\n[Constraints: no jargon, relatable analogies, emotional sensitivity, brevity]\n\nContext B: A professional summary for a central bank policy memo.\n[Constraints: technical precision, quantitative where helpful, no over-simplification,\nassumes reader has economics background, appropriate register]\n\nContext C: A stand-up comedy bit for a general adult audience at a financial\nliteracy event.\n[Constraints: must be genuinely funny, still informative, audience doesn't have\nfinance backgrounds, appropriate length for a 2-minute bit]\n\nFor each explanation, also note: what did you deliberately leave out or simplify,\nand why was that appropriate for this context?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtes9VxEbYky1vuypdnK'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "evaluation",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "Solve the following problem, then evaluate your own solution before finalizing it.\nYour evaluation must happen DURING the solution process, not just at the end.\n\nProblem: A consulting firm has been hired to recommend whether a mid-sized city\n(population 200,000) should build a new light rail system. The city has the\nfollowing data:\n- Current daily bus ridership: 15,000 riders\n- Projected light rail ridership: 25,000-40,000 riders (range due to uncertainty)\n- Construction cost: $800 million\n- Annual operating cost (rail): $45 million\n- Annual operating cost (bus, current): $20 million\n- Ticket revenue projection (rail): $18 million/year\n- Typical lifespan of light rail infrastructure: 30 years\n- The city's current annual transportation budget: $30 million\n\nRequirements for your response:\n1. Begin your analysis\n2. At least once during your analysis, explicitly pause and evaluate: \"Am I on the\n   right track? What might I be missing? Is my current approach appropriate?\"\n3. Revise or continue based on that evaluation\n4. Provide a final recommendation\n5. End with a brief assessment of how confident you are in your recommendation\n   and what additional data would most change it\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesB6wWg8G2y6PFYbhb'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "goal_management",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "You are a project manager. Your main goal is: \"Launch a mobile app within 3 months.\"\n\nDuring planning, you discover the following complications (one at a time):\n\nStep 1: Decompose the main goal into sub-goals with dependencies.\n\nStep 2: You learn that the lead developer has a 3-week family leave starting\nin week 2. Revise your sub-goals and timeline.\n\nStep 3: Stakeholders request a new feature (offline mode) that wasn't in the\noriginal scope. It would add 2 weeks of development. Decide whether to:\n(a) add it to this launch, (b) defer to v2, or (c) partially implement it.\nExplain your decision in terms of your current goals.\n\nStep 4: You complete Step 3. Now the lead developer returns and reports a\ncritical security bug was found in the authentication module that will take\n1 week to fix. Update your overall goal status and recommend a path forward.\n\nShow your goal hierarchy and status at the END of each step.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesBU2572jFq5GCYu1S'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "self_awareness",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "Answer the following three questions. For each, first state your confidence level\n(high / medium / low / none) and briefly explain why, BEFORE giving your answer.\nIf your confidence is \"none,\" say so and explain what information you would need.\n\nQuestion 1: What is the capital city of France?\n\nQuestion 2: On what exact date did the 47th President of the United States first\ntake the oath of office, and what was the precise temperature in Washington D.C.\nat that moment?\n\nQuestion 3: If a fair coin is flipped 1,000 times, what is the probability that\nheads appears at least 520 times? Provide either an exact value or a well-reasoned\napproximation, and specify which you are providing.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesBoMmYJiPAebhQ8To'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.3333,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "confidence_expressed",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['confidence', 'high', 'low', 'uncertain', 'unsure', \"don't know\"] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "strategy_selection",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "You are presented with three different problems. Before solving each one,\nexplicitly name your chosen reasoning strategy and explain why it is\nappropriate for this problem type. Then solve it using that strategy.\n\nProblem 1:\nA farmer has 120 meters of fencing. She wants to enclose a rectangular field\nthat maximizes area. What dimensions should the field have?\n\nProblem 2:\nYour team is designing a new employee onboarding program. The process currently\ntakes 6 weeks and has 40% retention of key information after 3 months.\nYou want to improve both speed and retention. What approach should you take?\n\nProblem 3:\nAlice beats Bob at chess. Bob beats Carol. Carol beats David. David beats Eve.\nWho is most likely to win a match between Alice and Eve?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesC8x99BJ8b19Qnrxq'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "compositionality",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "You are given the following primitive concepts and rules:\n\nConcepts:\n- FAST: moves quickly\n- HEAVY: has large mass\n- FRAGILE: breaks easily under impact\n- CONTAINER: holds other objects inside\n- TRANSPARENT: can be seen through\n\nCombination rules:\n- Combining two properties applies both to the object\n- A CONTAINER that is FRAGILE will break if it receives an impact from something HEAVY\n- A TRANSPARENT object allows visual inspection of its contents if it is also a CONTAINER\n\nNow answer the following questions using ONLY the concepts and rules above.\nShow your compositional reasoning step by step.\n\nQuestion 1: A glass jar is TRANSPARENT, FRAGILE, and a CONTAINER. A bowling ball is\nHEAVY and FAST. What happens if the bowling ball rolls into the glass jar?\n\nQuestion 2: Consider a new object: a TRANSPARENT, HEAVY, CONTAINER (not FRAGILE).\nCan you visually inspect its contents? Will it break if hit by a FAST, HEAVY object?\n\nQuestion 3 (novel combination): Create a new object type using exactly 3 of the\n5 primitive concepts. Describe its properties using the combination rules, then\ndescribe a scenario where this combination matters.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesCU3ftaUaJBWeTaPc'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "question_sections",
+          "passed": false,
+          "score": 0.0,
+          "message": "Missing sections: ['question 1', 'question 2', 'question 3']"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "conceptual_processing",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "Below are three descriptions of the same underlying concept, expressed at different\nsurface levels:\n\nSurface description 1 (concrete/perceptual):\n\"When I mix the blue liquid with the yellow liquid in the beaker, the mixture turns green.\"\n\nSurface description 2 (procedural):\n\"To get green paint, combine blue paint and yellow paint in roughly equal proportions.\"\n\nSurface description 3 (contextual):\n\"The traffic light has three signals. The middle one, between red and blue-shifted red,\nis often made by mixing the two primary colors visible in sunlight alongside red.\"\n\nTasks:\n(a) Identify the single underlying concept that unifies all three descriptions.\n    Do not name it using any of the exact words from the surface descriptions.\n(b) Explain why this concept, stated abstractly, correctly predicts all three observations.\n(c) Generate a fourth surface description \u2014 in a completely different domain \u2014\n    that instantiates the same underlying concept.\n(d) Identify one case where the surface descriptions would suggest this concept applies\n    but it actually does NOT \u2014 and explain why at the conceptual level.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesCmu5RDCEK8NKVhNs'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "logical_coherence",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "Consider the following three statements about a proposed renewable energy policy:\n\nStatement A: \"Solar panels require rare earth minerals to manufacture, and mining those\nminerals causes significant environmental damage.\"\n\nStatement B: \"Renewable energy is always better for the environment than fossil fuels\nbecause it produces no harmful byproducts.\"\n\nStatement C: \"This solar panel policy will reduce environmental harm by replacing\ncoal plants.\"\n\nA policy advocate uses all three statements together to argue for the solar panel policy.\nAnalyze whether these statements can be held simultaneously without contradiction.\nIf there is a contradiction, identify it precisely and explain what revision would\nrestore logical coherence.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesDERxtnXqPfFkmcwm'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.2857,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "mentions_contradiction",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['contradiction', 'contradict', 'inconsistent', 'inconsistency'] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "productivity",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "You have mastered the following structural principle for solving \"bridge problems\":\na bridge problem requires you to (1) identify two endpoints that need connecting,\n(2) find shared properties between them, and (3) construct a chain of intermediate\nconcepts where each step shares at least one property with the next.\n\nExample solved bridge problem:\nConnect \"fire\" to \"ocean\":\nfire \u2192 heat \u2192 steam \u2192 water vapor \u2192 clouds \u2192 rain \u2192 rivers \u2192 ocean\n(each adjacent pair shares a property: fire/heat share energy-release; heat/steam\nshare high temperature; etc.)\n\nNow apply this structural principle to three new bridge problems you have NOT\nseen before:\n\n1. Connect \"mathematics\" to \"music\"\n2. Connect \"childhood\" to \"wisdom\"\n3. Connect \"silence\" to \"explosion\"\n\nFor each, show the chain with a brief justification of each link.\nThen reflect: what structural feature made each connection possible or difficult?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesDZmpYdydBn3B6iUx'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "abstraction",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "You are given 5 specific examples. Your task is to extract increasingly abstract\nprinciples from them, then apply the highest-level abstraction to a new domain.\n\nSpecific examples:\nE1: A thermostat turns the heater on when temperature drops below a set point\n    and off when it rises above.\nE2: A speed governor on a car engine cuts fuel injection when speed exceeds a limit.\nE3: A biological cell's sodium-potassium pump uses energy to maintain ion\n    concentration gradients, correcting drift from equilibrium.\nE4: A central bank raises interest rates when inflation is above target and\n    lowers them when it falls below.\nE5: A PID controller in a drone continuously adjusts motor thrust based on the\n    error between target and current altitude.\n\nTasks:\n(a) Level 1 abstraction: What do E1 and E2 share that E3 does NOT?\n    Express as an abstract principle.\n\n(b) Level 2 abstraction: What do E1, E2, E3, and E4 all share?\n    Express as an abstract principle broader than Level 1.\n\n(c) Level 3 abstraction: What is the single most general principle that\n    encompasses ALL five examples, including E5?\n\n(d) Apply your Level 3 abstraction to a NEW domain of your choice that was\n    NOT mentioned in any of the examples.\n\n(e) Identify one domain where your Level 3 abstraction does NOT apply and\n    explain why it fails there.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesDv7Sc2zXQb1dVpG2'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "addresses_all_levels",
+          "passed": false,
+          "score": 0.0,
+          "message": "Missing sections: ['level 1', 'level 2', 'level 3']"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "adaptive_detail_management",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "You are explaining how HTTPS (secure web browsing) works.\nYou must explain it FOUR times, each time at a different granularity level.\n\nLevel 1 \u2014 One sentence: For a complete non-technical adult audience.\nLevel 2 \u2014 One paragraph (4-6 sentences): For a technically curious person\n           with no networking background.\nLevel 3 \u2014 Three paragraphs: For a junior software developer who knows basic\n           networking (HTTP, TCP/IP) but hasn't implemented security protocols.\nLevel 4 \u2014 One paragraph focused on a specific technical detail: For a security\n           engineer who needs to understand the TLS handshake key exchange specifically.\n\nAfter all four levels, answer:\n(a) What did you choose to include at Level 4 that you omitted at Level 3?\n    Why was it appropriate to add at Level 4?\n(b) What did you simplify or omit at Level 2 that would be INCORRECT if applied\n    at Level 3? (i.e., what simplification becomes misleading when you know more?)\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesEJgEKENEZccnpJys'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "backtracking",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "Solve the following constraint satisfaction problems using backtracking.\nShow your work explicitly: when you hit a dead end, say so and show\nyourself returning to a previous decision point.\n\nProblem 1: Map coloring\nColor the following regions (A, B, C, D, E) using ONLY 3 colors (Red, Green, Blue)\nsuch that no two adjacent regions share a color.\nAdjacencies: A-B, A-C, B-C, B-D, C-D, D-E\n\nProblem 2: Sequence completion\nFill in the blanks in the sequence using the numbers {1, 2, 3, 4, 5},\neach used exactly once: _ , 3, _, _, 1\nSubject to these constraints:\n- No two adjacent numbers differ by more than 2\n- The first number must be odd\n- The third number must be even\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesEd2YztKv4sbVPJNM'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.3333,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "shows_backtrack",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['backtrack', 'back', 'fails', 'dead end', 'try again', 'cannot', 'go back', 'undo'] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "backward_chaining",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:03Z",
+    "prompt": "Use backward chaining (working from the goal back to the facts needed to achieve it)\nto answer the following questions.\n\nKnowledge base:\nRule 1: mammal(X) AND large(X) AND aquatic(X) \u2192 whale(X)\nRule 2: mammal(X) AND has_fur(X) \u2192 not_reptile(X)\nRule 3: lays_eggs(X) AND cold_blooded(X) \u2192 reptile(X)\nRule 4: mammal(X) AND carnivore(X) AND land_animal(X) \u2192 predator(X)\nRule 5: whale(X) \u2192 mammal(X)  [whales are mammals]\nRule 6: large(X) AND fast(X) \u2192 apex_predator_candidate(X)\n\nKnown facts:\nmammal(dolphin), aquatic(dolphin), large(dolphin), carnivore(dolphin)\nmammal(wolf), has_fur(wolf), carnivore(wolf), land_animal(wolf)\nlays_eggs(gecko), cold_blooded(gecko)\n\nGoal queries: Prove or disprove each of the following by backward chaining.\nShow your reasoning chain working BACKWARD from each goal.\n\nQ1: Prove whale(dolphin)\nQ2: Prove predator(wolf)\nQ3: Prove predator(dolphin)\nQ4: Is gecko a not_reptile?\n\nFor each query, show the backward chain: start with the goal, identify what\nfacts/sub-goals are needed, and check them against the knowledge base.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesEwd2oyFbK7TDz1e8'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "shows_backward_reasoning",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['goal', 'backward', 'sub-goal', 'prerequisite', 'which rule', 'prove'] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "context_alignment",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "You are given the same underlying problem presented in three different contexts.\nYour task is to recognize the shared structure AND produce context-aligned solutions.\n\nThe underlying problem: \"A resource is shared among multiple users/agents with\ncompeting needs; we must allocate it fairly while satisfying minimum requirements.\"\n\nContext 1 (Healthcare):\nA hospital has 12 ICU beds. Three departments need beds:\n- Cardiac: needs at least 3, requests 6\n- Trauma: needs at least 4, requests 7\n- Neurology: needs at least 2, requests 5\n(Total requests: 18; Available: 12)\n\nContext 2 (Software engineering):\nA CI/CD system has 12 parallel build slots. Three teams need slots:\n- Backend team: needs at least 3, requests 6\n- Frontend team: needs at least 4, requests 7\n- Data team: needs at least 2, requests 5\n\nContext 3 (Environmental policy):\nA river system can sustain 12 \"units\" of water extraction per month. Three\nagricultural regions need allocations:\n- Region A: needs at least 3, requests 6\n- Region B: needs at least 4, requests 7\n- Region C: needs at least 2, requests 5\n\nTasks:\n(a) Identify the shared abstract structure of all three contexts.\n(b) Apply a single consistent allocation method to all three (e.g., proportional\n    reduction from requests, priority-weighted, or another defensible scheme).\n    Show the same calculation applied consistently.\n(c) For EACH context, identify one domain-specific consideration that would\n    appropriately modify the solution \u2014 something that's relevant in that domain\n    but would be inappropriate to import into the others.\n(d) The hospital context adds a new constraint: Cardiac cases have 2\u00d7 the mortality\n    risk of other departments per unfilled bed. Adapt your allocation method for\n    this context only. Does this change carry over to the other contexts? Why or why not?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesFGiTpLZYY8HKNWUw'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "decomposition_and_integration",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "Solve the following complex problem by explicitly decomposing it into sub-problems,\nsolving each, and then integrating the sub-solutions into a coherent whole.\n\nProblem: A city wants to reduce its carbon footprint by 40% within 10 years.\nThe city's current emissions by sector:\n- Transportation: 45% of total (mainly private vehicles)\n- Buildings (heating/cooling): 30% of total\n- Industry: 15% of total\n- Waste: 10% of total\n\nConstraints:\n- Total budget: $500 million over 10 years\n- Must not increase unemployment by more than 1%\n- Must maintain current quality of life metrics (no dramatic lifestyle mandates)\n\nRequirements for your response:\n1. Explicitly decompose the problem into sub-problems (at least one per sector)\n2. Solve each sub-problem with specific interventions and estimated cost\n3. Show the integration step: how sub-solutions combine to achieve the 40% target\n4. Identify any sub-problems that interact (dependencies, conflicts, synergies)\n5. Show your final integrated recommendation as a coherent plan\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesFbZg6MzvCL5XXhco'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "shows_decomposition",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['sub-problem', 'sub problem', 'sector', 'decompose', 'decomposition'] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "forward_chaining",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "Use forward chaining (reasoning from given facts toward a conclusion) to\ndetermine what can be concluded from the following knowledge base.\n\nFacts (starting state):\nF1: It is raining.\nF2: Alice has an umbrella.\nF3: Bob does not have an umbrella.\nF4: Carol is at home.\n\nRules:\nR1: If it is raining AND a person has an umbrella \u2192 that person can go outside dry.\nR2: If it is raining AND a person does NOT have an umbrella \u2192 that person will get wet if they go outside.\nR3: If a person is at home \u2192 that person does not need an umbrella to stay dry.\nR4: If a person can go outside dry \u2192 that person is able to complete outdoor tasks.\nR5: If a person will get wet if they go outside \u2192 that person should carry an umbrella.\nR6: If a person is at home AND it is raining \u2192 that person may or may not hear the rain.\n\nTasks:\n(a) Apply forward chaining starting from the facts. Show each inference step:\n    which rule fires, which facts triggered it, and what new fact is derived.\n    Continue until no new facts can be derived.\n\n(b) List all final conclusions that were derived (not just the starting facts).\n\n(c) One new fact is added: \"Bob goes outside.\" Apply forward chaining to derive\n    any new conclusions not already in your previous answer.\n\n(d) Which rules were never triggered in parts (a) or (c)? Why?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesFvQVNQebC1zWnSwV'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "shows_rule_firings",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['rule', 'fires', 'step', 'derived', 'new fact', 'chain'] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "knowledge_alignment",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "A patient presents with the following symptoms: sudden onset severe headache\n(described as \"worst headache of my life\"), neck stiffness, sensitivity to light,\nand mild fever (38.2\u00b0C / 100.8\u00b0F). No history of migraines.\n\nYou are to reason about this case in TWO ways:\n\nPart A \u2014 Novice reasoning (surface-level):\nReason about this case using only the surface features of the symptoms.\nWhat is the most salient feature? What does that suggest?\n\nPart B \u2014 Expert domain-aligned reasoning:\nNow reason using the deep structural knowledge of emergency medicine.\nWhat is the technical differential diagnosis? What domain-specific risk\nstratification applies? What is the critical first decision, and why does\nit override other considerations?\n\nPart C \u2014 Reflection:\nCompare the two reasoning approaches. Identify exactly where expert domain\nknowledge changes the reasoning path or the conclusion. What knowledge structure\ndoes the expert bring that the novice lacks?\n\n[NOTE: This is a medical reasoning exercise. The response should demonstrate\nmedical domain knowledge alignment, not provide actual medical advice.]\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesGF1EZS95oDgSvHox'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "pattern_recognition",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "Identify the underlying pattern in each sequence or set, then apply it.\n\nSet 1 \u2014 Number sequence:\n2, 6, 12, 20, 30, 42, ?\n\nSet 2 \u2014 Word transformation:\ncat \u2192 act, dog \u2192 god, rat \u2192 tar, pan \u2192 ?\n\nSet 3 \u2014 Abstract pattern (harder):\n(1, 1, 2), (2, 3, 5), (3, 5, 8), (4, 7, 11), (5, ?, ?)\n\nSet 4 \u2014 Cross-domain pattern (hardest):\nThe following four things share a deep structural pattern. Identify it.\n- A river delta\n- A computer's file system folder hierarchy\n- A family tree (genealogy)\n- An org chart at a company\n\nFor Sets 1-3: Give the next element and explain the pattern.\nFor Set 4: Name the pattern, explain why all four share it, and generate\na FIFTH example that shares the same structure.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesGZbwdkZM9ExYP8it'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "set1_correct_answer",
+          "passed": false,
+          "score": 0.0,
+          "message": "Expected ~56.0 not found in response numbers: ['400', '011', '9', '8']"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "representational_restructuring",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "Each problem below has a natural but unproductive initial framing.\nYour task is to:\n(1) Identify the unproductive initial framing\n(2) Restructure the representation\n(3) Solve the problem using the new framing\n\nProblem A:\n\"A farmer has 17 sheep. All but 9 die. How many are left?\"\n[Initial framing: arithmetic subtraction problem]\n\nProblem B:\n\"A bat and a ball together cost $1.10. The bat costs $1.00 more than the ball.\nHow much does the ball cost?\"\n[Initial framing: the intuitive answer is $0.10]\n\nProblem C:\n\"You have two ropes. Each rope takes exactly 60 minutes to burn from end to end,\nbut they burn at non-uniform rates (one rope might burn 90% in the first 5 minutes).\nUsing only the ropes and matches, measure exactly 45 minutes.\"\n[Initial framing: trying to find the midpoint of a rope physically]\n\nFor each problem:\n(a) Name the unproductive initial framing\n(b) Describe the restructuring that enables the solution\n(c) Solve it using the restructured framing\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesGtx4jramvc92MSrS'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "all_problems_addressed",
+          "passed": false,
+          "score": 0.0,
+          "message": "Missing sections: ['problem a', 'problem b', 'problem c']"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "selective_attention",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "Read the following passage carefully, then answer the questions below.\nThe questions test your ability to focus on the relevant information and\nfilter out deliberate distractors.\n\n---\nPASSAGE:\nThe Meridian Bridge project, announced in 2019 and initially budgeted at $4.2 billion,\nhas faced repeated delays. The bridge connects the coastal city of Portville\n(population 340,000, founded 1847) to the industrial district of Crestshore.\nThe project manager, Janet Okonkwo, whose previous project won a national engineering\naward in 2017, noted that steel costs have increased 23% since the project began.\nThe lead contractor, Halloran Construction, which has been operating since 1962\nand built 47 bridges across 12 states, attributed delays to supply chain disruptions.\nPortville's mayor, Marcus Webb, who is in his third term and was previously a city\ncouncil member for 8 years, stated that the new budget estimate is $5.1 billion.\nAn environmental assessment conducted in 2021 found no significant impact to the\nnearby Greenvale Wildlife Reserve. The bridge is expected to reduce commute times\nfor approximately 85,000 daily commuters by an average of 22 minutes per trip.\nThe project is now expected to complete in Q3 2027, two years behind the original\nschedule. The architectural design was created by the Stellario firm, which was\nfounded by twin brothers Marco and Leo Stellario in 1998.\n---\n\nQuestions (answer ONLY based on information in the passage):\n\nQ1: What is the budget increase from original to current estimate?\nQ2: Which single factor did the contractor specifically attribute delays to?\nQ3: How much time per day will the average commuter save once the bridge opens?\nQ4: How many years behind schedule is the project?\nQ5 (distractor test): What is the population of Portville, and does it affect\n    your answer to any of Q1-Q4?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesHEnSZNBh3cogHoT4'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "verification",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "Below is a \"proof\" that 1 = 2. Find and precisely identify ALL errors.\nThen, for each correct step in the proof, verify that it is indeed valid.\n\nAlleged proof:\nStep 1: Let a = b = 1\nStep 2: Then a\u00b2 = ab           (multiply both sides of a=b by a)\nStep 3: a\u00b2 - b\u00b2 = ab - b\u00b2      (subtract b\u00b2 from both sides)\nStep 4: (a+b)(a-b) = b(a-b)    (factor both sides)\nStep 5: (a+b) = b               (divide both sides by (a-b))\nStep 6: 1 + 1 = 1               (substitute a=b=1)\nStep 7: 2 = 1                   (simplify)\n\nAfter identifying the error(s), answer:\n(a) Which steps are valid and which are invalid? Give a formal reason for each.\n(b) What is the SINGLE logical error that invalidates the entire proof?\n(c) Construct a valid proof of something trivially true (your choice) using\n    exactly 5 steps, where you explicitly verify each step is valid.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesHdbkvV6kLq124hS5'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.2857,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "identifies_division_by_zero",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['division by zero', 'divide by zero', 'a-b = 0', 'a - b = 0', 'a=b', 'zero denominator'] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "causal_organization",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "A software company notices that user churn (users cancelling subscriptions)\nincreased by 35% over the past quarter. The following observations were recorded:\n\nObservation 1: Customer support ticket volume increased 60% in the same period\nObservation 2: A major product update was deployed 6 weeks ago\nObservation 3: A competitor launched a competing product 8 weeks ago\nObservation 4: User satisfaction scores dropped from 4.1 to 3.4 (out of 5)\nObservation 5: The support tickets are primarily about a new feature that\n  replaced a previously popular workflow\nObservation 6: The new feature requires 3 extra clicks compared to the old workflow\nObservation 7: Power users (who generate 70% of revenue) are churning at 2\u00d7 the\n  rate of casual users\n\nTasks:\n(a) Build a causal diagram (text-based) connecting these observations to the\n    churn increase. Label each arrow with the causal mechanism.\n\n(b) Identify the ROOT CAUSE(s) versus PROXIMATE CAUSE(s) of churn.\n\n(c) If the company reverts the product update (restoring the old workflow),\n    predict the causal effect on churn. Be specific about which causal paths\n    would be affected.\n\n(d) Design a COUNTERFACTUAL test: what evidence would prove that the competitor\n    launch (rather than the product update) is the primary cause of churn?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesHxCQgvDGukyGwQfT'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "hierarchical_organization",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "You are organizing a public library's digital catalog. You have the following\n42 books (represented as a flat list of titles and genres):\n\nFiction: \"The Midnight Garden\", \"Storm Rider\", \"Letters to Nobody\", \"Azure Dreams\",\n\"The Last Cartographer\", \"Whisper Wood\", \"Iron Sky\", \"Parallel Hearts\"\n\nMystery/Thriller: \"Dead Wrong\", \"The Cipher Key\", \"Vanishing Act\", \"Cold Trace\",\n\"Seven Lies\", \"The Watchmaker's Secret\"\n\nNon-fiction/Science: \"Quantum Minds\", \"The Carbon Cycle\", \"Brain First\",\n\"Mapping the Cosmos\", \"Deep Ocean Secrets\"\n\nNon-fiction/History: \"Empires of Sand\", \"The Forgotten Wars\", \"Rise and Fall\",\n\"City of Ghosts\", \"Silk and Steel\"\n\nNon-fiction/Self-Help: \"Better Mornings\", \"The Calm Method\", \"Habit Architecture\",\n\"Clear Thinking\", \"Energy Reset\"\n\nChildren's: \"Pip the Dragon\", \"Star Friends\", \"The Rainbow Machine\",\n\"Bedtime at the Zoo\", \"Oliver's Adventure\", \"Cloud Jumpers\"\n\nYoung Adult: \"The Awakening\", \"Shadow Run\", \"Fractured Kingdom\", \"Last Light\",\n\"The Oracle Games\", \"Wild Hearts\"\n\nTasks:\n(a) Design a two-level hierarchical classification system for these books.\n    Level 1 = broad categories (3-5 categories max).\n    Level 2 = subcategories within each (2-4 subcategories per Level 1).\n    Assign all 42 books appropriately.\n\n(b) The library adds these new books: \"Dinosaurs for Kids\" and \"Teen Spy Thriller.\"\n    Where do they fit in your hierarchy? Does the hierarchy need modification?\n\n(c) A patron asks for \"engaging stories for a 12-year-old who loves adventure.\"\n    Trace through your hierarchy to identify the best-fit section(s), and explain\n    the reasoning path.\n\n(d) Identify one book that could reasonably fit in two different categories and\n    explain the classification trade-off.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesJKmX44rMAUVq1rTM'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "network_organization",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:04Z",
+    "prompt": "Map the following ecosystem as a network (not a simple food chain).\nThe ecosystem contains: grass, rabbits, foxes, hawks, mice, snakes, beetles,\ndecomposers (bacteria/fungi), and soil nutrients.\n\nKnown relationships (partial list \u2014 you may add plausible ones):\n- Grass grows from soil nutrients\n- Rabbits eat grass\n- Mice eat grass and beetles\n- Foxes eat rabbits and mice\n- Snakes eat mice\n- Hawks eat snakes, rabbits, and mice\n- All animals eventually die and are decomposed by decomposers\n- Decomposers return nutrients to the soil\n- Beetles eat decomposing organic matter\n\nTasks:\n(a) Draw the network (text-based: list all nodes and all directed edges with\n    relationship type). Include at least 3 relationship types (not just \"eats\").\n\n(b) Identify which node has the HIGHEST in-degree (most things depending on it)\n    and explain its ecological role.\n\n(c) If foxes are removed from the ecosystem, trace ALL first and second-order\n    effects through the network. (First-order = directly connected to foxes;\n    second-order = connected to first-order affected nodes.)\n\n(d) Identify a cycle in the network and explain what it means ecologically.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesJecwCH5j8W13n7u3'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "ordinal_organization",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:05Z",
+    "prompt": "You are advising a startup on which of five candidate features to prioritize\nfor their next product release. You do NOT have exact data \u2014 only qualitative\nassessments. Your task is to reason ordinally (relative ranking, not exact values).\n\nFeatures under consideration:\nF1: Dark mode\nF2: Offline sync\nF3: Multi-language support (10 languages)\nF4: Advanced analytics dashboard\nF5: Third-party integrations (API)\n\nKnown qualitative assessments:\n- F2 (offline sync) is harder to implement than F1 (dark mode)\n- F5 (API) is harder than F3 (multi-language) but easier than F2\n- F4 is harder than F5 but easier than F2\n- F3 (multi-language) generates more user demand signals than F1\n- F1 (dark mode) generates more user demand signals than F4 or F5\n- F2 generates the highest user demand of all five\n- F4 generates less user demand than F3\n\nTasks:\n(a) Produce a full ordinal ranking of all 5 features on BOTH dimensions\n    (implementation difficulty and user demand), from lowest to highest.\n\n(b) Compute a simple \"priority score\" = user_demand_rank - difficulty_rank\n    for each feature (higher score = higher net priority). Rank by priority score.\n\n(c) The startup can only ship features with combined difficulty \u2264 top 2 difficulty units.\n    Which combination(s) of features maximize user demand coverage under this constraint?\n\n(d) A new assessment arrives: \"F3 is actually harder than F4.\" Revise the difficulty\n    ranking and recompute priority scores.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesJzD1pMdrHgQ6jAX7'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "sequential_organization",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:05Z",
+    "prompt": "A software deployment pipeline must execute the following steps, but ONLY in a\nvalid order where prerequisites are met. Some steps can run in parallel; others\ncannot start until specific prior steps complete.\n\nSteps (unordered):\n- [A] Run unit tests\n- [B] Build container image\n- [C] Push image to registry\n- [D] Run integration tests\n- [E] Deploy to staging environment\n- [F] Run smoke tests on staging\n- [G] Get QA sign-off\n- [H] Deploy to production\n- [I] Run final health checks\n- [J] Write code / implement features\n\nKnown constraints:\n1. J must come first (no code = nothing to test)\n2. A and B can run in parallel after J\n3. C requires B to complete\n4. D requires both A and C to complete\n5. E requires D to complete\n6. F requires E to complete\n7. G requires F to complete\n8. H requires G to complete\n9. I requires H to complete\n\nTasks:\n(a) Write the valid sequential order, marking which steps can run in parallel.\n(b) What is the MINIMUM number of sequential \"stages\" needed (where parallel\n    steps count as one stage)?\n(c) If step D fails, which subsequent steps are blocked, and which (if any)\n    can still proceed?\n(d) A new requirement: step K \"Security scan\" must run after B but before D.\n    Show the revised sequence.\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesL5SUq9EzCPjGpDwq'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 0.4,
+      "passed": false,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "mentions_stages",
+          "passed": false,
+          "score": 0.0,
+          "message": "None of ['stage', 'step', 'parallel', 'sequence', 'depends'] found in response"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "spatial_organization",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:06Z",
+    "prompt": "You are given a 4\u00d74 grid (rows 1-4 top to bottom, columns A-D left to right).\nThe following objects are placed on the grid:\n- Red box at A1 (top-left corner)\n- Blue box at D4 (bottom-right corner)\n- Green box at B2\n- Yellow box at C3\n\nA robot starts at A1 (on top of the red box) and must reach D4 (the blue box).\nThe robot can move one cell at a time: up, down, left, or right.\nThe robot CANNOT move through a cell occupied by a box (except its start and end).\n\nTasks:\n(a) Describe the spatial layout of all objects in a structured way.\n\n(b) Find the shortest path from A1 to D4 that avoids B2 and C3.\n    State the path as a sequence of coordinates.\n\n(c) The yellow box at C3 is removed. Does this change the shortest path?\n    If so, give the new shortest path. If not, explain why the path already\n    bypassed C3.\n\n(d) A new box is placed at B3. Now find the shortest path from A1 to D4\n    avoiding ALL boxes: B2, B3 (C3 removed, original B2 and new B3 blocked).\n\n(e) Starting from your final position D4, describe the path to return to A1\n    via a DIFFERENT route than the one you took (if possible).\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesMX1VugUTRgCCEqVg'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  },
+  {
+    "element_id": "temporal_organization",
+    "trial_index": 0,
+    "timestamp": "2026-03-10T03:01:06Z",
+    "prompt": "The following events are described out of order. Your task is to reason about\ntheir temporal structure.\n\nEvents (labeled A-H, NOT in chronological order):\nA: The company files for bankruptcy protection\nB: Sales decline for three consecutive quarters\nC: The founding team launches the startup with seed funding\nD: The product receives a major award from an industry association\nE: A key patent expires, allowing competitors to enter the market\nF: The board replaces the CEO\nG: The company attempts a pivot to a new market segment\nH: The company raises a Series B round of $40 million\n\nGiven constraints:\n- C must be first (company must exist before anything else)\n- D occurs before E (award was during the protected patent period)\n- H occurs before B starts (Series B raised, then sales decline)\n- B precedes F (board acts after decline is evident)\n- F precedes G (new CEO initiates pivot)\n- G precedes A (pivot fails, leading to bankruptcy)\n- E occurs after H (patent expires after funding round)\n\nTasks:\n(a) Reconstruct the most likely chronological sequence of all 8 events.\n    If multiple valid orderings exist, list all valid ones.\n\n(b) Calculate: How many events must occur between C (founding) and A\n    (bankruptcy) given the constraints?\n\n(c) Add a new event: X = \"Company wins a government contract\"\n    Constraint: X occurs after D but before E.\n    Where does X fit in the sequence?\n\n(d) Identify a temporal IMPOSSIBILITY: Which pairing of events CANNOT\n    be consecutive (adjacent in time) given the constraints?\n",
+    "response": "[API ERROR: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'adaptive thinking is not supported on this model'}, 'request_id': 'req_011CYtesSQSgtUPXxUNzkCpo'}]",
+    "usage": {},
+    "code_grade": {
+      "overall_score": 1.0,
+      "passed": true,
+      "checks": [
+        {
+          "name": "response_not_empty",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        },
+        {
+          "name": "no_placeholder_text",
+          "passed": true,
+          "score": 1.0,
+          "message": "OK"
+        }
+      ]
+    }
+  }
+]
