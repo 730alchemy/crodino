@@ -4,3 +4,6 @@ results/*.json
 .venv/
 .pdm-python
 .env
+web/node_modules/
+web/dist/
+web/src/data/*.json
