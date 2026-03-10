@@ -1,3 +1,6 @@
 __pycache__/
 *.pyc
 results/*.json
+.venv/
+.pdm-python
+.env

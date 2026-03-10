@@ -1,0 +1,25 @@
+[project]
+name = "crodino"
+version = "0.1.0"
+description = "Default template for PDM package"
+authors = [
+    {name = "", email = "mark@marknorman.com"},
+]
+dependencies = ["anthropic>=0.84.0", "pyyaml>=6.0", "python-dotenv>=1.2.2"]
+requires-python = "==3.14.*"
+readme = "README.md"
+license = {text = "MIT"}
+
+
+[tool.pdm]
+distribution = false
+
+[tool.pdm.scripts]
+test = "pytest tests/ -v"
+eval-fast = "python -m harness --config config/fast.yaml"
+eval = "python -m harness --config config/default.yaml"
+
+[dependency-groups]
+test = [
+    "pytest>=9.0",
+]
