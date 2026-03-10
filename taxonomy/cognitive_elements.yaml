@@ -1,0 +1,500 @@
+---
+# Taxonomy of 28 Cognitive Elements for LLM Reasoning
+# Source: "Cognitive Foundations for Reasoning and Their Manifestation in LLMs"
+# Kargupta et al., 2025 (arXiv:2511.16660v2)
+#
+# Organized along four dimensions derived from Marr's (1982) levels of analysis:
+#   - Computational level: what is being computed and why (Reasoning Invariants)
+#   - Algorithmic level: what representations and algorithms transform them
+#     (Meta-Cognitive Controls, Reasoning Representations, Reasoning Operations)
+
+categories:
+  - id: reasoning_invariants
+    name: "Reasoning Invariants"
+    description: >
+      "Always-true" properties or quality criteria the system maintains across
+      reasoning steps. These specify computational goals — properties that must
+      hold for valid reasoning. They capture fundamental properties that
+      distinguish genuine reasoning from pattern-matching or memorization.
+
+  - id: metacognitive_controls
+    name: "Meta-Cognitive Controls"
+    description: >
+      Higher-order abilities that select, monitor, and adapt cognitive processes.
+      These executive functions determine which strategies to deploy and when to
+      adapt — they are the self-regulatory layer that coordinates the other three
+      dimensions. Underutilized by LLMs on ill-structured problems despite being
+      strongly correlated with success.
+
+  - id: reasoning_representations
+    name: "Reasoning Representations"
+    description: >
+      The formats and organizational patterns used to encode and relate knowledge
+      and reasoning steps. Divided into structural organization (how elements
+      connect architecturally) and conceptual organization (how meaning is
+      arranged semantically). LLMs default to shallow sequential representations
+      where richer structures would improve outcomes.
+
+  - id: reasoning_operations
+    name: "Reasoning Operations"
+    description: >
+      Goal-directed actions that construct, evaluate, modify, and navigate
+      reasoning representations. Divided into representation selection,
+      representation evaluation, representation modification, and representation
+      navigation. LLMs over-rely on forward-chaining and under-deploy
+      backtracking, restructuring, and abstraction.
+
+elements:
+  # ─────────────────────────────────────────────────────────────
+  # A. REASONING INVARIANTS (4 elements)
+  # ─────────────────────────────────────────────────────────────
+
+  - id: logical_coherence
+    name: "Logical Coherence"
+    category: reasoning_invariants
+    definition: >
+      Maintain consistency across reasoning steps and contexts. Avoid
+      simultaneously holding contradictory beliefs; resolve contradictions by
+      revising beliefs, updating inferences, or reconsidering premises.
+      (Fodor & Pylyshyn, 1988; Rips, 1983; Thagard, 2002)
+    why_it_matters: >
+      Without logical coherence, reasoning breaks down at a foundational level:
+      contradictory conclusions can coexist, making any output unreliable. LLMs
+      sometimes affirm conflicting statements across a long response or fail to
+      update earlier claims when later reasoning reveals them to be false. This
+      is the most basic invariant — everything else depends on it.
+    subcategory: null
+
+  - id: compositionality
+    name: "Compositionality"
+    category: reasoning_invariants
+    definition: >
+      Build complex ideas from simpler components through rule-governed
+      combination. The meaning and structure of a complex expression derives
+      predictably from the meanings of its constituents and their mode of
+      combination. (Fodor, 1975; Fodor & Pylyshyn, 1988; Russin et al., 2024)
+    why_it_matters: >
+      Compositionality enables systematic generalization — understanding new
+      complex situations by recombining familiar concepts. LLMs that lack
+      genuine compositionality succeed on memorized combinations but fail on
+      novel arrangements of known parts. This is why models can solve complex
+      tasks yet fail simpler variants that require different compositional
+      assembly.
+    subcategory: null
+
+  - id: productivity
+    name: "Productivity"
+    category: reasoning_invariants
+    definition: >
+      Formulate an indefinite number of novel thoughts or solutions using a
+      finite set of conceptual primitives. Once a structural principle is
+      grasped, apply it generatively to produce new instances — not just
+      retrieve memorized ones. (Fodor, 1975; Hauser et al., 2002; Halford, 1989)
+    why_it_matters: >
+      Productivity distinguishes genuine understanding from memorized responses.
+      An LLM with true productivity can extrapolate a problem-solving approach
+      to a new domain; one without it is limited to recombining seen patterns.
+      Productivity is required for robust generalization across problem types.
+    subcategory: null
+
+  - id: conceptual_processing
+    name: "Conceptual Processing"
+    category: reasoning_invariants
+    definition: >
+      Operate over abstract semantic representations rather than surface-level
+      linguistic forms. Process meaning at the level of concepts, relations, and
+      schemas before — or independently of — their linguistic expression.
+      (Halford, 1989; Kholodnaya & Volkova, 2016; Baron, 2008)
+    why_it_matters: >
+      Conceptual processing enables abstraction beyond shallow pattern matching.
+      Human traces show more conceptual-level processing; LLMs default to
+      surface enumeration. When a problem requires understanding *why* something
+      works (not just *what* to do), conceptual processing is critical. Its
+      absence leads to brittle solutions that fail when surface features change.
+    subcategory: null
+
+  # ─────────────────────────────────────────────────────────────
+  # B. META-COGNITIVE CONTROLS (5 elements)
+  # ─────────────────────────────────────────────────────────────
+
+  - id: self_awareness
+    name: "Self-Awareness"
+    category: metacognitive_controls
+    definition: >
+      Assess own knowledge state, capabilities, and task solvability. Recognize
+      the limits of one's knowledge, identify when a task is beyond current
+      ability, and calibrate confidence accordingly. (Wicklund, 1979; Flavell,
+      1979; Nelson, 1990)
+    why_it_matters: >
+      Self-awareness prevents overconfident errors. LLMs that lack self-awareness
+      hallucinate answers rather than acknowledging uncertainty. Research shows
+      self-awareness is one of the most underrepresented cognitive elements in
+      LLM reasoning papers (only 16% address it) despite being strongly
+      correlated with success. Accurate self-knowledge also enables strategic
+      resource allocation.
+    subcategory: null
+
+  - id: context_awareness
+    name: "Context Awareness"
+    category: metacognitive_controls
+    definition: >
+      Perceive, understand, and navigate one's circumstances, including
+      environmental constraints, social dynamics, and the presence and goals of
+      other agents. (Boyd et al., 2011; Frith & Frith, 2007; Lei, 2023;
+      Milli et al., 2021)
+    why_it_matters: >
+      Context awareness determines which strategies are appropriate and which
+      goals are worth pursuing. The same task requires different approaches
+      depending on constraints (time, resources, audience). LLMs that miss
+      contextual cues apply inappropriate strategies, ignore relevant
+      constraints, or produce outputs that are technically correct but situationally
+      wrong.
+    subcategory: null
+
+  - id: strategy_selection
+    name: "Strategy Selection"
+    category: metacognitive_controls
+    definition: >
+      Choose and explore reasoning approaches suited to task and domain demands.
+      Decide between alternative problem-solving strategies (e.g., top-down vs.
+      bottom-up, exploratory vs. schema-based) based on task requirements.
+      (Lieder & Griffiths, 2017, 2020; Mata et al., 2011)
+    why_it_matters: >
+      Different problems require different strategies. LLMs tend to apply a
+      default sequential approach regardless of problem type. On ill-structured
+      problems, models narrow their strategy repertoire precisely when diversity
+      is most needed. Appropriate strategy selection can improve performance by
+      up to 66.7% on complex problems through test-time reasoning guidance.
+    subcategory: null
+
+  - id: goal_management
+    name: "Goal Management"
+    category: metacognitive_controls
+    definition: >
+      Establish, maintain, sequence, and dynamically adjust goals throughout
+      the reasoning process. Decompose high-level goals into sub-goals, track
+      progress, insert new sub-goals, and abandon unproductive ones.
+      (Griffiths et al., 2019; Dolan & Dayan, 2013; Cushman & Morris, 2015)
+    why_it_matters: >
+      Goal management provides the backbone of extended reasoning. Without it,
+      LLMs lose track of the original objective mid-response, over-solve
+      sub-problems at the expense of the whole, or fail to integrate
+      sub-solutions into a coherent answer. Effective goal management enables
+      the kind of multi-step planning that complex tasks require.
+    subcategory: null
+
+  - id: evaluation
+    name: "Evaluation"
+    category: metacognitive_controls
+    definition: >
+      Assess and adapt based on the quality, efficiency, and coherence of one's
+      own reasoning. Continuously monitor progress, judge whether the current
+      approach is working, and decide whether to persist or change direction.
+      (Yeung & Summerfield, 2012; Fleming & Daw, 2017; Stipek et al., 1992)
+    why_it_matters: >
+      Evaluation closes the metacognitive feedback loop. Without it, errors
+      propagate uncorrected. LLMs that evaluate their own reasoning during
+      generation can self-correct before producing a final answer. This is
+      distinct from post-hoc verification; it is the ongoing monitoring that
+      shapes the reasoning trajectory itself.
+    subcategory: null
+
+  # ─────────────────────────────────────────────────────────────
+  # C. REASONING REPRESENTATIONS (7 elements)
+  # ─────────────────────────────────────────────────────────────
+
+  - id: sequential_organization
+    name: "Sequential Organization"
+    category: reasoning_representations
+    definition: >
+      Order reasoning steps or knowledge elements where sequence matters for
+      correctness or understanding. Maintain proper ordering of steps, events,
+      or procedures. (Skinner, 1953; Lashley et al., 1951)
+    why_it_matters: >
+      Sequential organization is the most common representation in LLM reasoning
+      (present in ~55% of papers). While necessary, it is often over-relied on
+      at the expense of richer structures. It is most appropriate for well-defined
+      procedural tasks but insufficient for ill-structured problems requiring
+      flexible, non-linear reasoning.
+    subcategory: structural_organization
+
+  - id: hierarchical_organization
+    name: "Hierarchical Organization"
+    category: reasoning_representations
+    definition: >
+      Nest concepts or reasoning steps in parent-child relationships. Enable
+      decomposition of complex wholes into manageable parts while preserving
+      structural relationships across levels of abstraction. (Galanter et al.,
+      1960; Botvinick et al., 2009; Haupt, 2018)
+    why_it_matters: >
+      Hierarchical organization enables principled decomposition of complex
+      tasks. It allows an LLM to zoom in on sub-problems without losing sight
+      of the overall structure. Biological taxonomies, problem-solving trees, and
+      organizational structures all use this representation. It appears in ~33%
+      of LLM reasoning papers.
+    subcategory: structural_organization
+
+  - id: network_organization
+    name: "Network Organization"
+    category: reasoning_representations
+    definition: >
+      Link concepts or entities through multiple relationship types
+      simultaneously. Represent domains where a strict tree structure is
+      insufficient because elements relate in multiple overlapping ways.
+      (Quillan, 1966; Collins & Loftus, 1975; Shafto et al., 2008)
+    why_it_matters: >
+      Many real-world domains resist strict hierarchies: ecosystems, social
+      networks, causal systems, and semantic knowledge all have multi-relational
+      structure. Without network organization, LLMs reduce complex relational
+      systems to impoverished sequential lists, missing important connections
+      and inferential pathways.
+    subcategory: structural_organization
+
+  - id: ordinal_organization
+    name: "Ordinal Organization"
+    category: reasoning_representations
+    definition: >
+      Arrange elements by relative order or rank without requiring precise
+      numerical values. Reason about more/less, better/worse, earlier/later
+      relationships. (Stevens, 1946)
+    why_it_matters: >
+      Ordinal organization enables ranking and comparison reasoning that does
+      not require exact quantities. It is essential for tasks involving
+      prioritization, preference, and comparative evaluation. LLMs that skip
+      ordinal structuring may produce responses where options are listed
+      without meaningful comparative structure.
+    subcategory: structural_organization
+
+  - id: causal_organization
+    name: "Causal Organization"
+    category: reasoning_representations
+    definition: >
+      Connect elements through cause-and-effect relations. Build causal models
+      that represent how changes in one element propagate to affect others.
+      (Heider, 1958; Sloman & Sloman, 2009; Gopnik et al., 2004)
+    why_it_matters: >
+      Causal organization underlies counterfactual reasoning, diagnosis, and
+      intervention planning. Understanding *why* something happened (not just
+      *that* it happened) requires causal structure. LLMs that lack causal
+      organization produce correlational rather than causal explanations, leading
+      to poor predictions about the effects of interventions.
+    subcategory: conceptual_organization
+
+  - id: temporal_organization
+    name: "Temporal Organization"
+    category: reasoning_representations
+    definition: >
+      Order elements by before-after relations. Reason about time, duration,
+      ordering of events, and temporal dependencies to understand sequences
+      and causal chains. (Ebbinghaus, 1885)
+    why_it_matters: >
+      Temporal organization is required for narrative understanding, process
+      modeling, planning, and historical reasoning. Errors in temporal
+      organization lead to confused event sequences, missed dependencies
+      (action A must precede action B), and incorrect predictions about
+      temporal processes.
+    subcategory: conceptual_organization
+
+  - id: spatial_organization
+    name: "Spatial Organization"
+    category: reasoning_representations
+    definition: >
+      Structure elements by spatial relationships. Maintain a mental map or
+      spatial model that tracks how entities relate in two- or three-dimensional
+      space. (Tolman, 1948)
+    why_it_matters: >
+      Spatial organization enables navigation, physical reasoning, geometry,
+      and understanding of embodied tasks. LLMs frequently struggle with tasks
+      that require maintaining consistent spatial models (e.g., rotating objects,
+      tracking positions, reasoning about containment). It is one of the least
+      represented elements in LLM reasoning research.
+    subcategory: conceptual_organization
+
+  # ─────────────────────────────────────────────────────────────
+  # D. REASONING OPERATIONS (12 elements)
+  # ─────────────────────────────────────────────────────────────
+
+  - id: context_alignment
+    name: "Context Alignment"
+    category: reasoning_operations
+    definition: >
+      Align representations and strategies to task-specific and situational
+      demands. Recognize what the current context calls for and adapt
+      representations accordingly. (Gick & Holyoak, 1980)
+    why_it_matters: >
+      Context alignment prevents misapplication of general knowledge to specific
+      situations. Without it, LLMs apply schemas appropriate to one context to
+      a different one, producing generic rather than contextually tailored
+      responses. Analogical transfer — a key human reasoning capability — depends
+      on context alignment.
+    subcategory: representation_selection
+
+  - id: knowledge_alignment
+    name: "Knowledge Alignment"
+    category: reasoning_operations
+    definition: >
+      Align representations to domain-specific structures and relations. Bring
+      domain knowledge to bear in a way that matches the structural regularities
+      of the domain (e.g., medical ontologies, legal frameworks, mathematical
+      structures). (Chi et al., 1981)
+    why_it_matters: >
+      Domain experts reason differently from novices because they align their
+      representations to the deep structure of the domain, not surface features.
+      LLMs that lack knowledge alignment rely on surface patterns rather than
+      domain-appropriate schemas, producing reasoning that looks plausible but
+      violates domain constraints.
+    subcategory: representation_selection
+
+  - id: verification
+    name: "Verification"
+    category: reasoning_operations
+    definition: >
+      Check reasoning steps or conclusions against pre-determined criteria,
+      constraints, or known facts. Actively test whether a result or
+      intermediate step is correct before proceeding. (Flavell, 1979;
+      Gandhi et al., 2025)
+    why_it_matters: >
+      Verification catches errors before they propagate. It is one of the more
+      well-studied elements (present in many LLM reasoning papers) and is
+      associated with improved accuracy. LLMs that verify intermediate steps
+      make fewer cascading errors. Verification is particularly important in
+      mathematics, code, and logical reasoning where correctness can be checked.
+    subcategory: representation_evaluation
+
+  - id: selective_attention
+    name: "Selective Attention"
+    category: reasoning_operations
+    definition: >
+      Focus on relevant details and filter out noise. Identify which information
+      in the context is pertinent to the current reasoning step and suppress
+      irrelevant distractors. (Broadbent, 1958)
+    why_it_matters: >
+      Long contexts and complex problems contain irrelevant information that can
+      mislead reasoning. LLMs that lack selective attention are distracted by
+      superficially salient but irrelevant details ("lost in the middle" effects).
+      Selective attention is foundational for robustness to adversarial distractors
+      and long-document reasoning.
+    subcategory: representation_evaluation
+
+  - id: adaptive_detail_management
+    name: "Adaptive Detail Management"
+    category: reasoning_operations
+    definition: >
+      Adjust the granularity of reasoning based on task demands. Zoom in for
+      precise analysis and zoom out for high-level synthesis as needed, rather
+      than operating at a fixed level of abstraction. (Rosch, 1978)
+    why_it_matters: >
+      Different parts of a problem require different levels of detail. LLMs
+      that lack adaptive detail management either over-specify trivial aspects
+      while glossing over critical ones, or remain stuck at a fixed abstraction
+      level that mismatches the task. Appropriate granularity is essential for
+      efficient, complete reasoning.
+    subcategory: representation_modification
+
+  - id: decomposition_and_integration
+    name: "Decomposition and Integration"
+    category: reasoning_operations
+    definition: >
+      Divide complex problems into manageable sub-problems and synthesize
+      sub-solutions into a coherent whole. Apply divide-and-conquer strategies
+      and then recombine results. (Newell et al., 1959; Xu et al., 2025)
+    why_it_matters: >
+      Decomposition is among the most studied LLM reasoning elements (~60% of
+      papers). Effective decomposition makes hard problems tractable by focusing
+      effort. However, decomposition without integration produces disconnected
+      sub-answers. The full operation requires both splitting and reassembling.
+    subcategory: representation_modification
+
+  - id: representational_restructuring
+    name: "Representational Restructuring"
+    category: reasoning_operations
+    definition: >
+      Reformulate the problem or its representation to enable new insights.
+      Break out of an unproductive problem framing by reinterpreting or
+      reorganizing the representation. (Wertheimer, 1945; Ohlsson, 1992;
+      Knoblich et al., 1999)
+    why_it_matters: >
+      Representational restructuring is key to creative problem-solving and
+      overcoming impasse. When an initial framing leads to a dead end, the
+      ability to reframe — to see the problem differently — is what enables
+      breakthrough solutions. LLMs rarely exhibit spontaneous restructuring;
+      they tend to persist with the initial representation even when it is
+      unproductive.
+    subcategory: representation_modification
+
+  - id: pattern_recognition
+    name: "Pattern Recognition"
+    category: reasoning_operations
+    definition: >
+      Detect recurring structures, regularities, or analogies across different
+      contexts. Recognize when a new problem shares structure with a known
+      problem type. (Selfridge, 1959; Gentner, 1983; Holyoak & Thagard, 1989)
+    why_it_matters: >
+      Pattern recognition enables efficient problem-solving by mapping novel
+      problems onto known solution schemas. Expert reasoning in mathematics,
+      medicine, and science relies heavily on recognizing problem types. LLMs
+      can pattern-match superficially but may fail to recognize deep structural
+      analogies, especially across domains.
+    subcategory: representation_modification
+
+  - id: abstraction
+    name: "Abstraction"
+    category: reasoning_operations
+    definition: >
+      Generalize from specific cases to extract general principles, rules, or
+      categories. Move from concrete instances to abstract representations that
+      capture what is common across cases. (Hull, 1920; Ohlsson, 1992)
+    why_it_matters: >
+      Abstraction is essential for generalization and transfer. Human reasoners
+      extract abstract principles from examples and apply them to novel cases.
+      LLMs tend toward concrete enumeration rather than abstract generalization.
+      Meta-analysis shows that abstraction is under-represented in LLM reasoning
+      research relative to its importance for human reasoning.
+    subcategory: representation_modification
+
+  - id: forward_chaining
+    name: "Forward Chaining"
+    category: reasoning_operations
+    definition: >
+      Reason from known facts and premises toward goals by applying rules or
+      inferences in a forward direction. Start from what is given and derive
+      what follows. (Huys et al., 2012)
+    why_it_matters: >
+      Forward chaining is the dominant reasoning mode in LLMs (~70% of traces
+      use predominantly forward chains). While natural and often efficient for
+      well-structured problems, over-reliance on forward chaining leads to
+      rigid sequential processing on ill-structured problems where goal-directed
+      backward reasoning would be more effective.
+    subcategory: representation_navigation
+
+  - id: backward_chaining
+    name: "Backward Chaining"
+    category: reasoning_operations
+    definition: >
+      Work backward from goals or desired conclusions to identify the
+      prerequisites needed to achieve them. Start from the target state and
+      reason about what must be true for it to hold. (Park et al., 2017;
+      Gandhi et al., 2025)
+    why_it_matters: >
+      Backward chaining is highly effective for planning, proof construction,
+      and reverse engineering. Only ~8% of LLM reasoning papers address backward
+      chaining, despite it being a core human reasoning strategy for goal-directed
+      problems. Models that cannot backward chain struggle with problems that
+      require working from desired outcomes to necessary conditions.
+    subcategory: representation_navigation
+
+  - id: backtracking
+    name: "Backtracking"
+    category: reasoning_operations
+    definition: >
+      Revisit and correct prior reasoning paths when a dead end is reached.
+      Recognize that the current approach has failed, abandon it, and return
+      to an earlier decision point to try an alternative. (Nilsson, 1971)
+    why_it_matters: >
+      Backtracking is essential for robustness in complex problem-solving.
+      Without it, LLMs that take an early wrong turn compound the error
+      rather than correcting it. Backtracking is correlated with success on
+      complex tasks but tends to be underutilized by LLMs, which often persist
+      with a flawed approach or simply restart rather than surgically correcting
+      the specific error.
+    subcategory: representation_navigation

@@ -1,0 +1,54 @@
+---
+# Default configuration for the Cognitive Reasoning Eval Suite
+# Override any setting via environment variables or by passing a custom config
+# to EvalRunner.
+
+# ─────────────────────────────────────────────────────────────
+# Target model (the model being evaluated)
+# ─────────────────────────────────────────────────────────────
+target_model: "claude-opus-4-6"
+
+# ─────────────────────────────────────────────────────────────
+# Grader settings
+# ─────────────────────────────────────────────────────────────
+grader:
+  # Model used to grade responses (can be different from target)
+  model: "claude-opus-4-6"
+  # Score threshold for pass/fail (0.0 – 1.0)
+  pass_threshold: 0.60
+  # Whether to use the LLM-based grader (recommended for reasoning quality)
+  use_model_grader: true
+  # Whether to use the deterministic code-based grader (structural checks)
+  use_code_grader: true
+
+# ─────────────────────────────────────────────────────────────
+# Evaluation settings
+# ─────────────────────────────────────────────────────────────
+eval:
+  # Number of trials per task (more trials = more reliable metrics)
+  n_trials: 3
+  # k values for pass@k and pass^k computation
+  k_values: [1, 3, 5, 10]
+  # Max tokens for target model responses
+  max_tokens: 4096
+  # Optional: limit to specific element IDs (null = run all)
+  # task_filter: ["logical_coherence", "self_awareness"]
+  task_filter: null
+
+# ─────────────────────────────────────────────────────────────
+# Output settings
+# ─────────────────────────────────────────────────────────────
+output:
+  # Directory for saving results, transcripts, and summaries
+  results_dir: "results"
+  # Save full transcripts (set false to only save summary metrics)
+  save_transcripts: true
+  # Output format for the summary: "json" | "markdown"
+  format: "json"
+
+# ─────────────────────────────────────────────────────────────
+# Task settings
+# ─────────────────────────────────────────────────────────────
+tasks:
+  # Directory containing task YAML files
+  dir: "tasks"

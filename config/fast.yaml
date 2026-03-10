@@ -1,0 +1,25 @@
+---
+# Fast configuration for development and quick smoke tests
+# Uses fewer trials and a faster model.
+
+target_model: "claude-haiku-4-5"
+
+grader:
+  model: "claude-haiku-4-5"
+  pass_threshold: 0.60
+  use_model_grader: false   # Skip model grader for speed
+  use_code_grader: true
+
+eval:
+  n_trials: 1
+  k_values: [1]
+  max_tokens: 2048
+  task_filter: null
+
+output:
+  results_dir: "results"
+  save_transcripts: true
+  format: "json"
+
+tasks:
+  dir: "tasks"
