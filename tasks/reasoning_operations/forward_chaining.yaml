@@ -1,0 +1,128 @@
+---
+element_id: forward_chaining
+element_name: "Forward Chaining"
+category: reasoning_operations
+
+prompt: |
+  Use forward chaining (reasoning from given facts toward a conclusion) to
+  determine what can be concluded from the following knowledge base.
+
+  Facts (starting state):
+  F1: It is raining.
+  F2: Alice has an umbrella.
+  F3: Bob does not have an umbrella.
+  F4: Carol is at home.
+
+  Rules:
+  R1: If it is raining AND a person has an umbrella → that person can go outside dry.
+  R2: If it is raining AND a person does NOT have an umbrella → that person will get wet if they go outside.
+  R3: If a person is at home → that person does not need an umbrella to stay dry.
+  R4: If a person can go outside dry → that person is able to complete outdoor tasks.
+  R5: If a person will get wet if they go outside → that person should carry an umbrella.
+  R6: If a person is at home AND it is raining → that person may or may not hear the rain.
+
+  Tasks:
+  (a) Apply forward chaining starting from the facts. Show each inference step:
+      which rule fires, which facts triggered it, and what new fact is derived.
+      Continue until no new facts can be derived.
+
+  (b) List all final conclusions that were derived (not just the starting facts).
+
+  (c) One new fact is added: "Bob goes outside." Apply forward chaining to derive
+      any new conclusions not already in your previous answer.
+
+  (d) Which rules were never triggered in parts (a) or (c)? Why?
+
+success_criteria:
+  - "(a) Correct forward chaining: R1 fires on Alice → can go outside dry; R2 fires on Bob → will get wet if outside; R3 fires on Carol → stays dry at home; R4 fires on Alice → can complete outdoor tasks"
+  - "(b) Correctly lists derived facts"
+  - "(c) After \"Bob goes outside\": R2 already gave \"Bob will get wet\"; since he goes outside, Bob DOES get wet; R5 fires: Bob should carry an umbrella"
+  - "(d) R6 never triggered (requires going outside context not provided); R5 triggered in (c)"
+
+rubric:
+  chaining_process:
+    weight: 0.45
+    criteria: >
+      Shows explicit rule-application steps. Each step names: rule fired, triggering
+      facts, derived conclusion. Process is complete (no rules left that could fire).
+    scores:
+      excellent: "All applicable rules fired with explicit step notation"
+      good: "Most rules fired; process mostly explicit"
+      partial: "Some rules fired; process not fully explicit"
+      poor: "Conclusions stated without chaining steps"
+
+  completeness:
+    weight: 0.30
+    criteria: >
+      All derivable conclusions are found. In (a): Alice can go outside dry; Bob
+      will get wet if outside; Carol doesn't need umbrella to stay dry; Alice can
+      complete outdoor tasks. In (c): Bob gets wet (applying "goes outside" to R2
+      result); R5 fires: Bob should carry umbrella.
+    scores:
+      excellent: "All conclusions derived; no missed rules"
+      good: "Most conclusions found; one missed"
+      partial: "Some conclusions found; multiple missed"
+      poor: "Major conclusions missed"
+
+  untriggered_rule_analysis:
+    weight: 0.25
+    criteria: >
+      Correctly identifies which rules never fired and why. R6 fires on Carol
+      (at home + raining) in part (a) — so R6 does fire. R5 fires in part (c).
+      What never fires: R5 in part (a) (Bob never actually goes outside in that phase).
+    scores:
+      excellent: "Correctly identifies never-triggered rules with accurate reasoning"
+      good: "Identifies most untriggered rules correctly"
+      partial: "Partially correct with some errors"
+      poor: "Cannot identify untriggered rules"
+
+reference_solution: |
+  (a) Forward chaining (no new fact yet):
+
+  Step 1: Check R1 (it is raining ✓, Alice has umbrella ✓) → FIRES
+  New fact: Alice can go outside dry.
+
+  Step 2: Check R2 (it is raining ✓, Bob does NOT have umbrella ✓) → FIRES
+  New fact: Bob will get wet if he goes outside.
+
+  Step 3: Check R3 (Carol is at home ✓) → FIRES
+  New fact: Carol does not need an umbrella to stay dry.
+
+  Step 4: Check R4 (Alice can go outside dry ✓ — derived in Step 1) → FIRES
+  New fact: Alice is able to complete outdoor tasks.
+
+  Step 5: Check R5 (Bob will get wet if outside ✓) → conditions: would fire if
+  Bob actually goes outside; R5 says "will get wet if outside → should carry umbrella."
+  Actually R5 fires directly: Bob will get wet if outside → he should carry an umbrella.
+  New fact: Bob should carry an umbrella.
+
+  Step 6: Check R6 (Carol is at home ✓, it is raining ✓) → FIRES
+  New fact: Carol may or may not hear the rain. (non-deterministic conclusion)
+
+  No more rules can fire. Process complete.
+
+  (b) Final derived conclusions:
+  1. Alice can go outside dry.
+  2. Bob will get wet if he goes outside.
+  3. Carol does not need an umbrella to stay dry.
+  4. Alice is able to complete outdoor tasks.
+  5. Bob should carry an umbrella.
+  6. Carol may or may not hear the rain.
+
+  (c) Adding: "Bob goes outside."
+  The fact "Bob will get wet if he goes outside" + "Bob goes outside" →
+  By modus ponens: Bob IS getting wet (the conditional has been actualized).
+  New derived fact: Bob is getting wet.
+
+  R5 already fired in (a) producing "Bob should carry an umbrella" — no change here.
+  No additional rules triggered by just "Bob goes outside."
+  New conclusion: Bob is getting wet.
+
+  (d) Rules never triggered in (a) or (c):
+  All rules fired at some point. R6 fired on Carol in (a). R5 fired in (a) via
+  R2's result. The question of "untriggered" depends on exact rule interpretation.
+  If R5 requires the person to actually go outside first: then in (a), R5 didn't
+  fire; it fired in (c) after "Bob goes outside" made the conditional consequent true.
+
+grader_type: model
+tags: [forward_chaining, rule_application, logical_inference, completeness]

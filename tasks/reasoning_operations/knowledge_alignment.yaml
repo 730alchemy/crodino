@@ -1,0 +1,127 @@
+---
+element_id: knowledge_alignment
+element_name: "Knowledge Alignment"
+category: reasoning_operations
+
+prompt: |
+  A patient presents with the following symptoms: sudden onset severe headache
+  (described as "worst headache of my life"), neck stiffness, sensitivity to light,
+  and mild fever (38.2°C / 100.8°F). No history of migraines.
+
+  You are to reason about this case in TWO ways:
+
+  Part A — Novice reasoning (surface-level):
+  Reason about this case using only the surface features of the symptoms.
+  What is the most salient feature? What does that suggest?
+
+  Part B — Expert domain-aligned reasoning:
+  Now reason using the deep structural knowledge of emergency medicine.
+  What is the technical differential diagnosis? What domain-specific risk
+  stratification applies? What is the critical first decision, and why does
+  it override other considerations?
+
+  Part C — Reflection:
+  Compare the two reasoning approaches. Identify exactly where expert domain
+  knowledge changes the reasoning path or the conclusion. What knowledge structure
+  does the expert bring that the novice lacks?
+
+  [NOTE: This is a medical reasoning exercise. The response should demonstrate
+  medical domain knowledge alignment, not provide actual medical advice.]
+
+success_criteria:
+  - "Part A: Focuses on the most salient surface feature (severe headache) and suggests headache-related causes (tension, migraine)"
+  - "Part B: Identifies \"thunderclap headache\" + neck stiffness as pointing to subarachnoid hemorrhage or meningitis; mentions CT scan + LP protocol; demonstrates domain-appropriate risk stratification (rule out life-threatening first)"
+  - "Part C: Articulates the specific knowledge structure difference: expert uses \"worst-case-first\" heuristic and domain-specific symptom clusters (meningism triad) that the novice doesn't have"
+
+rubric:
+  surface_reasoning:
+    weight: 0.20
+    criteria: >
+      Part A demonstrates plausible but limited novice reasoning focused on
+      surface features (the headache is the dominant feature; fever suggests
+      possible infection or virus). Shows what non-domain-aligned reasoning looks like.
+    scores:
+      excellent: "Plausible novice reasoning that genuinely lacks domain structure"
+      good: "Novice reasoning present but some expert knowledge leaks in"
+      partial: "Novice reasoning but too close to expert reasoning to be distinct"
+      poor: "No distinct novice reasoning; jumps to expert framing"
+
+  expert_domain_alignment:
+    weight: 0.40
+    criteria: >
+      Part B demonstrates correct alignment with emergency medicine domain structure:
+      - Thunderclap headache + meningism triad (headache, neck stiffness, photophobia)
+        as a recognized emergency pattern
+      - Differential includes SAH (subarachnoid hemorrhage), bacterial meningitis
+      - "Worst-case-first" risk stratification: rule out life-threatening before
+        reassuring
+      - Protocol: CT scan first, then LP if CT negative
+    scores:
+      excellent: "Correct domain-specific patterns, differential, and protocol"
+      good: "Key domain concepts present with minor gaps"
+      partial: "Some domain knowledge but misses critical protocol or differential"
+      poor: "No domain-specific reasoning; stays at surface level"
+
+  knowledge_structure_analysis:
+    weight: 0.40
+    criteria: >
+      Part C precisely identifies what changes between reasoning modes:
+      (1) The expert has a domain schema "meningism triad" that clusters these symptoms
+      (2) Expert applies a domain-specific heuristic: in emergency medicine, rule out
+          the most dangerous diagnosis first, not the most likely
+      (3) Expert has a specific protocol (CT+LP) as a pre-built schema
+      (4) Novice treats symptoms independently; expert treats them as a syndrome
+    scores:
+      excellent: "Identifies specific knowledge structures (schema, heuristic, protocol) that differ"
+      good: "Identifies that expert has more knowledge but doesn't name the structures"
+      partial: "Notes difference exists but explanation is generic ('experts know more')"
+      poor: "No meaningful comparison of reasoning approaches"
+
+reference_solution: |
+  Part A — Novice reasoning (surface-level):
+  The most salient feature is the severe headache — that's the primary complaint.
+  The fever suggests some kind of infection, possibly viral. Neck stiffness after
+  a headache might suggest the patient slept awkwardly or has tension. Light
+  sensitivity is commonly associated with bad headaches. Initial impression:
+  severe migraine-like event with possible viral component. Recommendation: rest,
+  pain management, monitor.
+
+  Part B — Expert domain-aligned reasoning:
+  Technical analysis:
+  - "Worst headache of my life" with sudden onset = THUNDERCLAP HEADACHE (sentinel event)
+  - Triad: thunderclap headache + neck stiffness + photophobia = MENINGISM TRIAD
+    This symptom cluster, in emergency medicine, is pathognomonic for either:
+    (1) Subarachnoid hemorrhage (SAH) — bleeding from ruptured aneurysm
+    (2) Bacterial meningitis — life-threatening CNS infection
+  - Fever of 38.2°C is consistent with meningitis but can also occur in SAH
+  - No migraine history eliminates a common benign alternative
+
+  Risk stratification (worst-case-first protocol):
+  CRITICAL: Both SAH and bacterial meningitis are medical emergencies with mortality
+  measured in hours. The appropriate first action is emergent workup, not watchful waiting.
+
+  Standard protocol:
+  1. Non-contrast CT head STAT → to rule out hemorrhage/elevated ICP
+  2. If CT negative: lumbar puncture → xanthochromia (SAH) or pleocytosis (meningitis)
+  3. If bacterial meningitis suspected: empiric antibiotics BEFORE LP results
+
+  Part C — Knowledge structure comparison:
+  Four specific differences:
+
+  (1) SYMPTOM CLUSTERING: Expert holds a schema ("meningism triad") that links these
+  three symptoms into a recognized syndrome. Novice treats each symptom independently.
+
+  (2) WORST-CASE-FIRST HEURISTIC: Emergency medicine uses a domain-specific heuristic:
+  prioritize ruling out the most dangerous diagnosis over the most probable. Novice
+  reasoning defaults to "most likely" (viral headache >> SAH). This heuristic inversion
+  is the central insight.
+
+  (3) PRE-BUILT PROTOCOL: Expert has a specific algorithmic schema (CT→LP) as a
+  learned decision tree. Novice must reason from scratch about what tests to order.
+
+  (4) TEMPORAL URGENCY SCHEMA: Expert knows that SAH/meningitis have mortality curves
+  measured in hours, making urgency a first-order consideration. Novice has no
+  domain knowledge that time is the critical variable here.
+
+grader_type: model
+tags: [knowledge_alignment, domain_expertise, medical_reasoning, schema]

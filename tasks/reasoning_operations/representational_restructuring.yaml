@@ -1,0 +1,116 @@
+---
+element_id: representational_restructuring
+element_name: "Representational Restructuring"
+category: reasoning_operations
+
+prompt: |
+  Each problem below has a natural but unproductive initial framing.
+  Your task is to:
+  (1) Identify the unproductive initial framing
+  (2) Restructure the representation
+  (3) Solve the problem using the new framing
+
+  Problem A:
+  "A farmer has 17 sheep. All but 9 die. How many are left?"
+  [Initial framing: arithmetic subtraction problem]
+
+  Problem B:
+  "A bat and a ball together cost $1.10. The bat costs $1.00 more than the ball.
+  How much does the ball cost?"
+  [Initial framing: the intuitive answer is $0.10]
+
+  Problem C:
+  "You have two ropes. Each rope takes exactly 60 minutes to burn from end to end,
+  but they burn at non-uniform rates (one rope might burn 90% in the first 5 minutes).
+  Using only the ropes and matches, measure exactly 45 minutes."
+  [Initial framing: trying to find the midpoint of a rope physically]
+
+  For each problem:
+  (a) Name the unproductive initial framing
+  (b) Describe the restructuring that enables the solution
+  (c) Solve it using the restructured framing
+
+success_criteria:
+  - "Problem A: Correct answer is 9 (the phrase \"all but 9\" is the restructuring key)"
+  - "Problem B: Correct answer is $0.05 (not $0.10); restructuring as algebraic equations"
+  - "Problem C: Light both ends of rope 1 and one end of rope 2 simultaneously; when rope 1 burns out (30 min), light the other end of rope 2; it burns out at 45 min total"
+
+rubric:
+  framing_identification:
+    weight: 0.25
+    criteria: >
+      For each problem, correctly identifies why the initial framing is unproductive
+      or leads to an incorrect answer. Problem A: "17 minus some number" framing
+      ignores the language. B: Intuitive subtraction gives $0.10 (wrong). C: Physical
+      midpoint approach fails because rope burns non-uniformly.
+    scores:
+      excellent: "All three initial framings correctly identified as unproductive"
+      good: "Two of three initial framings correctly identified"
+      partial: "One correctly identified"
+      poor: "Cannot identify unproductive framings"
+
+  restructuring_description:
+    weight: 0.35
+    criteria: >
+      A: Restructure as a language parsing problem ("all but 9" = "9 survive").
+      B: Restructure as a system of two equations: x+y=1.10, y-x=1.00 → solve.
+      C: Restructure from "spatial midpoint" to "temporal halving via simultaneous
+      burning" — the insight that burning both ends simultaneously halves the time.
+    scores:
+      excellent: "All three restructurings described with the key insight named"
+      good: "Two restructurings described with insights"
+      partial: "One restructuring described"
+      poor: "No restructuring described; just solves without framing change"
+
+  solution_correctness:
+    weight: 0.40
+    criteria: >
+      A: 9 (correct). B: $0.05 (correct). C: Correct rope-burning procedure:
+      light both ends of rope 1 + one end of rope 2 → at 30 min rope 1 done →
+      light other end of rope 2 → burns out at 45 min total.
+    scores:
+      excellent: "All three solved correctly"
+      good: "Two solved correctly"
+      partial: "One solved correctly"
+      poor: "All wrong or no attempt"
+
+reference_solution: |
+  Problem A:
+  (a) Unproductive framing: Arithmetic subtraction — "17 sheep, some die, compute 17 minus X."
+  (b) Restructuring: Parse the language first. "All but 9 die" does NOT say "17 minus 9."
+      It says "9 do NOT die." The question is about survivors, not deaths.
+  (c) Solution: 9 sheep remain (the 9 that did not die).
+  The word "but" changes the computation entirely; 9 is not a subtraction operand
+  but the answer stated in the problem itself.
+
+  Problem B:
+  (a) Unproductive framing: Intuitive arithmetic — "bat costs $1 more, so ball costs $0.10."
+      Check: bat=$1.10, ball=$0.10 → difference=$1.00 ✓, sum=$1.20 ✗. Wrong.
+  (b) Restructuring: Algebraic system of equations.
+      Let ball = x, bat = y.
+      x + y = 1.10  ... (1)
+      y - x = 1.00  ... (2)
+  (c) Solution: From (1)+(2): 2y = 2.10 → y = 1.05.
+      From (1): x = 1.10 - 1.05 = 0.05.
+      Ball = $0.05. Check: bat=$1.05, ball=$0.05; sum=$1.10 ✓; difference=$1.00 ✓.
+  The initial intuitive framing fails because it doesn't account for the constraint
+  that the sum must also equal $1.10.
+
+  Problem C:
+  (a) Unproductive framing: Spatial midpoint — "fold the rope in half to find the
+      midpoint, then burn to there." Fails because non-uniform burning means spatial
+      midpoint ≠ temporal midpoint.
+  (b) Restructuring: Temporal doubling via simultaneous burning.
+      Key insight: burning both ends of a rope simultaneously halves its remaining burn
+      time (regardless of non-uniformity) because you consume it from both ends at once.
+      This converts a spatial midpoint problem into a temporal problem about endpoint events.
+  (c) Solution:
+      t=0: Light BOTH ends of Rope 1. Light ONE end of Rope 2.
+      Rope 1: burns from both ends → runs out in 30 minutes.
+      t=30 min: Rope 1 is done. Rope 2 has 30 minutes remaining from its original 60.
+      t=30: Light the OTHER end of Rope 2. Now it burns from both ends.
+      It has 30 minutes of fuel left; burning from both ends → takes 15 more minutes.
+      t=45 min: Rope 2 is done. Exactly 45 minutes have elapsed. ✓
+
+grader_type: model
+tags: [representational_restructuring, insight_problems, reframing, creative_reasoning]

@@ -1,0 +1,111 @@
+---
+element_id: backtracking
+element_name: "Backtracking"
+category: reasoning_operations
+
+prompt: |
+  Solve the following constraint satisfaction problems using backtracking.
+  Show your work explicitly: when you hit a dead end, say so and show
+  yourself returning to a previous decision point.
+
+  Problem 1: Map coloring
+  Color the following regions (A, B, C, D, E) using ONLY 3 colors (Red, Green, Blue)
+  such that no two adjacent regions share a color.
+  Adjacencies: A-B, A-C, B-C, B-D, C-D, D-E
+
+  Problem 2: Sequence completion
+  Fill in the blanks in the sequence using the numbers {1, 2, 3, 4, 5},
+  each used exactly once: _ , 3, _, _, 1
+  Subject to these constraints:
+  - No two adjacent numbers differ by more than 2
+  - The first number must be odd
+  - The third number must be even
+
+success_criteria:
+  - "Problem 1: Shows at least one backtrack when a color assignment fails; reaches a valid 3-coloring; valid solution exists (e.g., A=R, B=G, C=B, D=R, E=G)"
+  - "Problem 2: Shows at least one backtrack; reaches a valid sequence; valid solution: 5, 3, 4, 2, 1 — check: diff(5,3)=2✓, diff(3,4)=1✓, diff(4,2)=2✓, diff(2,1)=1✓; first=5 (odd)✓, third=4 (even)✓"
+
+rubric:
+  backtracking_evidence:
+    weight: 0.45
+    criteria: >
+      At least one explicit backtrack shown in each problem — where the response
+      says "this assignment fails, I need to go back and try a different choice
+      at [decision point]." Not just stating the answer but showing the failed
+      path and the correction.
+    scores:
+      excellent: "Explicit backtrack shown in both problems with clear decision point named"
+      good: "Explicit backtrack in one problem; other shows process but no dead end"
+      partial: "Process shown but dead ends not clearly articulated"
+      poor: "Answers stated without showing search process"
+
+  solution_validity:
+    weight: 0.35
+    criteria: >
+      P1: Valid 3-coloring satisfying all adjacency constraints.
+      P2: Valid sequence using {1,2,3,4,5} each once, with all constraints satisfied.
+      Check P2: 5,3,4,2,1: |5-3|=2≤2✓, |3-4|=1✓, |4-2|=2✓, |2-1|=1✓; first=5 odd✓; third=4 even✓.
+    scores:
+      excellent: "Both solutions valid and verified against constraints"
+      good: "Both solutions valid but verification not explicit"
+      partial: "One solution valid; other has constraint violation"
+      poor: "No valid solutions found"
+
+  search_process:
+    weight: 0.20
+    criteria: >
+      Shows a systematic search: assigns values in order, checks constraints at
+      each step, backtracks when constraint is violated (not just when the full
+      assignment is done). Constraint checking is incremental.
+    scores:
+      excellent: "Systematic search with incremental constraint checking"
+      good: "Mostly systematic; minor gaps in showing incremental checking"
+      partial: "Process described but not step-by-step"
+      poor: "No process shown; just the answer"
+
+reference_solution: |
+  Problem 1: Map coloring
+
+  Assign colors in order: A, B, C, D, E.
+
+  Step 1: A = Red
+  Step 2: B must differ from A (A=Red). Try B = Green.
+  Step 3: C must differ from A (Red) and B (Green). Try C = Blue.
+  Step 4: D must differ from B (Green) and C (Blue). Try D = Red.
+  Step 5: E must differ from D (Red). Try E = Green.
+  Check all adjacencies:
+  A-B: Red-Green ✓; A-C: Red-Blue ✓; B-C: Green-Blue ✓;
+  B-D: Green-Red ✓; C-D: Blue-Red ✓; D-E: Red-Green ✓
+  Valid! Solution: A=Red, B=Green, C=Blue, D=Red, E=Green.
+
+  [Demonstrating a backtrack for illustration]:
+  Alternative path that requires backtracking:
+  Step 1: A=Red, Step 2: B=Green, Step 3: C=Red (try this instead of Blue)
+  Check: C must differ from A (Red) → FAILS (C=Red, A=Red, they're adjacent)
+  BACKTRACK: C cannot be Red. Try C=Blue. → (continues as above successfully)
+
+  Problem 2: Sequence completion
+
+  Form: _, 3, _, _, 1. Available: {1,2,3,4,5}, each used exactly once.
+  3 and 1 are placed. Remaining: {2, 4, 5} for positions 1, 3, 4.
+  Constraints: position1 odd, position3 even, no adjacent diff > 2.
+
+  Available odd numbers for position 1: {5} (since 1 and 3 are placed; 5 is the only remaining odd).
+  Position 1 = 5.
+  Adjacent constraint: |5 - 3| = 2 ≤ 2 ✓
+
+  Position 3 must be even. Remaining: {2, 4}. Try position 3 = 2.
+  Adjacent: |3 - 2| = 1 ✓
+  Position 4: remaining = {4}. Must satisfy |2 - 4| = 2 ✓ and |4 - 1| = 3 > 2 ✗ FAILS!
+  BACKTRACK: position 3 = 2 doesn't work.
+
+  Try position 3 = 4.
+  Adjacent: |3 - 4| = 1 ✓
+  Position 4: remaining = {2}. Must satisfy |4 - 2| = 2 ✓ and |2 - 1| = 1 ✓ ✓
+  Check: position 1 = 5 (odd ✓), position 3 = 4 (even ✓).
+
+  Solution: 5, 3, 4, 2, 1
+  Verification: |5-3|=2✓, |3-4|=1✓, |4-2|=2✓, |2-1|=1✓; first=5(odd)✓; third=4(even)✓ ✓
+
+grader_type: model
+tags: [backtracking, constraint_satisfaction, search, dead_end_recovery]

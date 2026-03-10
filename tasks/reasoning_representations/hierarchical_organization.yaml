@@ -1,0 +1,148 @@
+---
+element_id: hierarchical_organization
+element_name: "Hierarchical Organization"
+category: reasoning_representations
+
+prompt: |
+  You are organizing a public library's digital catalog. You have the following
+  42 books (represented as a flat list of titles and genres):
+
+  Fiction: "The Midnight Garden", "Storm Rider", "Letters to Nobody", "Azure Dreams",
+  "The Last Cartographer", "Whisper Wood", "Iron Sky", "Parallel Hearts"
+
+  Mystery/Thriller: "Dead Wrong", "The Cipher Key", "Vanishing Act", "Cold Trace",
+  "Seven Lies", "The Watchmaker's Secret"
+
+  Non-fiction/Science: "Quantum Minds", "The Carbon Cycle", "Brain First",
+  "Mapping the Cosmos", "Deep Ocean Secrets"
+
+  Non-fiction/History: "Empires of Sand", "The Forgotten Wars", "Rise and Fall",
+  "City of Ghosts", "Silk and Steel"
+
+  Non-fiction/Self-Help: "Better Mornings", "The Calm Method", "Habit Architecture",
+  "Clear Thinking", "Energy Reset"
+
+  Children's: "Pip the Dragon", "Star Friends", "The Rainbow Machine",
+  "Bedtime at the Zoo", "Oliver's Adventure", "Cloud Jumpers"
+
+  Young Adult: "The Awakening", "Shadow Run", "Fractured Kingdom", "Last Light",
+  "The Oracle Games", "Wild Hearts"
+
+  Tasks:
+  (a) Design a two-level hierarchical classification system for these books.
+      Level 1 = broad categories (3-5 categories max).
+      Level 2 = subcategories within each (2-4 subcategories per Level 1).
+      Assign all 42 books appropriately.
+
+  (b) The library adds these new books: "Dinosaurs for Kids" and "Teen Spy Thriller."
+      Where do they fit in your hierarchy? Does the hierarchy need modification?
+
+  (c) A patron asks for "engaging stories for a 12-year-old who loves adventure."
+      Trace through your hierarchy to identify the best-fit section(s), and explain
+      the reasoning path.
+
+  (d) Identify one book that could reasonably fit in two different categories and
+      explain the classification trade-off.
+
+success_criteria:
+  - (a) All 42 books assigned; hierarchy has 2 clear levels; categories are coherent
+  - (b) New books placed correctly; notes any structural changes needed (or not)
+  - (c) Uses hierarchy explicitly as a navigation tool; identifies YA + Children's adventure
+  - (d) Identifies a genuine ambiguity and explains the trade-off
+
+rubric:
+  hierarchy_structure:
+    weight: 0.30
+    criteria: >
+      The hierarchy has exactly two levels with a clear parent-child relationship.
+      Level 1 categories are meaningfully distinct. All 42 books are assigned.
+      Subcategories within each Level 1 are coherent.
+    scores:
+      excellent: "Clean two-level hierarchy with all 42 books assigned"
+      good: "Valid hierarchy with minor structural issues or a few unassigned books"
+      partial: "Flat structure or hierarchy with only one level"
+      poor: "No clear hierarchy; books remain in flat lists"
+
+  extensibility:
+    weight: 0.25
+    criteria: >
+      Correctly places the two new books with justification. Identifies whether
+      the hierarchy needs modification and why (or why not).
+    scores:
+      excellent: "Both new books placed with reasoning; structural impact assessed"
+      good: "Both placed but impact assessment is incomplete"
+      partial: "One book placed correctly"
+      poor: "Cannot extend hierarchy to new books"
+
+  navigation_reasoning:
+    weight: 0.25
+    criteria: >
+      Uses the hierarchy explicitly as a navigation tool for the patron query.
+      Shows the traversal path (Level 1 → Level 2 → books) rather than just
+      listing relevant books.
+    scores:
+      excellent: "Explicit hierarchical traversal shown with reasoning at each level"
+      good: "Hierarchy referenced but traversal not fully explicit"
+      partial: "Correct books identified but hierarchy not used as navigation"
+      poor: "Books listed without any hierarchical reasoning"
+
+  ambiguity_analysis:
+    weight: 0.20
+    criteria: >
+      Identifies a genuine classification ambiguity (e.g., "Shadow Run" could be
+      YA or Thriller; "Quantum Minds" could be Science or Education). Explains
+      the trade-off between competing placements.
+    scores:
+      excellent: "Genuine ambiguity identified with clear trade-off explanation"
+      good: "Ambiguity identified but trade-off is shallow"
+      partial: "Identifies an ambiguous book but no trade-off analysis"
+      poor: "No ambiguity identified or the identified case isn't genuinely ambiguous"
+
+reference_solution: |
+  (a) Two-Level Hierarchy:
+
+  Level 1: FICTION
+    Subcategory: Literary Fiction
+      - The Midnight Garden, Letters to Nobody, Azure Dreams, Parallel Hearts
+    Subcategory: Genre Fiction (Action/Adventure)
+      - Storm Rider, The Last Cartographer, Whisper Wood, Iron Sky
+    Subcategory: Mystery & Thriller
+      - Dead Wrong, The Cipher Key, Vanishing Act, Cold Trace, Seven Lies, The Watchmaker's Secret
+
+  Level 1: NON-FICTION
+    Subcategory: Science & Nature
+      - Quantum Minds, The Carbon Cycle, Brain First, Mapping the Cosmos, Deep Ocean Secrets
+    Subcategory: History & Culture
+      - Empires of Sand, The Forgotten Wars, Rise and Fall, City of Ghosts, Silk and Steel
+    Subcategory: Self-Help & Wellness
+      - Better Mornings, The Calm Method, Habit Architecture, Clear Thinking, Energy Reset
+
+  Level 1: CHILDREN & YOUNG ADULT
+    Subcategory: Children's (Ages 4-10)
+      - Pip the Dragon, Star Friends, The Rainbow Machine, Bedtime at the Zoo,
+        Oliver's Adventure, Cloud Jumpers
+    Subcategory: Young Adult (Ages 12-18)
+      - The Awakening, Shadow Run, Fractured Kingdom, Last Light, The Oracle Games, Wild Hearts
+
+  (b) New books:
+  "Dinosaurs for Kids" → CHILDREN & YOUNG ADULT > Children's (Ages 4-10)
+  "Teen Spy Thriller" → CHILDREN & YOUNG ADULT > Young Adult (or could be Fiction > Mystery if age isn't primary sort)
+  The hierarchy does not need structural modification — both fit existing subcategories.
+  However, "Teen Spy Thriller" highlights the value of cross-referencing age and genre.
+
+  (c) Navigation path for 12-year-old adventure lover:
+  Level 1: CHILDREN & YOUNG ADULT (age-appropriate reading)
+    Level 2: Young Adult (12-18) — primary target age
+      Best matches: Shadow Run, Fractured Kingdom, The Oracle Games (adventure themes)
+  Secondary: FICTION > Genre Fiction (Action/Adventure) — if reading above grade level
+    - Storm Rider, The Last Cartographer
+
+  (d) Ambiguous book: "Shadow Run" — could classify as:
+  (1) CHILDREN & YA > Young Adult (age-appropriate, common shelving)
+  (2) FICTION > Mystery & Thriller (if the spy/thriller content is primary descriptor)
+  Trade-off: Age-first classification helps patrons browse by reader profile;
+  genre-first helps patrons browse by interest. Most public libraries use age-first
+  because developmental appropriateness is the more common patron priority.
+
+grader_type: model
+tags: [hierarchical_organization, classification, taxonomy, navigation]

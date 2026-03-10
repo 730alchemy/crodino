@@ -1,0 +1,144 @@
+---
+element_id: context_alignment
+element_name: "Context Alignment"
+category: reasoning_operations
+
+prompt: |
+  You are given the same underlying problem presented in three different contexts.
+  Your task is to recognize the shared structure AND produce context-aligned solutions.
+
+  The underlying problem: "A resource is shared among multiple users/agents with
+  competing needs; we must allocate it fairly while satisfying minimum requirements."
+
+  Context 1 (Healthcare):
+  A hospital has 12 ICU beds. Three departments need beds:
+  - Cardiac: needs at least 3, requests 6
+  - Trauma: needs at least 4, requests 7
+  - Neurology: needs at least 2, requests 5
+  (Total requests: 18; Available: 12)
+
+  Context 2 (Software engineering):
+  A CI/CD system has 12 parallel build slots. Three teams need slots:
+  - Backend team: needs at least 3, requests 6
+  - Frontend team: needs at least 4, requests 7
+  - Data team: needs at least 2, requests 5
+
+  Context 3 (Environmental policy):
+  A river system can sustain 12 "units" of water extraction per month. Three
+  agricultural regions need allocations:
+  - Region A: needs at least 3, requests 6
+  - Region B: needs at least 4, requests 7
+  - Region C: needs at least 2, requests 5
+
+  Tasks:
+  (a) Identify the shared abstract structure of all three contexts.
+  (b) Apply a single consistent allocation method to all three (e.g., proportional
+      reduction from requests, priority-weighted, or another defensible scheme).
+      Show the same calculation applied consistently.
+  (c) For EACH context, identify one domain-specific consideration that would
+      appropriately modify the solution — something that's relevant in that domain
+      but would be inappropriate to import into the others.
+  (d) The hospital context adds a new constraint: Cardiac cases have 2× the mortality
+      risk of other departments per unfilled bed. Adapt your allocation method for
+      this context only. Does this change carry over to the other contexts? Why or why not?
+
+success_criteria:
+  - (a) Identifies the abstract resource allocation problem with minimum requirements
+  - (b) Uses a consistent method across all three; calculations are correct;
+    all minimums are satisfied (3+4+2=9 ≤ 12 so all minimums can be met)
+  - (c) Domain-specific modifiers are genuinely domain-specific (not generic)
+  - (d) Correctly modifies allocation for healthcare; explains why it's domain-specific
+
+rubric:
+  structure_identification:
+    weight: 0.20
+    criteria: >
+      Identifies the shared structure: constrained resource allocation with
+      minimum requirements and competing requests. Names it at the right
+      abstraction level (not domain-specific terms).
+    scores:
+      excellent: "Precise abstract formulation capturing all key features"
+      good: "Correct identification but somewhat domain-specific language"
+      partial: "Partial identification of shared structure"
+      poor: "Cannot identify shared structure or treats contexts as unrelated"
+
+  consistent_method:
+    weight: 0.30
+    criteria: >
+      Applies ONE method consistently to all three. Example: proportional reduction
+      (distribute the 3 surplus units proportionally to request excess):
+      Requests exceed minimum by: Cardiac 3, Trauma 3, Neuro 3 (total 9)
+      Surplus available: 12 - 9 (minimums) = 3 units
+      Each department gets: minimum + (surplus × their_excess/total_excess) = min + 1
+      Final: Cardiac 4, Trauma 5, Neuro 3 (totals 12). Calculations must be correct.
+    scores:
+      excellent: "Consistent method applied; all minimums met; calculations correct"
+      good: "Consistent method; minor calculation errors"
+      partial: "Method inconsistently applied across contexts"
+      poor: "Different method for each context; no consistency"
+
+  domain_specific_modifiers:
+    weight: 0.30
+    criteria: >
+      Each context gets a genuinely domain-specific modifier. Examples:
+      Healthcare: mortality risk weighting
+      Software: CI/CD pipeline dependencies (some teams block others)
+      Environmental: seasonal variation, legal water rights, ecological minimums
+      Generic responses ("consider stakeholder needs") score low.
+    scores:
+      excellent: "Three distinct, genuinely domain-specific modifiers with clear reasoning"
+      good: "Two domain-specific; one is somewhat generic"
+      partial: "All three are generic or semi-specific"
+      poor: "No domain-specific modifiers identified"
+
+  adaptation_analysis:
+    weight: 0.20
+    criteria: >
+      Correctly modifies allocation for the mortality-weighted healthcare case;
+      explains that mortality risk is a healthcare-specific ethical value that
+      doesn't translate to software build slots (no "death penalty" for failing
+      a build) or water extraction (where ecology, not mortality, is the analog).
+    scores:
+      excellent: "Modified allocation calculated; non-transferability explained with domain logic"
+      good: "Modification applied; transferability addressed at surface level"
+      partial: "Modification described but transferability not addressed"
+      poor: "No adaptation or incorrect domain reasoning"
+
+reference_solution: |
+  (a) Shared structure: Constrained resource allocation with guaranteed minimums.
+  Formally: allocate R=12 units among n=3 agents, each with minimum m_i and request r_i
+  where Σm_i ≤ R < Σr_i. Must satisfy all minimums; distribute surplus fairly.
+
+  (b) Proportional allocation method (consistent across all three):
+  Total minimums: 3+4+2 = 9. Surplus: 12-9 = 3 units.
+  Excess requests: Cardiac/Backend/A: 6-3=3; Trauma/Frontend/B: 7-4=3; Neuro/Data/C: 5-2=3
+  Total excess: 9. Each gets minimum + 3×(3/9) = minimum + 1 unit.
+  Result: Context 1/2/3 all get: Group1=4, Group2=5, Group3=3 (total=12) ✓
+
+  (c) Domain-specific modifiers:
+  Healthcare: Mortality urgency — Cardiac cases may warrant priority weighting
+  (lives at stake differs by case type); ICU admission criteria restrict who counts
+  as needing a bed at all.
+  Software: Pipeline dependencies — if Backend blocks Frontend builds, Frontend should
+  get enough slots to not be a bottleneck; queue priority by build criticality.
+  Environmental: Legal water rights — Region B may have senior water rights (prior
+  appropriation doctrine) granting legal priority regardless of "fairness" calculus;
+  ecological flow minimums may override agricultural minimums.
+
+  (d) Mortality-weighted adaptation for healthcare:
+  If Cardiac has 2× mortality risk per unfilled bed: weight Cardiac's unmet need more heavily.
+  Adjusted surplus distribution: weight Cardiac's excess by 2 (mortality factor).
+  Weighted excess: Cardiac: 3×2=6; Trauma: 3×1=3; Neuro: 3×1=3 → total weighted: 12
+  Cardiac surplus share: 6/12 × 3 = 1.5 → rounds to 2
+  Trauma surplus share: 3/12 × 3 = 0.75 → rounds to 1 (or 0.75, floor to 0)
+  Neuro: 0 surplus (or 0.75)
+  Adjusted: Cardiac=5, Trauma=5, Neuro=2 (total 12) — varies by rounding rule.
+
+  Does this carry over? NO. Mortality weighting is ethics-specific to healthcare.
+  Software build failures don't cause deaths; a failing CI build is inconvenient,
+  not deadly — mortality weighting would be a category error. In environmental
+  policy, the analog is ecosystem damage weighting (not mortality) — a different
+  ethical framework applies.
+
+grader_type: model
+tags: [context_alignment, resource_allocation, abstraction, analogical_transfer]

@@ -1,0 +1,136 @@
+---
+element_id: temporal_organization
+element_name: "Temporal Organization"
+category: reasoning_representations
+
+prompt: |
+  The following events are described out of order. Your task is to reason about
+  their temporal structure.
+
+  Events (labeled A-H, NOT in chronological order):
+  A: The company files for bankruptcy protection
+  B: Sales decline for three consecutive quarters
+  C: The founding team launches the startup with seed funding
+  D: The product receives a major award from an industry association
+  E: A key patent expires, allowing competitors to enter the market
+  F: The board replaces the CEO
+  G: The company attempts a pivot to a new market segment
+  H: The company raises a Series B round of $40 million
+
+  Given constraints:
+  - C must be first (company must exist before anything else)
+  - D occurs before E (award was during the protected patent period)
+  - H occurs before B starts (Series B raised, then sales decline)
+  - B precedes F (board acts after decline is evident)
+  - F precedes G (new CEO initiates pivot)
+  - G precedes A (pivot fails, leading to bankruptcy)
+  - E occurs after H (patent expires after funding round)
+
+  Tasks:
+  (a) Reconstruct the most likely chronological sequence of all 8 events.
+      If multiple valid orderings exist, list all valid ones.
+
+  (b) Calculate: How many events must occur between C (founding) and A
+      (bankruptcy) given the constraints?
+
+  (c) Add a new event: X = "Company wins a government contract"
+      Constraint: X occurs after D but before E.
+      Where does X fit in the sequence?
+
+  (d) Identify a temporal IMPOSSIBILITY: Which pairing of events CANNOT
+      be consecutive (adjacent in time) given the constraints?
+
+success_criteria:
+  - (a) Valid sequence: C → D → H → E → B → F → G → A (minimum constraints satisfied)
+  - (b) At least 6 events must occur between C and A
+  - (c) X fits between D and E (after D, before E); exact position depends on H
+  - (d) Valid impossibility: e.g., C and A cannot be consecutive (6+ events between them)
+
+rubric:
+  sequence_reconstruction:
+    weight: 0.40
+    criteria: >
+      Produces a valid chronological sequence satisfying all 7 constraints.
+      Valid minimal sequence: C → D → H → E → B → F → G → A.
+      Some reorderings are valid (D and H order is unconstrained; E and B order
+      is constrained by E>H and B>H, but E vs. B directly is unconstrained by
+      given rules — though E enabling competition → B plausible).
+    scores:
+      excellent: "Valid sequence satisfying all 7 constraints; notes valid alternatives"
+      good: "Valid sequence with all major constraints satisfied"
+      partial: "Mostly valid with one constraint violation"
+      poor: "Multiple constraint violations or sequence impossible"
+
+  counting_reasoning:
+    weight: 0.20
+    criteria: >
+      Correctly counts minimum events between C and A.
+      Chain: C → (D, H in some order) → E → B → F → G → A
+      Between C and A: D, H, E, B, F, G = 6 events minimum.
+    scores:
+      excellent: "Correct count (6) with chain reasoning shown"
+      good: "Count close (5-7) with reasoning"
+      partial: "Count attempted but reasoning unclear"
+      poor: "Cannot count or wrong count without reasoning"
+
+  event_insertion:
+    weight: 0.20
+    criteria: >
+      X (after D, before E) correctly inserted. Since D comes before H in many
+      orderings, X could appear between D and H or between H and E.
+      Valid: C → D → X → H → E → B → F → G → A
+      or: C → D → H → X → E → B → F → G → A
+    scores:
+      excellent: "X correctly placed with all alternative positions identified"
+      good: "X correctly placed in one valid position"
+      partial: "X placed but one constraint violated"
+      poor: "X placed incorrectly"
+
+  impossibility_identification:
+    weight: 0.20
+    criteria: >
+      Identifies a valid temporal impossibility. Examples:
+      - C and A cannot be consecutive (6 events required between them)
+      - D and B cannot be consecutive (H and E must intervene)
+      - C and B cannot be consecutive (D, H, E must precede B)
+    scores:
+      excellent: "Valid impossibility identified with constraint-based proof"
+      good: "Valid impossibility identified with incomplete proof"
+      partial: "Impossibility identified but reasoning is weak"
+      poor: "No impossibility identified or identified case is actually possible"
+
+reference_solution: |
+  (a) Chronological sequence:
+  Applying all constraints:
+  - C first (given)
+  - D before E; H before B; H before E (H before B, and B before F before G before A)
+  - Therefore: C → D → H → E → B → F → G → A
+
+  Alternative valid orderings:
+  - C → H → D → E → B → F → G → A (D and H order is unconstrained; both before E)
+  - C → D → H → B → E → F → G → A (E and B order after H is unconstrained by rules
+    — but E enabling competition causing B is narratively reasonable)
+
+  Minimal valid sequence: C, D, H, E, B, F, G, A (7 events, 1 ordering shown)
+
+  (b) Events between C and A:
+  Chain from C to A: C → {D, H} → E → B → F → G → A
+  Between C and A (exclusive): D, H, E, B, F, G = 6 events minimum
+  Answer: At least 6 events must occur between C and A.
+
+  (c) Inserting X (after D, before E):
+  X must occur after D and before E. Both positions are valid:
+  C → D → X → H → E → B → F → G → A (X between D and H)
+  C → D → H → X → E → B → F → G → A (X between H and E)
+  C → H → D → X → E → B → F → G → A (if H before D, X still after D and before E)
+  All are valid. X has two fixed anchors: must follow D, must precede E.
+
+  (d) Temporal impossibilities:
+  C and A CANNOT be consecutive: at least 6 events (D, H, E, B, F, G) must
+  intervene between founding and bankruptcy — making C→A adjacency impossible.
+
+  D and B CANNOT be consecutive: H must occur between D and B (H precedes B;
+  E also precedes B; both occur after D). So D and B must have at least H and E between them.
+
+grader_type: model
+tags: [temporal_organization, sequence_reconstruction, constraints, ordering]

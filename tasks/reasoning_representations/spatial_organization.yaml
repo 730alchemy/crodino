@@ -1,0 +1,134 @@
+---
+element_id: spatial_organization
+element_name: "Spatial Organization"
+category: reasoning_representations
+
+prompt: |
+  You are given a 4×4 grid (rows 1-4 top to bottom, columns A-D left to right).
+  The following objects are placed on the grid:
+  - Red box at A1 (top-left corner)
+  - Blue box at D4 (bottom-right corner)
+  - Green box at B2
+  - Yellow box at C3
+
+  A robot starts at A1 (on top of the red box) and must reach D4 (the blue box).
+  The robot can move one cell at a time: up, down, left, or right.
+  The robot CANNOT move through a cell occupied by a box (except its start and end).
+
+  Tasks:
+  (a) Describe the spatial layout of all objects in a structured way.
+
+  (b) Find the shortest path from A1 to D4 that avoids B2 and C3.
+      State the path as a sequence of coordinates.
+
+  (c) The yellow box at C3 is removed. Does this change the shortest path?
+      If so, give the new shortest path. If not, explain why the path already
+      bypassed C3.
+
+  (d) A new box is placed at B3. Now find the shortest path from A1 to D4
+      avoiding ALL boxes: B2, B3 (C3 removed, original B2 and new B3 blocked).
+
+  (e) Starting from your final position D4, describe the path to return to A1
+      via a DIFFERENT route than the one you took (if possible).
+
+success_criteria:
+  - (a) Clear spatial description referencing row/column relationships
+  - (b) Valid shortest path; length should be 6 moves (e.g., A1→A2→A3→A4→B4→C4→D4)
+  - (c) Correctly determines whether C3 was on the original path; explains why
+  - (d) Finds a valid path avoiding B2 and B3
+  - (e) Finds an alternative return path (or correctly states none exists)
+
+rubric:
+  spatial_description:
+    weight: 0.15
+    criteria: >
+      Structured description shows relative positions: Red at top-left, Blue at
+      bottom-right, Green at upper-middle-left, Yellow at lower-middle-right.
+      Uses spatial language (north, south, adjacent, diagonal, etc.).
+    scores:
+      excellent: "Structured relative-position description with spatial language"
+      good: "Coordinates stated with some relational description"
+      partial: "Only coordinates listed without relational description"
+      poor: "No structured spatial description"
+
+  pathfinding:
+    weight: 0.35
+    criteria: >
+      Valid shortest path of 6 moves avoiding B2 and C3. Multiple valid 6-move
+      paths exist. E.g.: A1→A2→A3→A4→B4→C4→D4 (avoids B2 at B2 and C3).
+      Path must be step-by-step with valid moves (no diagonal).
+    scores:
+      excellent: "Valid 6-move path stated with all steps; avoids blocked cells"
+      good: "Valid path but slightly longer (7 moves)"
+      partial: "Path direction correct but passes through a blocked cell"
+      poor: "Path is invalid or impossible"
+
+  path_revision:
+    weight: 0.20
+    criteria: >
+      Correctly assesses whether removing C3 changes the shortest path.
+      If the original path avoided C3 (e.g., went via A column then bottom row),
+      then no change. If original path went through C3, now a shorter path exists.
+    scores:
+      excellent: "Correctly assesses change (or lack thereof) with clear reasoning"
+      good: "Correct conclusion but reasoning incomplete"
+      partial: "Incorrect assessment with plausible reasoning"
+      poor: "Cannot assess impact of block removal"
+
+  constraint_navigation:
+    weight: 0.20
+    criteria: >
+      Finds a valid path avoiding B2 AND B3. With B2 and B3 both blocked in
+      column B, the path must route around column B entirely on either side.
+    scores:
+      excellent: "Valid path avoiding both B2 and B3"
+      good: "Valid path but slightly suboptimal"
+      partial: "Avoids one blocked cell but passes through the other"
+      poor: "Cannot navigate with multiple constraints"
+
+  return_path:
+    weight: 0.10
+    criteria: >
+      Finds a different valid return path from D4 to A1, or correctly identifies
+      if the grid constraints allow only one path.
+    scores:
+      excellent: "Different valid return path found"
+      good: "Return path found but same as outbound"
+      partial: "Return path attempted but invalid"
+      poor: "No return path attempted"
+
+reference_solution: |
+  (a) Spatial layout:
+  4×4 grid (A=leftmost column, D=rightmost; 1=top row, 4=bottom row):
+  - Red box: A1 (top-left corner) — robot's starting position
+  - Green box: B2 (one step right, one step down from Red)
+  - Yellow box: C3 (one step right of center, one step above bottom-right)
+  - Blue box: D4 (bottom-right corner) — robot's destination
+  The two blocks (Green, Yellow) are diagonally placed along the A1→D4 main diagonal.
+
+  (b) Shortest path avoiding B2 and C3 (6 moves):
+  Route via left column then bottom row:
+  A1 → A2 → A3 → A4 → B4 → C4 → D4
+  All cells checked: B2 not visited, C3 not visited. Length: 6 moves. ✓
+
+  Alternative 6-move path: A1 → B1 → C1 → D1 → D2 → D3 → D4 (via top row then right column)
+  Both are length 6 (minimum: need 3 right + 3 down = 6 moves).
+
+  (c) Removing C3: The original path (A1→A2→A3→A4→B4→C4→D4) did NOT pass through
+  C3. Therefore, removing C3 does NOT change the shortest path.
+  However, a new shorter path is not possible — 6 moves is the minimum for a 4×4
+  corner-to-corner journey regardless of interior blocks (as long as a 6-move path exists).
+
+  (d) Adding B3 (now blocked: B2 and B3; C3 removed):
+  The entire B column rows 2-3 are blocked. Can still use left-column or right-column routes.
+  Valid path: A1 → A2 → A3 → A4 → B4 → C4 → D4 (B4 is not blocked — only B2 and B3)
+  Still 6 moves. ✓
+  Alternative: A1 → B1 → C1 → D1 → D2 → D3 → D4 (top row route, also 6 moves)
+
+  (e) Return path from D4 to A1 via different route:
+  If outbound was: A1→A2→A3→A4→B4→C4→D4 (left-column route)
+  Return via different route: D4→D3→D2→D1→C1→B1→A1 (right-column reverse, then top row)
+  Both routes are 6 moves; they use different cells. Valid alternative. ✓
+
+grader_type: model
+tags: [spatial_organization, pathfinding, grid_navigation, spatial_reasoning]

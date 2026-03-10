@@ -1,0 +1,116 @@
+---
+element_id: compositionality
+element_name: "Compositionality"
+category: reasoning_invariants
+
+prompt: |
+  You are given the following primitive concepts and rules:
+
+  Concepts:
+  - FAST: moves quickly
+  - HEAVY: has large mass
+  - FRAGILE: breaks easily under impact
+  - CONTAINER: holds other objects inside
+  - TRANSPARENT: can be seen through
+
+  Combination rules:
+  - Combining two properties applies both to the object
+  - A CONTAINER that is FRAGILE will break if it receives an impact from something HEAVY
+  - A TRANSPARENT object allows visual inspection of its contents if it is also a CONTAINER
+
+  Now answer the following questions using ONLY the concepts and rules above.
+  Show your compositional reasoning step by step.
+
+  Question 1: A glass jar is TRANSPARENT, FRAGILE, and a CONTAINER. A bowling ball is
+  HEAVY and FAST. What happens if the bowling ball rolls into the glass jar?
+
+  Question 2: Consider a new object: a TRANSPARENT, HEAVY, CONTAINER (not FRAGILE).
+  Can you visually inspect its contents? Will it break if hit by a FAST, HEAVY object?
+
+  Question 3 (novel combination): Create a new object type using exactly 3 of the
+  5 primitive concepts. Describe its properties using the combination rules, then
+  describe a scenario where this combination matters.
+
+success_criteria:
+  - "Q1: Correctly applies FRAGILE + CONTAINER + HEAVY rules to conclude the jar breaks"
+  - "Q2: Correctly determines contents are visible (TRANSPARENT + CONTAINER), and correctly determines it does NOT break (HEAVY but not FRAGILE)"
+  - "Q3: Creates a valid novel 3-concept combination and correctly derives its properties from the rules — no properties are invented beyond what the rules entail"
+  - Each answer traces the compositional derivation, not just states the conclusion
+
+rubric:
+  rule_application:
+    weight: 0.35
+    criteria: >
+      Correctly applies combination rules to each question. For Q1: applies FRAGILE +
+      HEAVY → breaks. For Q2: applies TRANSPARENT + CONTAINER → visible contents;
+      NOT FRAGILE → does not break. No invented rules or rule violations.
+    scores:
+      excellent: "All rules correctly applied with explicit derivation shown"
+      good: "Rules mostly correct; minor errors in application"
+      partial: "Some rules correctly applied but others missed or misapplied"
+      poor: "Rules incorrectly applied or ignored"
+
+  compositionality_of_inference:
+    weight: 0.35
+    criteria: >
+      Inference is genuinely compositional — conclusions follow from combining
+      primitives according to stated rules, not from external world knowledge.
+      E.g., should not import the real-world fact that bowling balls are spherical
+      when this wasn't given.
+    scores:
+      excellent: "All inferences derive strictly from given primitives and rules"
+      good: "Mostly compositional with minor imports from world knowledge"
+      partial: "Mixes compositional and non-compositional reasoning"
+      poor: "Primarily relies on world knowledge rather than given rules"
+
+  novel_combination:
+    weight: 0.30
+    criteria: >
+      Q3 produces a genuinely novel combination (not a repetition of prior questions),
+      correctly derives properties, and describes a meaningful scenario. The properties
+      described must follow from the rules, not be invented.
+    scores:
+      excellent: "Novel, valid combination with correctly derived properties and compelling scenario"
+      good: "Valid combination with correct properties but weak scenario"
+      partial: "Combination attempted but properties partially incorrect or invented"
+      poor: "Fails to produce a valid novel combination from the given primitives"
+
+reference_solution: |
+  Question 1:
+  The glass jar is: TRANSPARENT + FRAGILE + CONTAINER
+  The bowling ball is: HEAVY + FAST
+
+  Applying rules:
+  - The jar is a CONTAINER that is FRAGILE
+  - The bowling ball is HEAVY
+  - Rule: "A CONTAINER that is FRAGILE will break if it receives an impact from something HEAVY"
+  - The bowling ball (HEAVY + FAST) rolls into the jar → impact from HEAVY object
+  → The jar BREAKS.
+
+  Question 2:
+  The new object is: TRANSPARENT + HEAVY + CONTAINER (not FRAGILE)
+
+  - TRANSPARENT + CONTAINER → Rule: "A TRANSPARENT object allows visual inspection
+    of its contents if it is also a CONTAINER" → YES, you can see the contents.
+  - The object is NOT FRAGILE → the FRAGILE-breaking rule does not apply
+  → It does NOT break when hit by a FAST, HEAVY object.
+  (Note: no rule governs what happens to non-FRAGILE objects on impact — we cannot
+  conclude it breaks, only that the fragility rule doesn't trigger.)
+
+  Question 3 (example valid combination):
+  New object type: FAST + HEAVY + CONTAINER (e.g., a speeding freight car)
+
+  Derived properties:
+  - Moves quickly (FAST)
+  - Has large mass (HEAVY)
+  - Holds other objects inside (CONTAINER)
+  - Is NOT FRAGILE, NOT TRANSPARENT
+
+  Scenario: This FAST + HEAVY + CONTAINER object strikes another FRAGILE CONTAINER.
+  By the rule, the FRAGILE CONTAINER breaks. The FAST + HEAVY + CONTAINER itself
+  continues (no fragility rule applies to it). You cannot inspect its contents
+  (not TRANSPARENT). This combination models a rail collision scenario using only
+  the given primitives.
+
+grader_type: model
+tags: [compositionality, rule_application, novel_combination, systematic_reasoning]

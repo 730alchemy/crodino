@@ -1,0 +1,129 @@
+---
+element_id: sequential_organization
+element_name: "Sequential Organization"
+category: reasoning_representations
+
+prompt: |
+  A software deployment pipeline must execute the following steps, but ONLY in a
+  valid order where prerequisites are met. Some steps can run in parallel; others
+  cannot start until specific prior steps complete.
+
+  Steps (unordered):
+  - [A] Run unit tests
+  - [B] Build container image
+  - [C] Push image to registry
+  - [D] Run integration tests
+  - [E] Deploy to staging environment
+  - [F] Run smoke tests on staging
+  - [G] Get QA sign-off
+  - [H] Deploy to production
+  - [I] Run final health checks
+  - [J] Write code / implement features
+
+  Known constraints:
+  1. J must come first (no code = nothing to test)
+  2. A and B can run in parallel after J
+  3. C requires B to complete
+  4. D requires both A and C to complete
+  5. E requires D to complete
+  6. F requires E to complete
+  7. G requires F to complete
+  8. H requires G to complete
+  9. I requires H to complete
+
+  Tasks:
+  (a) Write the valid sequential order, marking which steps can run in parallel.
+  (b) What is the MINIMUM number of sequential "stages" needed (where parallel
+      steps count as one stage)?
+  (c) If step D fails, which subsequent steps are blocked, and which (if any)
+      can still proceed?
+  (d) A new requirement: step K "Security scan" must run after B but before D.
+      Show the revised sequence.
+
+success_criteria:
+  - (a) Valid sequence: J → (A‖B) → C → D → E → F → G → H → I
+  - (b) Minimum stages: 8 (J, A‖B, C, D, E, F, G, H, I — but A‖B counts as 1)
+    Actually: J=1, A‖B=2, C=3, D=4, E=5, F=6, G=7, H=8, I=9 → 9 stages
+    (A and B parallel = 1 stage, so: J, [A‖B], C, D, E, F, G, H, I = 9 stages)
+  - (c) D failure blocks E, F, G, H, I; nothing else can proceed (A and C already done)
+  - (d) Revised: J → (A‖B) → (C, then K) → D (once K done) → E → F → G → H → I
+
+rubric:
+  sequence_validity:
+    weight: 0.35
+    criteria: >
+      The sequence in (a) satisfies all 9 constraints. Parallelism of A and B is
+      correctly identified. No constraint violations.
+    scores:
+      excellent: "Fully valid sequence with parallelism correctly marked"
+      good: "Valid sequence but parallelism not clearly indicated"
+      partial: "Mostly valid with one constraint violation"
+      poor: "Multiple constraint violations or sequence fundamentally wrong"
+
+  stage_count:
+    weight: 0.20
+    criteria: >
+      Correctly counts minimum stages. The answer is 9 sequential stages where
+      the parallel (A‖B) block counts as one stage.
+    scores:
+      excellent: "Correct count (9) with clear stage enumeration"
+      good: "Count off by one with valid reasoning"
+      partial: "Plausible count but unclear reasoning"
+      poor: "Wrong count or no stage analysis"
+
+  failure_analysis:
+    weight: 0.25
+    criteria: >
+      Correctly identifies that D failure blocks all downstream steps (E through I)
+      but that A and C are already completed and not blocked. Nothing new can
+      proceed if D fails (since E is D's only successor).
+    scores:
+      excellent: "Correctly identifies blocked steps; notes A and C already completed"
+      good: "Correctly identifies most blocked steps"
+      partial: "Partially correct; some steps misclassified"
+      poor: "Cannot identify impact of D failure"
+
+  revision_quality:
+    weight: 0.20
+    criteria: >
+      Correctly inserts K after B and before D. Since K depends on B and D depends
+      on K, the new chain: J → [A‖B] → C → K → D → ... (or A‖B → K after B, K must
+      complete before D, C must also complete before D).
+    scores:
+      excellent: "K correctly placed with all dependencies preserved"
+      good: "K placed correctly but one dependency slightly off"
+      partial: "K added but placement violates a constraint"
+      poor: "K added without dependency analysis"
+
+reference_solution: |
+  (a) Valid sequence:
+  Stage 1: J
+  Stage 2: A ‖ B  (parallel)
+  Stage 3: C  (requires B)
+  Stage 4: D  (requires A and C)
+  Stage 5: E  (requires D)
+  Stage 6: F  (requires E)
+  Stage 7: G  (requires F)
+  Stage 8: H  (requires G)
+  Stage 9: I  (requires H)
+
+  (b) Minimum stages: 9
+  (A and B run in parallel = one stage; all others are sequential)
+
+  (c) If D fails:
+  Blocked: E, F, G, H, I (all depend on D directly or transitively)
+  Not blocked (already completed): J, A, B, C
+  Nothing new can start — the entire pipeline halts at D.
+
+  (d) Revised sequence with K:
+  Stage 1: J
+  Stage 2: A ‖ B
+  Stage 3: C (after B), K (after B) — these can run in parallel since both need only B
+  Stage 4: D (after both A, C, and K)
+  Stage 5: E → F → G → H → I (unchanged)
+
+  Note: K can run in parallel with C in Stage 3, since both require only B.
+  D now requires A, C, AND K before starting.
+
+grader_type: model
+tags: [sequential_organization, dependency_analysis, pipeline, parallelism]

@@ -1,0 +1,114 @@
+---
+element_id: pattern_recognition
+element_name: "Pattern Recognition"
+category: reasoning_operations
+
+prompt: |
+  Identify the underlying pattern in each sequence or set, then apply it.
+
+  Set 1 — Number sequence:
+  2, 6, 12, 20, 30, 42, ?
+
+  Set 2 — Word transformation:
+  cat → act, dog → god, rat → tar, pan → ?
+
+  Set 3 — Abstract pattern (harder):
+  (1, 1, 2), (2, 3, 5), (3, 5, 8), (4, 7, 11), (5, ?, ?)
+
+  Set 4 — Cross-domain pattern (hardest):
+  The following four things share a deep structural pattern. Identify it.
+  - A river delta
+  - A computer's file system folder hierarchy
+  - A family tree (genealogy)
+  - An org chart at a company
+
+  For Sets 1-3: Give the next element and explain the pattern.
+  For Set 4: Name the pattern, explain why all four share it, and generate
+  a FIFTH example that shares the same structure.
+
+success_criteria:
+  - "Set 1: Next is 56; pattern is n(n+1) or differences form 4,6,8,10,12,14"
+  - "Set 2: Reversal; \"pan\" → \"nap\""
+  - "Set 3: Third element = first + second (Fibonacci-like); (5, ?, ?): (5, 9, 14) where b follows odd numbers 1,3,5,7,9 and c = a+b = 5+9 = 14"
+  - "Set 4: Tree/hierarchical branching structure; fifth example is valid"
+
+rubric:
+  pattern_identification:
+    weight: 0.40
+    criteria: >
+      S1: Identifies differences (4,6,8,10,12 → +2 each time) or formula n(n+1).
+      S2: Letter reversal.
+      S3: Identifies structure within each triple and the progression of b and c.
+      S4: Identifies tree/branching hierarchical structure.
+    scores:
+      excellent: "All four patterns correctly identified with clear explanations"
+      good: "Three of four correctly identified"
+      partial: "Two of four correctly identified"
+      poor: "Fewer than two correctly identified"
+
+  next_element:
+    weight: 0.35
+    criteria: >
+      S1: 56 (correct). S2: nap (correct). S3: (5, 9, 14) — b follows odd-number
+      sequence 1,3,5,7,9; c = a+b. S4: Valid fifth example of tree/hierarchical structure.
+    scores:
+      excellent: "All four next elements / applications correct"
+      good: "Three correct"
+      partial: "Two correct"
+      poor: "Fewer than two correct"
+
+  cross_domain_reasoning:
+    weight: 0.25
+    criteria: >
+      For Set 4, explanation must go beyond surface similarity and name the structural
+      property: tree (directed acyclic graph where each node has exactly one parent
+      except the root), hierarchical branching, parent-child relationship with a
+      single root. Fifth example must genuinely share the structure (not just be
+      another list).
+    scores:
+      excellent: "Abstract structural property named; all four explained; valid fifth example"
+      good: "Abstract property named; explanation adequate; fifth example valid"
+      partial: "Surface similarity noted; deeper structure not articulated"
+      poor: "Cannot identify cross-domain structural pattern"
+
+reference_solution: |
+  Set 1:
+  Pattern: Each term = n(n+1) where n=1,2,3,...
+  1×2=2, 2×3=6, 3×4=12, 4×5=20, 5×6=30, 6×7=42, 7×8=56
+  Alternatively: differences are 4, 6, 8, 10, 12, 14 → increase by 2 each time.
+  Next: 56.
+
+  Set 2:
+  Pattern: Reverse the letters.
+  cat→act, dog→god, rat→tar, pan→nap.
+  Next: nap.
+
+  Set 3:
+  Each triple (a, b, c): examine b sequence: 1, 3, 5, 7, ... (odd numbers, +2 each)
+  And c = a + b in each triple: 1+1=2, 2+3=5, 3+5=8, 4+7=11.
+  For n=5: b = 9 (next odd number), c = 5+9 = 14.
+  Answer: (5, 9, 14).
+
+  Set 4:
+  Pattern name: TREE STRUCTURE (rooted directed acyclic graph / hierarchical branching)
+  Shared structural properties:
+  - One root (source/origin): river source, root folder, ancestor, CEO
+  - Nodes branch into children: tributaries, subfolders, descendants, direct reports
+  - Each node has exactly one parent (except the root)
+  - The structure is acyclic (no loops)
+  - Depth varies; leaves are terminal nodes
+
+  Why each qualifies:
+  - River delta: water flows from single source, branches into tributaries, terminal
+    at river mouths (but note: true deltas are distributaries, making this a slight
+    conceptual stretch — more precisely, the watershed ABOVE the delta fits the tree)
+  - File system: one root directory, nested subdirectories, files are leaves
+  - Family tree: one ancestral couple as root, descendants branch out
+  - Org chart: CEO at root, management layers branch down to individual contributors
+
+  Fifth example: A tournament bracket (single-elimination). One winner at root,
+  each match produces one winner (parent) from two losers (children going down).
+  Reading it bottom-up: it's a tree where each round is a level.
+
+grader_type: model
+tags: [pattern_recognition, sequences, cross_domain, structural_analogy]

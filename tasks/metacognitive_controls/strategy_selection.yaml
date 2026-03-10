@@ -1,0 +1,105 @@
+---
+element_id: strategy_selection
+element_name: "Strategy Selection"
+category: metacognitive_controls
+
+prompt: |
+  You are presented with three different problems. Before solving each one,
+  explicitly name your chosen reasoning strategy and explain why it is
+  appropriate for this problem type. Then solve it using that strategy.
+
+  Problem 1:
+  A farmer has 120 meters of fencing. She wants to enclose a rectangular field
+  that maximizes area. What dimensions should the field have?
+
+  Problem 2:
+  Your team is designing a new employee onboarding program. The process currently
+  takes 6 weeks and has 40% retention of key information after 3 months.
+  You want to improve both speed and retention. What approach should you take?
+
+  Problem 3:
+  Alice beats Bob at chess. Bob beats Carol. Carol beats David. David beats Eve.
+  Who is most likely to win a match between Alice and Eve?
+
+success_criteria:
+  - Each problem gets an explicitly named and justified strategy before the solution
+  - "Problem 1: Uses mathematical optimization (e.g., calculus or AM-GM inequality); does not use trial-and-error as the primary approach"
+  - "Problem 2: Uses a structured design/analysis approach rather than mathematical optimization; strategy reflects the ill-structured nature of the problem"
+  - "Problem 3: Uses logical/transitive reasoning; notes the probabilistic qualifier"
+  - Strategy choices differ across problems (not the same strategy applied to all three)
+
+rubric:
+  strategy_naming_and_justification:
+    weight: 0.35
+    criteria: >
+      Each problem gets an explicit strategy name and a brief justification of why
+      that strategy fits this problem type. "I'll use algebra" without explanation
+      is weak; "I'll use mathematical optimization because we have a well-defined
+      objective function and constraint" is strong.
+    scores:
+      excellent: "Named, justified strategy for each problem; justifications are task-specific"
+      good: "Named strategies for all three with reasonable justifications"
+      partial: "Strategies named but justifications are generic"
+      poor: "No strategy named or jumps straight to solving"
+
+  strategy_diversity:
+    weight: 0.25
+    criteria: >
+      Uses meaningfully different strategies across the three problems. A response
+      that applies "systematic analysis" to all three with minor variations shows
+      poor strategy selection. Strong responses show distinct meta-level choices.
+    scores:
+      excellent: "Three clearly distinct strategy types; each well-matched to problem"
+      good: "Two distinct strategies; one reuses approach from another"
+      partial: "Slight variations on one strategy used throughout"
+      poor: "Same strategy label applied to all three problems"
+
+  solution_quality:
+    weight: 0.40
+    criteria: >
+      P1: Correct answer (60m × 30m... wait — for max area with 120m perimeter,
+      a square is optimal: 30m × 30m = 900m²). P2: Generates actionable, structured
+      recommendations grounded in learning science or design principles. P3: Correctly
+      identifies Alice likely beats Eve (via transitivity), with appropriate hedging.
+    scores:
+      excellent: "All three solutions correct and well-executed using chosen strategy"
+      good: "Two correct solutions; one has minor errors"
+      partial: "One correct solution; others have significant errors"
+      poor: "No correct solutions or solutions ignore the chosen strategy"
+
+reference_solution: |
+  Problem 1 — Strategy: Mathematical optimization with constraint
+  Justification: We have a well-defined objective (maximize area), a measurable
+  constraint (120m of fencing), and mathematical relationships between variables.
+  This calls for optimization, not trial-and-error.
+
+  Let length = l, width = w. Constraint: 2l + 2w = 120 → l + w = 60 → w = 60 - l
+  Area A = l × w = l(60 - l) = 60l - l²
+  dA/dl = 60 - 2l = 0 → l = 30, w = 30
+  Maximum area: 30m × 30m = 900m² (a square)
+
+  Problem 2 — Strategy: Design thinking / systems analysis
+  Justification: This is an ill-structured design problem with multiple variables,
+  no single correct answer, and human/social factors. Mathematical optimization
+  would over-simplify. The right strategy is iterative design informed by evidence.
+
+  Recommendations:
+  (1) Diagnose before fixing: identify which 6-week steps are low-value (eliminate)
+  (2) Apply spaced repetition: schedule reinforcement at 1, 7, and 30 days
+  (3) Active learning over passive: replace lectures with role-play and practice
+  (4) Microlearning modules: make content digestible and self-paced
+  (5) Measure baseline: establish what "retention" means before claiming improvement
+  Target: reduce to 3-4 weeks with 70%+ retention by targeting low-value steps.
+
+  Problem 3 — Strategy: Transitive logical reasoning with probabilistic hedging
+  Justification: We have an ordered relation (beats) across a chain, suggesting
+  transitivity applies. But "beats at chess" is probabilistic, not deterministic.
+
+  Chain: Alice > Bob > Carol > David > Eve
+  By transitivity of the "beats" relation across 4 steps: Alice most likely beats Eve.
+  Caveat: Each "beats" relation is probabilistic (not 100%); over 4 transitive steps,
+  the probability of Alice beating Eve is high but not certain. Alice is the most
+  likely winner of the match.
+
+grader_type: model
+tags: [strategy_selection, metacognition, optimization, design_thinking, logic]

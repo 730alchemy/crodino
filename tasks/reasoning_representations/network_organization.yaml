@@ -1,0 +1,145 @@
+---
+element_id: network_organization
+element_name: "Network Organization"
+category: reasoning_representations
+
+prompt: |
+  Map the following ecosystem as a network (not a simple food chain).
+  The ecosystem contains: grass, rabbits, foxes, hawks, mice, snakes, beetles,
+  decomposers (bacteria/fungi), and soil nutrients.
+
+  Known relationships (partial list — you may add plausible ones):
+  - Grass grows from soil nutrients
+  - Rabbits eat grass
+  - Mice eat grass and beetles
+  - Foxes eat rabbits and mice
+  - Snakes eat mice
+  - Hawks eat snakes, rabbits, and mice
+  - All animals eventually die and are decomposed by decomposers
+  - Decomposers return nutrients to the soil
+  - Beetles eat decomposing organic matter
+
+  Tasks:
+  (a) Draw the network (text-based: list all nodes and all directed edges with
+      relationship type). Include at least 3 relationship types (not just "eats").
+
+  (b) Identify which node has the HIGHEST in-degree (most things depending on it)
+      and explain its ecological role.
+
+  (c) If foxes are removed from the ecosystem, trace ALL first and second-order
+      effects through the network. (First-order = directly connected to foxes;
+      second-order = connected to first-order affected nodes.)
+
+  (d) Identify a cycle in the network and explain what it means ecologically.
+
+success_criteria:
+  - (a) Network has all 9 nodes; multiple relationship types (eats, grows from,
+    decomposes, returns nutrients); edges are directed with labels
+  - (b) Correctly identifies soil nutrients or grass as highest in-degree;
+    explains ecological role
+  - (c) Correctly traces first-order (rabbits and mice populations increase)
+    and second-order effects (grass decreases from more rabbits; hawks may
+    shift predation patterns)
+  - (d) Identifies the decomposition cycle and explains nutrient cycling
+
+rubric:
+  network_completeness:
+    weight: 0.25
+    criteria: >
+      All 9 nodes present; at least 3 distinct relationship types; edges are
+      directed; no obvious relationships missing from the given list.
+    scores:
+      excellent: "All nodes, multiple relationship types, directed edges"
+      good: "All nodes but only one relationship type (eats)"
+      partial: "Some nodes missing or relationships undirected"
+      poor: "Flat list or simple food chain rather than network"
+
+  in_degree_analysis:
+    weight: 0.25
+    criteria: >
+      Correctly identifies the node with highest in-degree (most incoming edges).
+      Soil nutrients has high in-degree (receives from: grass roots, decomposers,
+      dead organic matter). Grass has high in-degree too. Explains ecological role.
+    scores:
+      excellent: "Correct identification with in-degree count and ecological role"
+      good: "Correct node identified but in-degree count or role explanation incomplete"
+      partial: "Plausible but not highest in-degree node identified"
+      poor: "Cannot perform in-degree analysis"
+
+  cascade_analysis:
+    weight: 0.30
+    criteria: >
+      Correctly traces: First-order: rabbit and mice populations increase (predation
+      pressure removed). Second-order: grass decreases (more rabbits eating it);
+      hawk diet shifts; snake populations may increase (fewer competing predators);
+      soil nutrients may decrease (less decomposing matter if populations shift).
+    scores:
+      excellent: "Correct first AND second-order effects traced with reasoning"
+      good: "First-order correct; second-order partial"
+      partial: "First-order partially correct"
+      poor: "Cannot trace cascade effects"
+
+  cycle_identification:
+    weight: 0.20
+    criteria: >
+      Identifies the decomposition cycle: animals die → decomposers → soil nutrients
+      → grass → animals (etc.). Explains that this represents nutrient cycling,
+      the closed loop that makes ecosystems self-sustaining.
+    scores:
+      excellent: "Cycle identified and ecological significance explained"
+      good: "Cycle identified but significance is shallow"
+      partial: "Partial cycle identified"
+      poor: "No cycle identified"
+
+reference_solution: |
+  (a) Network:
+  Nodes: grass, rabbits, foxes, hawks, mice, snakes, beetles, decomposers, soil_nutrients
+
+  Directed edges (relationship → target):
+  EATS:
+    rabbits → grass; mice → grass; mice → beetles; foxes → rabbits; foxes → mice;
+    snakes → mice; hawks → snakes; hawks → rabbits; hawks → mice; beetles → dead_matter*
+
+  GROWS_FROM:
+    grass → soil_nutrients
+
+  DECOMPOSES:
+    decomposers → [rabbits, foxes, hawks, mice, snakes, grass] (dead organisms)
+
+  RETURNS_NUTRIENTS:
+    decomposers → soil_nutrients
+
+  PRODUCES:
+    all animals → dead_matter (upon death)
+
+  *beetles eat decomposing organic matter, which comes from dead organisms
+
+  (b) Highest in-degree: soil_nutrients
+  Incoming edges: from decomposers (nutrient return) and indirectly from all
+  dying organisms. Ecological role: foundation of the ecosystem — all primary
+  production (grass) depends on soil nutrients; it is the limiting factor for
+  plant growth and therefore the entire food web above it.
+
+  (c) Fox removal effects:
+  First-order:
+  - Rabbit population: increases (predation pressure removed)
+  - Mouse population: increases (predation pressure removed)
+
+  Second-order:
+  - Grass: decreases (more rabbits + mice consuming it)
+  - Snake population: may increase (less competition from foxes for mice)
+  - Hawk: diet shifts toward snakes and mice (fewer rabbits available...wait,
+    rabbits INCREASE, so hawks may increase too — but grass declining limits
+    rabbit long-term)
+  - Soil nutrients: potentially affected (grass decline → less organic matter cycling)
+  - Decomposers: potential increase in activity (more small animal deaths over time)
+
+  (d) Cycle: soil_nutrients → grass → rabbits/mice → dead_matter → decomposers → soil_nutrients
+  This is the nutrient cycle. It is a closed loop where matter is continuously
+  recycled. Ecologically, this cycle is what makes the ecosystem self-sustaining:
+  energy flows through (from sun to grass to animals and is lost as heat), but
+  matter (nitrogen, phosphorus, carbon) cycles in closed loops. Disrupting this
+  cycle (e.g., removing decomposers) would cause nutrient depletion and ecosystem collapse.
+
+grader_type: model
+tags: [network_organization, ecosystem, graph_reasoning, cascade_effects]

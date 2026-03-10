@@ -1,0 +1,137 @@
+---
+element_id: adaptive_detail_management
+element_name: "Adaptive Detail Management"
+category: reasoning_operations
+
+prompt: |
+  You are explaining how HTTPS (secure web browsing) works.
+  You must explain it FOUR times, each time at a different granularity level.
+
+  Level 1 — One sentence: For a complete non-technical adult audience.
+  Level 2 — One paragraph (4-6 sentences): For a technically curious person
+             with no networking background.
+  Level 3 — Three paragraphs: For a junior software developer who knows basic
+             networking (HTTP, TCP/IP) but hasn't implemented security protocols.
+  Level 4 — One paragraph focused on a specific technical detail: For a security
+             engineer who needs to understand the TLS handshake key exchange specifically.
+
+  After all four levels, answer:
+  (a) What did you choose to include at Level 4 that you omitted at Level 3?
+      Why was it appropriate to add at Level 4?
+  (b) What did you simplify or omit at Level 2 that would be INCORRECT if applied
+      at Level 3? (i.e., what simplification becomes misleading when you know more?)
+
+success_criteria:
+  - Level 1 is genuinely one sentence; conveys core idea
+  - Level 2 adds mechanism (encryption, certificates) without technical jargon
+  - "Level 3 covers TLS handshake, certificates, symmetric/asymmetric distinction, and how it relates to HTTP/TCP"
+  - "Level 4 focuses on specific technical detail (key exchange: RSA vs. ECDHE, forward secrecy, or specific handshake steps) appropriately deep"
+  - Reflection (a) identifies a specific detail added at Level 4
+  - Reflection (b) identifies a specific simplification that's misleading at Level 3
+
+rubric:
+  granularity_progression:
+    weight: 0.40
+    criteria: >
+      Each level is substantively deeper than the previous. Not just "more sentences"
+      but different technical concepts introduced at each level. Level transitions
+      should feel like genuine additions of conceptual depth.
+    scores:
+      excellent: "Four clearly distinct depths; new concepts introduced at each level"
+      good: "Three distinct depths; two levels are similar"
+      partial: "Two distinct depths; levels don't progress meaningfully"
+      poor: "All levels at similar depth; essentially paraphrases of each other"
+
+  technical_accuracy:
+    weight: 0.30
+    criteria: >
+      Level 3 and 4 must be technically accurate for their audiences:
+      L3: TLS/SSL, certificate authority, public key encryption, session key
+      L4: Specific key exchange (RSA or ECDHE), forward secrecy concept, or
+          specific handshake steps (ClientHello, ServerHello, etc.)
+    scores:
+      excellent: "Technically accurate at all levels; L4 is genuinely deep"
+      good: "Mostly accurate; minor simplifications at L3-L4"
+      partial: "L1-L2 correct but L3-L4 have significant technical errors"
+      poor: "Technical errors throughout or L3-L4 not more specific than L2"
+
+  reflection_quality:
+    weight: 0.30
+    criteria: >
+      (a) Identifies a specific technical detail added at L4 (not just "more detail")
+      (b) Identifies a specific simplification at L2 that would be wrong at L3.
+      Example: L2 might say "your browser and the website agree on a code word" —
+      at L3, this is misleading because the session key isn't negotiated in plaintext;
+      it's established via asymmetric crypto. This is the kind of simplification that
+      becomes inaccurate when the learner reaches L3.
+    scores:
+      excellent: "Both reflections identify specific concepts; (b) identifies genuine misleading simplification"
+      good: "Both reflections present; one is specific and one is generic"
+      partial: "One reflection present; or both are generic"
+      poor: "No reflections or trivially generic"
+
+reference_solution: |
+  Level 1:
+  HTTPS keeps your web browsing private by scrambling the data between your
+  browser and the website so no one in between can read it.
+
+  Level 2:
+  When you visit a website with HTTPS, your browser and the website's server go through
+  a quick setup process where they agree on how to scramble your data — like choosing
+  a secret code only they know. The website proves it's who it claims to be using a
+  digital certificate, like a verified ID card issued by a trusted authority. Once both
+  sides trust each other and have their secret code, all information you send or receive
+  is scrambled before it leaves your device. This means even if someone intercepts the
+  data packets traveling over the network, they just see meaningless noise. This is why
+  HTTPS is shown with a padlock icon in your browser.
+
+  Level 3:
+  HTTPS is HTTP running over TLS (Transport Layer Security), which sits between TCP and
+  the application layer. When a browser connects to an HTTPS server, they perform a
+  TLS handshake before any HTTP data is exchanged. During the handshake, the server
+  sends its X.509 certificate, which contains its public key and is signed by a
+  Certificate Authority (CA) your OS trusts. Your browser verifies the signature chain
+  up to a trusted root CA to confirm the server is legitimate.
+
+  The key insight is that HTTPS uses two types of cryptography. Asymmetric cryptography
+  (public/private key pairs) is used during the handshake to securely establish a shared
+  session key. Then, all actual HTTP traffic is encrypted with symmetric encryption
+  (typically AES) using that session key — because symmetric encryption is orders of
+  magnitude faster than asymmetric for bulk data transfer.
+
+  After the handshake, the TLS record layer breaks application data into fragments,
+  adds a MAC (message authentication code) for integrity, and encrypts them. The
+  server decrypts and reassembles them to reconstruct the HTTP request. From the
+  application layer's perspective, it's just sending and receiving HTTP — TLS is
+  transparent to the application code.
+
+  Level 4 (TLS key exchange for security engineers):
+  Modern TLS 1.3 uses Ephemeral Diffie-Hellman (typically ECDHE with curves like
+  X25519) for key exchange, abandoning static RSA key exchange from TLS 1.2.
+  In ECDHE, both sides contribute ephemeral key pairs; the shared secret is derived
+  via the elliptic curve DH computation, and neither side's long-term private key
+  is used to encrypt the pre-master secret. This achieves forward secrecy: even if
+  the server's certificate private key is later compromised, past session keys cannot
+  be reconstructed because the ephemeral keys are discarded after the handshake.
+  TLS 1.3 further reduces the handshake to one round-trip by sending key share
+  parameters in the ClientHello, enabling 0-RTT session resumption (with caveats
+  for replay attack resistance).
+
+  Reflections:
+  (a) Level 4 added: ECDHE vs. RSA key exchange distinction, forward secrecy
+  property, TLS 1.3 one-RTT handshake, and 0-RTT resumption. These were omitted
+  at Level 3 because they require understanding asymmetric crypto well enough to
+  appreciate *why* ephemeral keys matter — a Level 3 audience hasn't reached that.
+
+  (b) Level 2 simplification that becomes misleading at Level 3:
+  "Both sides agree on a secret code." This implies a symmetric negotiation where
+  both parties contribute equally to choosing the key. At Level 3, this is misleading
+  because the session key is not chosen symmetrically in plaintext — it's established
+  via asymmetric cryptography (the browser generates the key material, encrypts it
+  with the server's public key in RSA-based TLS; or both contribute via ECDHE).
+  Saying "they agree" obscures the mathematical guarantee that the key can be
+  established without a third party learning it, which is the entire point of the
+  key exchange mechanism.
+
+grader_type: model
+tags: [adaptive_detail_management, granularity, technical_writing, abstraction_levels]

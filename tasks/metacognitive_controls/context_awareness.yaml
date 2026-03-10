@@ -1,0 +1,109 @@
+---
+element_id: context_awareness
+element_name: "Context Awareness"
+category: metacognitive_controls
+
+prompt: |
+  You are asked to explain the concept of "interest rates" three times — once for
+  each of the following contexts. Critically, your explanation must be appropriately
+  calibrated to each context's constraints, audience, and purpose.
+
+  Context A: A 10-year-old asking why their parents are stressed about the mortgage.
+  [Constraints: no jargon, relatable analogies, emotional sensitivity, brevity]
+
+  Context B: A professional summary for a central bank policy memo.
+  [Constraints: technical precision, quantitative where helpful, no over-simplification,
+  assumes reader has economics background, appropriate register]
+
+  Context C: A stand-up comedy bit for a general adult audience at a financial
+  literacy event.
+  [Constraints: must be genuinely funny, still informative, audience doesn't have
+  finance backgrounds, appropriate length for a 2-minute bit]
+
+  For each explanation, also note: what did you deliberately leave out or simplify,
+  and why was that appropriate for this context?
+
+success_criteria:
+  - Each explanation is genuinely adapted (not just slightly rephrased from a template)
+  - Context A uses child-appropriate analogies, avoids jargon, addresses emotion
+  - Context B uses appropriate technical vocabulary and precision without dumbing down
+  - Context C is both funny and informative (not just labeled "funny")
+  - Reflections identify genuinely context-appropriate omissions/simplifications
+
+rubric:
+  contextual_adaptation:
+    weight: 0.45
+    criteria: >
+      Each of the three explanations is substantively different in vocabulary,
+      analogy choice, depth, and register. A response that merely changes a few
+      words scores low. A strong response shows genuine modeling of the audience
+      and situation.
+    scores:
+      excellent: "Three clearly distinct explanations; each genuinely adapted to its audience"
+      good: "Meaningful adaptation in two contexts; one is a light rephrasing"
+      partial: "Some adaptation in vocabulary but same underlying explanation structure"
+      poor: "Template with minimal surface changes; no genuine audience modeling"
+
+  appropriateness_of_each:
+    weight: 0.35
+    criteria: >
+      Each explanation succeeds on its specific constraints:
+      A: emotionally sensitive, jargon-free, relatable
+      B: technically precise, appropriate register, quantitative where helpful
+      C: genuinely funny (contains an actual joke/punchline) AND informative
+    scores:
+      excellent: "All three meet their specific constraints"
+      good: "Two of three fully meet constraints; one is adequate but not excellent"
+      partial: "One meets constraints well; others are borderline"
+      poor: "None fully meet their stated constraints"
+
+  meta_reflection:
+    weight: 0.20
+    criteria: >
+      Reflections show awareness of what was omitted and articulate *why* it was
+      appropriate to omit it for the specific context, not just "it was too complex."
+    scores:
+      excellent: "Each reflection identifies specific omissions with context-specific reasoning"
+      good: "Reflections present but somewhat generic"
+      partial: "Reflections list omissions without explaining why they were appropriate"
+      poor: "No reflections or trivially brief"
+
+reference_solution: |
+  Context A (10-year-old / mortgage stress):
+  "You know how sometimes you borrow a toy from a friend? Well, money works similarly —
+  when your parents borrowed money to buy the house, they had to promise to pay back
+  a little extra as a thank-you to the people who lent it. That extra is called interest.
+  When interest goes up, the thank-you gets bigger, so your parents have to pay more
+  money every month. That's why they're worried — it's like the cost of living in our
+  house just got more expensive."
+
+  Left out: The role of central banks, why rates change, investment/savings angle.
+  Why appropriate: Would overwhelm a 10-year-old and isn't needed for the question
+  they're really asking ("why are my parents stressed?").
+
+  Context B (Central bank policy memo):
+  "Interest rates represent the cost of credit in an economy, expressed as a percentage
+  of principal per unit time. The policy rate set by the central bank propagates through
+  the yield curve to influence consumer borrowing costs, business investment, and asset
+  valuations. Rate increases reduce aggregate demand by raising the opportunity cost of
+  consumption and investment; they also affect inflationary dynamics through credit
+  channels, exchange rate effects, and expectation formation. Current conditions [...]"
+
+  Left out: Simplified analogies, emotional framing.
+  Why appropriate: Reader assumes technical knowledge; analogies would waste space
+  and potentially obscure precision.
+
+  Context C (Stand-up bit):
+  "So interest rates — here's the deal. You borrow $200,000 to buy a house, and then
+  the bank goes, 'Great! You also owe us $400,000 extra over the next 30 years.'
+  And you say, 'Wait — I just paid for TWO houses?' And the bank says, 'No no, you
+  paid for ONE house... and our CEO's second vacation home.' [pause] The good news?
+  When rates go UP, your savings account earns more money. The bad news? You have
+  no savings. None of us do. We're all just the bank's side project."
+
+  Left out: Technical mechanisms, policy implications.
+  Why appropriate: Informative core (rates affect borrowing cost) is preserved;
+  humor requires exaggeration that would be imprecise in technical contexts.
+
+grader_type: model
+tags: [context_awareness, audience_adaptation, register, communication]

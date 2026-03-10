@@ -1,0 +1,115 @@
+---
+element_id: productivity
+element_name: "Productivity"
+category: reasoning_invariants
+
+prompt: |
+  You have mastered the following structural principle for solving "bridge problems":
+  a bridge problem requires you to (1) identify two endpoints that need connecting,
+  (2) find shared properties between them, and (3) construct a chain of intermediate
+  concepts where each step shares at least one property with the next.
+
+  Example solved bridge problem:
+  Connect "fire" to "ocean":
+  fire → heat → steam → water vapor → clouds → rain → rivers → ocean
+  (each adjacent pair shares a property: fire/heat share energy-release; heat/steam
+  share high temperature; etc.)
+
+  Now apply this structural principle to three new bridge problems you have NOT
+  seen before:
+
+  1. Connect "mathematics" to "music"
+  2. Connect "childhood" to "wisdom"
+  3. Connect "silence" to "explosion"
+
+  For each, show the chain with a brief justification of each link.
+  Then reflect: what structural feature made each connection possible or difficult?
+
+success_criteria:
+  - All three bridges produce valid chains (each adjacent link shares a
+    meaningful property)
+  - Chains are genuinely novel applications of the principle, not retrieved examples
+  - Each link is justified (not arbitrary)
+  - The reflection identifies a structural insight across all three cases
+  - Bridges are not identical in structure (demonstrates range of the principle)
+
+rubric:
+  chain_validity:
+    weight: 0.35
+    criteria: >
+      Each bridge forms a valid chain where adjacent concepts share a genuine,
+      articulable property. Links must be justified — "mathematics and patterns
+      share structure" is valid; "mathematics and music both exist" is not a
+      meaningful shared property.
+    scores:
+      excellent: "All three chains are valid with well-justified links"
+      good: "Two of three chains valid; one has a weak link"
+      partial: "One valid chain; others have unjustified or arbitrary links"
+      poor: "No valid chains produced"
+
+  novelty_and_generativity:
+    weight: 0.35
+    criteria: >
+      The chains are original applications of the principle, not reproductions of
+      the example or obvious clichés. The three bridges use different structural
+      strategies (showing the principle's generativity), not the same template.
+    scores:
+      excellent: "Three distinct structural strategies; clearly novel applications"
+      good: "Mostly novel; slight templating from the example"
+      partial: "Heavy templating or chains are obvious; limited generativity shown"
+      poor: "Simply reproduces example structure or produces trivial chains"
+
+  structural_reflection:
+    weight: 0.30
+    criteria: >
+      The reflection identifies a genuine structural insight — something about the
+      bridge principle itself, not just a description of what was done. E.g., noting
+      that longer chains are needed when endpoints share few direct properties, or
+      that abstract concepts require more conceptual (rather than physical) bridges.
+    scores:
+      excellent: "Insightful structural generalization that extends the principle"
+      good: "Reasonable reflection on structural features"
+      partial: "Describes what was done rather than extracting a structural insight"
+      poor: "No meaningful reflection or trivial observation"
+
+reference_solution: |
+  1. Mathematics → Music:
+  mathematics → patterns → rhythm → timing → tempo → melody → harmony → music
+  - mathematics/patterns: math studies abstract patterns and structures
+  - patterns/rhythm: rhythm is a temporal pattern
+  - rhythm/timing: rhythm is defined by precise timing
+  - timing/tempo: tempo is the rate of timing in music
+  - tempo/melody: melody unfolds at a tempo
+  - melody/harmony: harmony is the simultaneous combination of melodies
+  - harmony/music: harmony is a core constituent of music
+
+  2. Childhood → Wisdom:
+  childhood → curiosity → questions → experience → reflection → understanding → wisdom
+  - childhood/curiosity: children are defined by curiosity about the world
+  - curiosity/questions: curiosity drives questioning
+  - questions/experience: pursuing answers generates experience
+  - experience/reflection: experience becomes insight through reflection
+  - reflection/understanding: sustained reflection produces understanding
+  - understanding/wisdom: wisdom is applied, integrated understanding
+
+  3. Silence → Explosion:
+  silence → absence → tension → pressure → release → force → shockwave → explosion
+  - silence/absence: silence is the absence of sound
+  - absence/tension: an absence creates expectation and tension
+  - tension/pressure: psychological tension maps to physical pressure build-up
+  - pressure/release: pressure accumulates until release
+  - release/force: release manifests as force
+  - force/shockwave: sudden force creates a shockwave
+  - shockwave/explosion: a shockwave is the defining physical feature of an explosion
+
+  Structural reflection:
+  The difficulty of each bridge depended on how directly the endpoint concepts share
+  properties. "Childhood → Wisdom" required a causal/developmental chain (one thing
+  leads to another over time). "Silence → Explosion" required moving from an absence
+  to a presence — which needed an intermediate tension concept to bridge the polarity.
+  "Mathematics → Music" could use shared formal properties (pattern, structure).
+  The principle's power is that it works across abstract, temporal, and physical
+  domains by finding the right "bridging property" at each step.
+
+grader_type: model
+tags: [productivity, generativity, novel_application, structural_reasoning]

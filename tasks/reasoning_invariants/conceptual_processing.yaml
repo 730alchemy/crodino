@@ -1,0 +1,119 @@
+---
+element_id: conceptual_processing
+element_name: "Conceptual Processing"
+category: reasoning_invariants
+
+prompt: |
+  Below are three descriptions of the same underlying concept, expressed at different
+  surface levels:
+
+  Surface description 1 (concrete/perceptual):
+  "When I mix the blue liquid with the yellow liquid in the beaker, the mixture turns green."
+
+  Surface description 2 (procedural):
+  "To get green paint, combine blue paint and yellow paint in roughly equal proportions."
+
+  Surface description 3 (contextual):
+  "The traffic light has three signals. The middle one, between red and blue-shifted red,
+  is often made by mixing the two primary colors visible in sunlight alongside red."
+
+  Tasks:
+  (a) Identify the single underlying concept that unifies all three descriptions.
+      Do not name it using any of the exact words from the surface descriptions.
+  (b) Explain why this concept, stated abstractly, correctly predicts all three observations.
+  (c) Generate a fourth surface description — in a completely different domain —
+      that instantiates the same underlying concept.
+  (d) Identify one case where the surface descriptions would suggest this concept applies
+      but it actually does NOT — and explain why at the conceptual level.
+
+success_criteria:
+  - (a) Identifies the concept at the right level of abstraction (subtractive color
+    mixing / additive primary color combination)
+  - (b) Abstract explanation correctly predicts all three observations without
+    re-describing their surfaces
+  - (c) Fourth description is genuinely in a different domain and correctly
+    instantiates the concept
+  - (d) Identifies a genuine exception or boundary case at the conceptual (not
+    surface) level
+
+rubric:
+  abstraction_level:
+    weight: 0.30
+    criteria: >
+      Part (a) names or describes the concept at the right level of abstraction —
+      neither too concrete (describing specific liquids) nor too abstract (just
+      "mixing things"). Must go beyond the surface language. Strongest responses
+      identify the specific principle (wavelength combination / primary color theory).
+    scores:
+      excellent: "Precise, domain-appropriate abstraction without surface language"
+      good: "Correct concept identified with some surface language leakage"
+      partial: "Concept partially identified but at wrong level of abstraction"
+      poor: "Describes surfaces without abstracting; or names entirely wrong concept"
+
+  predictive_generalization:
+    weight: 0.25
+    criteria: >
+      Part (b) shows how the abstract concept predicts all three descriptions
+      without merely re-describing them. The explanation should invoke the mechanism
+      (e.g., wavelength combination), not just reassert the observations.
+    scores:
+      excellent: "Mechanistic abstract explanation correctly predicts all three"
+      good: "Predicts all three but leans on re-description rather than mechanism"
+      partial: "Predicts some but not all; or mechanism is incorrect"
+      poor: "No meaningful predictive explanation offered"
+
+  novel_instantiation:
+    weight: 0.25
+    criteria: >
+      Part (c) produces a domain-novel example that correctly instantiates the
+      same abstract concept. Must be a genuinely different domain from paint/liquids/traffic.
+    scores:
+      excellent: "Clearly different domain; correctly instantiates the concept"
+      good: "Different domain but example is weak or partial"
+      partial: "Same domain with slight variation; or example partially incorrect"
+      poor: "Same domain or example doesn't instantiate the concept"
+
+  boundary_identification:
+    weight: 0.20
+    criteria: >
+      Part (d) identifies a genuine exception at the conceptual level — a case where
+      surface features suggest the concept applies but it doesn't. Must explain *why*
+      at the conceptual level (e.g., light mixing is additive not subtractive, so
+      combining blue and yellow light gives white, not green).
+    scores:
+      excellent: "Genuine exception identified with correct conceptual explanation"
+      good: "Exception identified but explanation is incomplete"
+      partial: "Weak or incorrect exception; or explanation is at surface level"
+      poor: "No exception identified or exception is wrong"
+
+reference_solution: |
+  (a) The underlying concept is: subtractive color mixing — combining colorants
+  (pigments, dyes, or filters) that each absorb complementary wavelengths of light,
+  such that the reflected spectrum corresponds to the mixture's combined absorption.
+  Specifically: blue absorbs red/orange wavelengths; yellow absorbs blue/violet
+  wavelengths; together they reflect only the middle (green) band.
+
+  (b) The abstract principle predicts all three:
+  - Beaker (liquids): dyes absorb specific wavelengths; blue + yellow absorb
+    complementary ranges leaving green reflected → mixture appears green. ✓
+  - Paint: same mechanism with pigments. ✓
+  - Traffic light: "the two primary colors visible alongside red in sunlight" hints
+    at blue and yellow (the other primary colors in the RYB model), and "middle
+    signal" maps to green, which is the subtractive mix of blue + yellow. ✓
+
+  (c) Fourth description (different domain — printing):
+  "In four-color offset printing, the Cyan and Yellow ink plates are printed on top
+  of each other in a region to produce green areas in the final image."
+  This is the same subtractive mixing principle: cyan ink absorbs red light,
+  yellow ink absorbs blue light; together they reflect green.
+
+  (d) Exception case: mixing blue and yellow *light* (not pigments).
+  Surface suggestion: "blue + yellow = green" as established above.
+  Conceptual reality: light mixing is *additive*, not subtractive. Blue light
+  (~450 nm) + yellow light (~580 nm) stimulates all three cone types together,
+  producing *white* (or near-white) light, not green. The abstract concept
+  (subtractive mixing) does not apply to additive color combination. The surface
+  similarity (both involve "blue + yellow") masks this conceptual difference.
+
+grader_type: model
+tags: [abstraction, conceptual_processing, generalization, boundary_cases]

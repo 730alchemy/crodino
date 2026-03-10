@@ -1,0 +1,151 @@
+---
+element_id: abstraction
+element_name: "Abstraction"
+category: reasoning_operations
+
+prompt: |
+  You are given 5 specific examples. Your task is to extract increasingly abstract
+  principles from them, then apply the highest-level abstraction to a new domain.
+
+  Specific examples:
+  E1: A thermostat turns the heater on when temperature drops below a set point
+      and off when it rises above.
+  E2: A speed governor on a car engine cuts fuel injection when speed exceeds a limit.
+  E3: A biological cell's sodium-potassium pump uses energy to maintain ion
+      concentration gradients, correcting drift from equilibrium.
+  E4: A central bank raises interest rates when inflation is above target and
+      lowers them when it falls below.
+  E5: A PID controller in a drone continuously adjusts motor thrust based on the
+      error between target and current altitude.
+
+  Tasks:
+  (a) Level 1 abstraction: What do E1 and E2 share that E3 does NOT?
+      Express as an abstract principle.
+
+  (b) Level 2 abstraction: What do E1, E2, E3, and E4 all share?
+      Express as an abstract principle broader than Level 1.
+
+  (c) Level 3 abstraction: What is the single most general principle that
+      encompasses ALL five examples, including E5?
+
+  (d) Apply your Level 3 abstraction to a NEW domain of your choice that was
+      NOT mentioned in any of the examples.
+
+  (e) Identify one domain where your Level 3 abstraction does NOT apply and
+      explain why it fails there.
+
+success_criteria:
+  - "(a) L1: Simple threshold-based on/off control (E1, E2) vs continuous/chemical control (E3); or: digital (binary) vs. analog control"
+  - "(b) L2: Negative feedback — sensing deviation from a target and acting to correct it; all four have sensor, comparator, actuator"
+  - "(c) L3: Feedback control systems — sense current state, compare to desired state, apply corrective action proportional to error"
+  - "(d) Valid novel application of feedback control"
+  - "(e) Valid domain where feedback control doesn't apply (e.g., open-loop systems, purely random processes, or one-shot decisions)"
+
+rubric:
+  level_1_abstraction:
+    weight: 0.15
+    criteria: >
+      Correctly identifies the distinguishing property between (E1,E2) and E3.
+      Key: E1 and E2 are binary/threshold (on/off) while E3 is continuous/
+      chemical. Or: E1 and E2 use a single threshold; E3 maintains a gradient.
+    scores:
+      excellent: "Correct distinguishing principle articulated precisely"
+      good: "Correct direction but imprecise"
+      partial: "Vague or partial distinction"
+      poor: "Wrong distinction identified"
+
+  level_2_abstraction:
+    weight: 0.20
+    criteria: >
+      Correctly identifies negative feedback as the shared principle for E1-E4.
+      Must name the structure: sensor → comparator (error) → actuator → system.
+      "They all regulate something" is too vague; "negative feedback loop" is
+      the target level.
+    scores:
+      excellent: "Names negative feedback; describes sensor-comparator-actuator structure"
+      good: "Names negative feedback but doesn't describe the structure"
+      partial: "Identifies regulation without naming negative feedback"
+      poor: "Cannot identify L2 principle"
+
+  level_3_abstraction:
+    weight: 0.25
+    criteria: >
+      Correctly identifies feedback control systems as the L3 principle that
+      includes E5 (PID controller — continuous, error-proportional). Must
+      generalize beyond "on/off" to include continuous feedback. Key addition
+      from E5: proportional response, derivative, integral terms (or just:
+      continuous error-proportional correction).
+    scores:
+      excellent: "Accurate L3 with continuous feedback generalization included"
+      good: "Mostly correct but misses continuous vs. binary distinction"
+      partial: "Identifies broader principle but doesn't distinguish L3 from L2"
+      poor: "Cannot identify L3 principle"
+
+  novel_application:
+    weight: 0.25
+    criteria: >
+      Applies L3 to a new domain not in the examples. Must identify: what is
+      being controlled, what the sensor is, what the error signal is, and what
+      the actuator does. Examples: immune system, autopilot, blood sugar regulation,
+      pricing algorithm, posture maintenance.
+    scores:
+      excellent: "Novel domain with all four components (sensor, error, actuator, system) identified"
+      good: "Novel domain identified with most components"
+      partial: "Domain identified but components not traced"
+      poor: "Domain is the same as an example or components wrong"
+
+  boundary_case:
+    weight: 0.15
+    criteria: >
+      Identifies a genuine domain where L3 fails. Valid examples: a one-way valve
+      (acts but doesn't measure or compare), a random number generator, an open-loop
+      timer (like a microwave that cooks for set time regardless of food temperature).
+      Must explain WHY it fails (missing feedback loop component).
+    scores:
+      excellent: "Valid non-feedback domain with clear explanation of what's missing"
+      good: "Valid domain but explanation incomplete"
+      partial: "Plausible but arguable domain"
+      poor: "Domain actually has feedback or no explanation given"
+
+reference_solution: |
+  (a) Level 1 (E1, E2 vs. E3):
+  E1 and E2 are BINARY THRESHOLD CONTROLLERS: they compare a measured value to a
+  single threshold and apply a binary (on/off) correction. There is no gradation.
+  E3 operates continuously and chemically — the Na/K pump doesn't turn "on" and "off";
+  it continuously expends energy to maintain a chemical gradient. There is no single
+  threshold; the system works against a continuous drift.
+  Principle: "Discrete threshold switching" vs. "continuous gradient maintenance."
+
+  (b) Level 2 (E1-E4):
+  All four are NEGATIVE FEEDBACK LOOPS. Structure:
+  Sensor measures current state → Comparator calculates error (deviation from target)
+  → Actuator applies a corrective action that opposes the error.
+  This is "negative" feedback because the response is in the direction that reduces
+  the error (temperature too low → heat MORE; speed too high → fuel LESS; etc.).
+  Principle: "Negative feedback control — sense, compare, correct in the opposing direction."
+
+  (c) Level 3 (all five including E5):
+  E5 (PID controller) adds: the correction is PROPORTIONAL TO THE ERROR (not binary),
+  plus derivative (rate of change) and integral (accumulated error) terms.
+  This extends L2 from binary correction to continuous, error-proportional correction.
+  Level 3 principle: FEEDBACK CONTROL SYSTEMS — a closed-loop mechanism that:
+  (1) continuously or periodically senses current state, (2) computes the error
+  (difference from target), and (3) applies a corrective action that is a function
+  of the error, closing the loop to drive the system toward its target state.
+
+  (d) Novel application — Human posture control:
+  Sensor: Proprioceptors in muscles and joints sense body position.
+  Error: Vestibular system computes deviation from balanced upright position.
+  Actuator: Muscle contractions are adjusted to correct imbalance.
+  System: Body maintains upright posture against gravity.
+  This is a continuous, multi-actuator feedback control system, analogous to E5.
+
+  (e) Domain where L3 FAILS: A simple egg timer (kitchen timer).
+  An egg timer runs for a preset duration and beeps, regardless of how cooked
+  the egg actually is. There is NO sensor measuring the egg's state, no error
+  signal, and no feedback loop. The timer acts open-loop: it applies a fixed
+  "control action" (wait N minutes) regardless of the system's actual state.
+  Missing component: there is no sensor feeding back the system output to the controller.
+
+grader_type: model
+tags: [abstraction, generalization, feedback_control, hierarchical_abstraction]

@@ -1,0 +1,144 @@
+---
+element_id: causal_organization
+element_name: "Causal Organization"
+category: reasoning_representations
+
+prompt: |
+  A software company notices that user churn (users cancelling subscriptions)
+  increased by 35% over the past quarter. The following observations were recorded:
+
+  Observation 1: Customer support ticket volume increased 60% in the same period
+  Observation 2: A major product update was deployed 6 weeks ago
+  Observation 3: A competitor launched a competing product 8 weeks ago
+  Observation 4: User satisfaction scores dropped from 4.1 to 3.4 (out of 5)
+  Observation 5: The support tickets are primarily about a new feature that
+    replaced a previously popular workflow
+  Observation 6: The new feature requires 3 extra clicks compared to the old workflow
+  Observation 7: Power users (who generate 70% of revenue) are churning at 2× the
+    rate of casual users
+
+  Tasks:
+  (a) Build a causal diagram (text-based) connecting these observations to the
+      churn increase. Label each arrow with the causal mechanism.
+
+  (b) Identify the ROOT CAUSE(s) versus PROXIMATE CAUSE(s) of churn.
+
+  (c) If the company reverts the product update (restoring the old workflow),
+      predict the causal effect on churn. Be specific about which causal paths
+      would be affected.
+
+  (d) Design a COUNTERFACTUAL test: what evidence would prove that the competitor
+      launch (rather than the product update) is the primary cause of churn?
+
+success_criteria:
+  - (a) Causal diagram connects observations through mechanisms (not just
+    correlation listing); includes mechanisms like "frustration → tickets → churn"
+  - (b) Distinguishes root cause (product change removing popular workflow)
+    from proximate causes (satisfaction drop, support tickets)
+  - (c) Correctly traces which causal paths revert supports and which competitor
+    path remains; notes partial improvement expected
+  - (d) Identifies valid counterfactual tests (e.g., churn in regions without
+    competitor; satisfaction drop in competitor-present vs. absent markets)
+
+rubric:
+  causal_diagram_quality:
+    weight: 0.30
+    criteria: >
+      Diagram connects at least 5 of the 7 observations with directional causal
+      arrows and labeled mechanisms. Should show: update → workflow friction →
+      tickets + satisfaction drop → churn; and competitor → alternative option
+      → churn (separate path). Not just "A correlates with B."
+    scores:
+      excellent: "5+ observations connected with labeled mechanisms; two distinct causal paths"
+      good: "4+ connected with mechanisms; one path clearly traced"
+      partial: "Connections made but mechanisms not labeled; or only one path"
+      poor: "Observations listed without causal connections"
+
+  root_vs_proximate:
+    weight: 0.25
+    criteria: >
+      Correctly identifies root cause (the product update removing a popular workflow,
+      creating friction) vs. proximate causes (satisfaction drop, support ticket surge,
+      power user churn). May also note competitor as a contributing/enabling cause.
+    scores:
+      excellent: "Root and proximate causes clearly distinguished with reasoning"
+      good: "Both identified but distinction not fully articulated"
+      partial: "One level identified (only root or only proximate)"
+      poor: "No causal level distinction made"
+
+  intervention_prediction:
+    weight: 0.25
+    criteria: >
+      Correctly predicts that reverting the update: eliminates the workflow-friction
+      causal path, reduces tickets and satisfaction drop, reduces power-user churn.
+      But competitor path remains — competitor-driven churn will persist.
+    scores:
+      excellent: "Correctly traces which paths are affected; notes competitor path persists"
+      good: "Reversion effect mostly correct; competitor path mention incomplete"
+      partial: "Predicts improvement but doesn't trace specific causal paths"
+      poor: "Cannot predict intervention effect from causal model"
+
+  counterfactual_test:
+    weight: 0.20
+    criteria: >
+      Designs a valid counterfactual or natural experiment. Valid options:
+      - Compare churn in markets where competitor has/hasn't launched
+      - Check if churn started exactly at update deployment vs. competitor launch
+      - Survey churned users on primary reason for leaving
+      - Check churn of features the competitor doesn't replicate
+    scores:
+      excellent: "Valid counterfactual test with clear logic for what it would prove"
+      good: "Valid test design but logic not fully explicit"
+      partial: "Test suggested but wouldn't cleanly isolate the cause"
+      poor: "No counterfactual test or test is invalid"
+
+reference_solution: |
+  (a) Causal diagram:
+
+  [Product update 6 weeks ago]
+      ↓ "replaces popular workflow with higher-friction alternative"
+  [3 extra clicks / workflow friction]
+      ↓ "frustration and reduced efficiency"
+  [Support ticket surge +60%] ← → [Satisfaction drop 4.1→3.4]
+      ↓ "dissatisfaction signals intent to leave"
+  [User churn +35%]
+      ↑ also fed by
+  [Power users disproportionately affected]
+      ↑ "power users relied most on old workflow"
+  [New feature breaks power user workflow]
+
+  Separate causal path:
+  [Competitor launch 8 weeks ago] → "provides viable alternative for dissatisfied users" → [User churn +35%]
+
+  Note: competitor launch may ENABLE churn (provides an exit option) while the
+  product update MOTIVATES churn (creates dissatisfaction).
+
+  (b) Root cause: The product update replaced a popular, efficient workflow with a
+  more friction-heavy one (Obs 5, 6). This is the root cause because it is the
+  distal origin of the causal chain: without the update, the satisfaction drop and
+  ticket surge wouldn't have occurred at this scale.
+
+  Proximate causes: Satisfaction drop (Obs 4), support ticket surge (Obs 1),
+  power user frustration (Obs 7) — these are intermediate effects that directly
+  precede churn. The competitor launch is a facilitating cause (provides the exit).
+
+  (c) If the product update is reverted:
+  - Workflow friction eliminated → ticket volume should decrease (Obs 1 reverses)
+  - Satisfaction should recover (Obs 4 reverses)
+  - Power user churn should reduce substantially (Obs 7 addresses root cause)
+  - Competitor path PERSISTS: some users already churned and adopted competitor
+  - Net expected effect: churn rate drops but may not return to pre-quarter baseline
+    because some users who tried competitor may have switched permanently.
+
+  (d) Counterfactual test for competitor-driven churn:
+  Test: Compare churn rates across geographic markets where the competitor has vs.
+  has NOT yet launched.
+  Logic: If competitor is the primary driver, churn should be significantly higher
+  in markets with competitor presence, controlling for the product update (which
+  affects all markets equally). If product update is the primary driver, churn should
+  be similar across both market types. Additionally: survey churned users — if
+  >50% cite workflow frustration (not competitor) as primary reason, product update
+  is the dominant cause.
+
+grader_type: model
+tags: [causal_organization, root_cause, intervention, counterfactual]

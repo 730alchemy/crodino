@@ -1,0 +1,110 @@
+---
+element_id: selective_attention
+element_name: "Selective Attention"
+category: reasoning_operations
+
+prompt: |
+  Read the following passage carefully, then answer the questions below.
+  The questions test your ability to focus on the relevant information and
+  filter out deliberate distractors.
+
+  ---
+  PASSAGE:
+  The Meridian Bridge project, announced in 2019 and initially budgeted at $4.2 billion,
+  has faced repeated delays. The bridge connects the coastal city of Portville
+  (population 340,000, founded 1847) to the industrial district of Crestshore.
+  The project manager, Janet Okonkwo, whose previous project won a national engineering
+  award in 2017, noted that steel costs have increased 23% since the project began.
+  The lead contractor, Halloran Construction, which has been operating since 1962
+  and built 47 bridges across 12 states, attributed delays to supply chain disruptions.
+  Portville's mayor, Marcus Webb, who is in his third term and was previously a city
+  council member for 8 years, stated that the new budget estimate is $5.1 billion.
+  An environmental assessment conducted in 2021 found no significant impact to the
+  nearby Greenvale Wildlife Reserve. The bridge is expected to reduce commute times
+  for approximately 85,000 daily commuters by an average of 22 minutes per trip.
+  The project is now expected to complete in Q3 2027, two years behind the original
+  schedule. The architectural design was created by the Stellario firm, which was
+  founded by twin brothers Marco and Leo Stellario in 1998.
+  ---
+
+  Questions (answer ONLY based on information in the passage):
+
+  Q1: What is the budget increase from original to current estimate?
+  Q2: Which single factor did the contractor specifically attribute delays to?
+  Q3: How much time per day will the average commuter save once the bridge opens?
+  Q4: How many years behind schedule is the project?
+  Q5 (distractor test): What is the population of Portville, and does it affect
+      your answer to any of Q1-Q4?
+
+success_criteria:
+  - "Q1: $900 million increase ($5.1B - $4.2B)"
+  - "Q2: Supply chain disruptions (only factor mentioned for contractor)"
+  - "Q3: 22 minutes per trip (note: not per day; \"per trip\" is what's stated)"
+  - "Q4: 2 years behind schedule"
+  - "Q5: Population is 340,000; it does NOT affect Q1-Q4 (it's a distractor)"
+
+rubric:
+  factual_accuracy:
+    weight: 0.40
+    criteria: >
+      Q1: $900 million (correct calculation). Q2: Supply chain disruptions (exact
+      attribution). Q3: 22 minutes per trip (NOT per day — passage says "per trip").
+      Q4: 2 years (stated directly). Minor error on one question acceptable.
+    scores:
+      excellent: "All four factual questions answered correctly"
+      good: "Three of four correct"
+      partial: "Two of four correct"
+      poor: "Fewer than two correct"
+
+  distractor_resistance:
+    weight: 0.35
+    criteria: >
+      Q5 correctly identifies the Portville population (340,000) AND correctly
+      states it does not affect Q1-Q4. Extra: notes that many other facts
+      (founding date, award history, contractor's bridge count, mayor's term,
+      environmental assessment, architectural firm) are also irrelevant distractors.
+    scores:
+      excellent: "Correctly identifies population as irrelevant distractor; may name other distractors"
+      good: "Identifies population as irrelevant but doesn't explain why"
+      partial: "States the population but conflates it with relevance"
+      poor: "Uses the population in an answer or doesn't recognize distractor"
+
+  precision_of_language:
+    weight: 0.25
+    criteria: >
+      Q3 specifically: The passage says "22 minutes per trip," not "per day."
+      A commuter might make 2 trips/day (saving 44 minutes total), but the passage
+      says "per trip." Precise answers note this; imprecise answers say "22 minutes
+      per day" which is not what was stated.
+    scores:
+      excellent: "Correctly says '22 minutes per trip' with appropriate precision"
+      good: "22 minutes stated without specifying per-trip vs. per-day"
+      partial: "Says '44 minutes per day' (plausible inference but not what passage states)"
+      poor: "Wrong figure or no precision noted"
+
+reference_solution: |
+  Q1: Budget increase = $5.1B - $4.2B = $900 million (21.4% increase)
+
+  Q2: The contractor (Halloran Construction) specifically attributed delays to
+  supply chain disruptions. This is the only factor mentioned for the contractor.
+  (Note: the project manager mentioned steel cost increases separately, but the
+  question asks what the contractor attributed delays to.)
+
+  Q3: 22 minutes per trip. The passage states "22 minutes per trip" — not per day.
+  A commuter who makes two trips per day (commute + return) would save 44 minutes
+  per day, but the passage only states the per-trip figure.
+
+  Q4: 2 years behind schedule (explicitly stated in the passage).
+
+  Q5: Population of Portville = 340,000.
+  This does NOT affect answers to Q1-Q4. It is a distractor — contextual information
+  that adds verisimilitude but has no bearing on the budget figures, delay causes,
+  commute savings, or schedule slip.
+  Other distractors in the passage: Portville founding date (1847), project manager's
+  award year (2017), contractor's founding year (1962) and bridge count (47/12 states),
+  mayor's term count (3rd term) and council history (8 years), environmental assessment
+  outcome, and architectural firm founding story (Marco and Leo Stellario, 1998).
+  None of these are relevant to Q1-Q4.
+
+grader_type: model
+tags: [selective_attention, distractor_resistance, precision, reading_comprehension]

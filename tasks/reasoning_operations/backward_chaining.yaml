@@ -1,0 +1,128 @@
+---
+element_id: backward_chaining
+element_name: "Backward Chaining"
+category: reasoning_operations
+
+prompt: |
+  Use backward chaining (working from the goal back to the facts needed to achieve it)
+  to answer the following questions.
+
+  Knowledge base:
+  Rule 1: mammal(X) AND large(X) AND aquatic(X) → whale(X)
+  Rule 2: mammal(X) AND has_fur(X) → not_reptile(X)
+  Rule 3: lays_eggs(X) AND cold_blooded(X) → reptile(X)
+  Rule 4: mammal(X) AND carnivore(X) AND land_animal(X) → predator(X)
+  Rule 5: whale(X) → mammal(X)  [whales are mammals]
+  Rule 6: large(X) AND fast(X) → apex_predator_candidate(X)
+
+  Known facts:
+  mammal(dolphin), aquatic(dolphin), large(dolphin), carnivore(dolphin)
+  mammal(wolf), has_fur(wolf), carnivore(wolf), land_animal(wolf)
+  lays_eggs(gecko), cold_blooded(gecko)
+
+  Goal queries: Prove or disprove each of the following by backward chaining.
+  Show your reasoning chain working BACKWARD from each goal.
+
+  Q1: Prove whale(dolphin)
+  Q2: Prove predator(wolf)
+  Q3: Prove predator(dolphin)
+  Q4: Is gecko a not_reptile?
+
+  For each query, show the backward chain: start with the goal, identify what
+  facts/sub-goals are needed, and check them against the knowledge base.
+
+success_criteria:
+  - "Q1: whale(dolphin) proven via Rule 1 (mammal ✓, large ✓, aquatic ✓)"
+  - "Q2: predator(wolf) proven via Rule 4 (mammal ✓, carnivore ✓, land_animal ✓)"
+  - "Q3: predator(dolphin) fails because dolphin is not land_animal (Rule 4 requires it)"
+  - "Q4: gecko is NOT a not_reptile because it IS a reptile (Rule 3) and not_reptile requires mammal AND has_fur (Rule 2) — gecko is neither"
+
+rubric:
+  backward_chain_process:
+    weight: 0.50
+    criteria: >
+      For each query, explicitly works backward: states what rule(s) could prove
+      the goal, then checks each prerequisite of that rule against facts or
+      sub-goals. Does not just forward-chain to the answer.
+    scores:
+      excellent: "All four queries show explicit backward chaining with prerequisites checked"
+      good: "Three queries show backward chaining"
+      partial: "One or two queries show backward chaining"
+      poor: "Forward chaining used or no process shown"
+
+  correctness:
+    weight: 0.35
+    criteria: >
+      Q1: Proved (dolphin is mammal, large, aquatic). Q2: Proved (wolf is mammal,
+      carnivore, land_animal). Q3: FAILS — dolphin not land_animal (Rule 4 cannot fire).
+      Q4: gecko IS reptile (via Rule 3); is NOT not_reptile because Rule 2 requires
+      mammal AND has_fur which gecko lacks.
+    scores:
+      excellent: "All four queries correctly proved/disproved"
+      good: "Three correct"
+      partial: "Two correct"
+      poor: "Fewer than two correct"
+
+  failure_analysis:
+    weight: 0.15
+    criteria: >
+      Q3 and Q4 failures are clearly explained: what prerequisite is unmet and
+      why no alternative rules exist to prove the goal.
+    scores:
+      excellent: "Both failures explained with specific unmet prerequisite"
+      good: "One failure explained with specifics; other is brief"
+      partial: "Failures noted but not explained with unmet prerequisite"
+      poor: "Failures not analyzed"
+
+reference_solution: |
+  Q1: Prove whale(dolphin)?
+
+  Goal: whale(dolphin)
+  Backward: Which rule concludes whale(X)? → Rule 1: mammal(X) AND large(X) AND aquatic(X)
+  Sub-goals: mammal(dolphin), large(dolphin), aquatic(dolphin)
+  Check: mammal(dolphin) ✓ (known fact)
+  Check: large(dolphin) ✓ (known fact)
+  Check: aquatic(dolphin) ✓ (known fact)
+  All sub-goals satisfied → Rule 1 fires → whale(dolphin) PROVED ✓
+
+  Q2: Prove predator(wolf)?
+
+  Goal: predator(wolf)
+  Backward: Which rule concludes predator(X)? → Rule 4: mammal(X) AND carnivore(X) AND land_animal(X)
+  Sub-goals: mammal(wolf), carnivore(wolf), land_animal(wolf)
+  Check: mammal(wolf) ✓ (known fact)
+  Check: carnivore(wolf) ✓ (known fact)
+  Check: land_animal(wolf) ✓ (known fact)
+  All sub-goals satisfied → Rule 4 fires → predator(wolf) PROVED ✓
+
+  Q3: Prove predator(dolphin)?
+
+  Goal: predator(dolphin)
+  Backward: Rule 4 is the only rule concluding predator(X).
+  Sub-goals: mammal(dolphin) ✓, carnivore(dolphin) ✓, land_animal(dolphin) ?
+  Check: land_animal(dolphin) → NOT in knowledge base. Dolphin is aquatic, not land_animal.
+  No other rules can derive land_animal(dolphin).
+  Prerequisite FAILS → Rule 4 cannot fire → predator(dolphin) CANNOT BE PROVED ✗
+
+  Note: No other rules conclude predator(X). Even though dolphin is large and fast,
+  Rule 6 only concludes apex_predator_candidate, not predator. So predator(dolphin)
+  is unprovable from this knowledge base.
+
+  Q4: Is gecko a not_reptile?
+
+  Goal: not_reptile(gecko)
+  Backward: Rule 2: mammal(X) AND has_fur(X) → not_reptile(X)
+  Sub-goals: mammal(gecko), has_fur(gecko)
+  Check: mammal(gecko) → NOT in knowledge base.
+  Check: has_fur(gecko) → NOT in knowledge base.
+  Both prerequisites fail → Rule 2 cannot fire.
+  No other rules conclude not_reptile.
+  → not_reptile(gecko) CANNOT BE PROVED ✗
+
+  Additionally: gecko IS a reptile.
+  Prove reptile(gecko): Rule 3: lays_eggs(X) AND cold_blooded(X)
+  lays_eggs(gecko) ✓, cold_blooded(gecko) ✓ → reptile(gecko) PROVED.
+  Gecko is a reptile, and cannot be a not_reptile.
+
+grader_type: model
+tags: [backward_chaining, goal_directed_reasoning, logic, knowledge_base]

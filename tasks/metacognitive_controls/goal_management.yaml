@@ -1,0 +1,125 @@
+---
+element_id: goal_management
+element_name: "Goal Management"
+category: metacognitive_controls
+
+prompt: |
+  You are a project manager. Your main goal is: "Launch a mobile app within 3 months."
+
+  During planning, you discover the following complications (one at a time):
+
+  Step 1: Decompose the main goal into sub-goals with dependencies.
+
+  Step 2: You learn that the lead developer has a 3-week family leave starting
+  in week 2. Revise your sub-goals and timeline.
+
+  Step 3: Stakeholders request a new feature (offline mode) that wasn't in the
+  original scope. It would add 2 weeks of development. Decide whether to:
+  (a) add it to this launch, (b) defer to v2, or (c) partially implement it.
+  Explain your decision in terms of your current goals.
+
+  Step 4: You complete Step 3. Now the lead developer returns and reports a
+  critical security bug was found in the authentication module that will take
+  1 week to fix. Update your overall goal status and recommend a path forward.
+
+  Show your goal hierarchy and status at the END of each step.
+
+success_criteria:
+  - "Step 1: Produces a hierarchical decomposition with clear dependencies"
+  - "Step 2: Revises timeline without abandoning the main goal; shows dependency-aware rescheduling"
+  - "Step 3: Makes an explicit decision with explicit goal-hierarchy reasoning (main goal = launch in 3 months; the decision must reference this)"
+  - "Step 4: Updates goal status accurately; recommends either slipping scope, timeline, or both with clear trade-off reasoning"
+  - Goal hierarchy is maintained and updated across all four steps
+
+rubric:
+  hierarchical_decomposition:
+    weight: 0.25
+    criteria: >
+      Step 1 produces a meaningful multi-level goal hierarchy with plausible
+      dependencies (e.g., testing depends on development, deployment depends on
+      testing). Sub-goals are specific enough to be actionable.
+    scores:
+      excellent: "2-3 levels of sub-goals with explicit dependencies"
+      good: "Good sub-goals but flat structure; dependencies partially stated"
+      partial: "Sub-goals listed but as unordered list without hierarchy"
+      poor: "No decomposition or trivially vague"
+
+  dynamic_revision:
+    weight: 0.35
+    criteria: >
+      Steps 2 and 4 show genuine revision of the goal hierarchy in response to
+      new information. Revisions should be dependency-aware (e.g., developer
+      absence affects all tasks depending on their work). Not just re-listing
+      sub-goals with adjusted dates.
+    scores:
+      excellent: "Revisions are dependency-aware and specific; main goal tracked"
+      good: "Revisions present but not fully dependency-aware"
+      partial: "Revisions are superficial date adjustments without reasoning"
+      poor: "No revision or revision ignores the new information"
+
+  decision_quality:
+    weight: 0.25
+    criteria: >
+      Step 3 decision references the main goal explicitly and provides clear
+      trade-off reasoning. "Defer to v2" with a solid rationale (preserves
+      3-month timeline) is valid. "Add it" with a plan to absorb the 2 weeks
+      is valid. "Partially implement" with a clear definition is valid.
+      A decision without goal-referencing reasoning is weak.
+    scores:
+      excellent: "Explicit goal-referenced decision with clear trade-off reasoning"
+      good: "Good decision with some goal-referencing"
+      partial: "Decision made but goal connection is implicit"
+      poor: "Decision without goal-hierarchy reasoning"
+
+  goal_status_tracking:
+    weight: 0.15
+    criteria: >
+      Each step ends with a goal hierarchy status update. Status should reflect
+      what changed (e.g., "authentication sub-goal: at risk," "launch date: may
+      slip by 1 week").
+    scores:
+      excellent: "Clear status updates after each step; reflects cumulative changes"
+      good: "Status updates present but not always accurate"
+      partial: "Partial status tracking"
+      poor: "No explicit goal status tracking"
+
+reference_solution: |
+  STEP 1 — Goal decomposition:
+  Main goal: Launch mobile app in 3 months (12 weeks)
+    ├── G1: Requirements & design (Weeks 1-2) [no dependencies]
+    ├── G2: Backend development (Weeks 3-6) [depends on G1]
+    ├── G3: Frontend development (Weeks 3-7) [depends on G1, parallel with G2]
+    ├── G4: Integration & testing (Weeks 7-9) [depends on G2, G3]
+    ├── G5: Security audit & bug fixes (Weeks 9-10) [depends on G4]
+    ├── G6: App store submission & approval (Weeks 10-11) [depends on G5]
+    └── G7: Launch (Week 12) [depends on G6]
+  Status: On track. 12-week plan established.
+
+  STEP 2 — Developer leaves weeks 2-4 (3 weeks):
+  G2 backend is delayed by 3 weeks (lead dev work starts Week 5, not Week 3).
+  G3 frontend may partially proceed (if junior dev can handle design tasks).
+  G4 integration pushed to Weeks 10-11. G5 pushed to Week 11. G6 pushed to Week 11-12.
+  G7 (launch): AT RISK of slipping past Week 12.
+  Revised plan: Have junior dev handle G1 tasks extended; use Week 11-12 as buffer.
+  Status: Main goal under pressure. Timeline compresses all post-backend phases.
+
+  STEP 3 — Offline mode request (+2 weeks):
+  Decision: DEFER to v2.
+  Reasoning: Main goal is "launch in 3 months." We're already compressed from Step 2.
+  Adding 2 weeks would push the timeline to 14 weeks, breaking the main goal.
+  The main goal (launch) takes priority. Offline mode is a v2 scope item that can
+  ship 4-6 weeks post-launch without significant user impact.
+  Status: Scope defined and locked. Timeline remains tight but achievable.
+
+  STEP 4 — Security bug (+1 week):
+  Security bug adds 1 week to G5. G6 shifts to Week 12. G7 now at Week 13.
+  Recommendation: Slip launch by 1 week (to Week 13) rather than compromising security.
+  The security fix is non-negotiable — it affects G5 (security audit) which was
+  already part of the plan. Rushing it would undermine the entire launch quality.
+  Inform stakeholders: 1-week slip due to critical security requirement. This is
+  the correct trade-off — a security breach post-launch would cost far more than
+  a 1-week delay.
+  Final goal status: Main goal achieved at Week 13 (1-week slip). All sub-goals met.
+
+grader_type: model
+tags: [goal_management, planning, dynamic_revision, trade_offs, project_management]

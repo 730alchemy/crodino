@@ -1,0 +1,139 @@
+---
+element_id: decomposition_and_integration
+element_name: "Decomposition and Integration"
+category: reasoning_operations
+
+prompt: |
+  Solve the following complex problem by explicitly decomposing it into sub-problems,
+  solving each, and then integrating the sub-solutions into a coherent whole.
+
+  Problem: A city wants to reduce its carbon footprint by 40% within 10 years.
+  The city's current emissions by sector:
+  - Transportation: 45% of total (mainly private vehicles)
+  - Buildings (heating/cooling): 30% of total
+  - Industry: 15% of total
+  - Waste: 10% of total
+
+  Constraints:
+  - Total budget: $500 million over 10 years
+  - Must not increase unemployment by more than 1%
+  - Must maintain current quality of life metrics (no dramatic lifestyle mandates)
+
+  Requirements for your response:
+  1. Explicitly decompose the problem into sub-problems (at least one per sector)
+  2. Solve each sub-problem with specific interventions and estimated cost
+  3. Show the integration step: how sub-solutions combine to achieve the 40% target
+  4. Identify any sub-problems that interact (dependencies, conflicts, synergies)
+  5. Show your final integrated recommendation as a coherent plan
+
+success_criteria:
+  - Explicit decomposition: at least 4 sub-problems named and addressed separately
+  - Each sub-problem has a specific intervention with estimated cost
+  - "Integration shows the math: % reduction per sector × sector weight → total % reduction"
+  - At least one interaction between sub-problems identified
+  - Total cost stays within $500M; total reduction reaches or explains how to reach 40%
+
+rubric:
+  decomposition_quality:
+    weight: 0.25
+    criteria: >
+      At least 4 sub-problems corresponding to the 4 sectors are named and
+      addressed separately. Sub-problems are specific (not "reduce transportation
+      emissions" but a particular intervention). Decomposition is principled, not
+      arbitrary.
+    scores:
+      excellent: "4+ specific sub-problems with clear scope and interventions"
+      good: "4 sub-problems identified but some are vague"
+      partial: "2-3 sub-problems; some sectors lumped together"
+      poor: "No explicit decomposition; treats as one undivided problem"
+
+  sub_problem_solutions:
+    weight: 0.25
+    criteria: >
+      Each sub-problem has a specific, actionable intervention with estimated cost
+      and estimated emission reduction. Costs and reductions should be internally
+      plausible (not wildly inconsistent with each other or with stated constraints).
+    scores:
+      excellent: "Specific interventions with plausible costs and reductions for all sub-problems"
+      good: "Specific interventions with rough cost estimates for most sub-problems"
+      partial: "Interventions described without cost estimates for several"
+      poor: "Vague interventions; no cost or reduction estimates"
+
+  integration:
+    weight: 0.30
+    criteria: >
+      Explicit integration step that sums up contributions:
+      Example: Transportation 45% × 30% reduction = 13.5% overall; Buildings 30% × 50% = 15%;
+      Industry 15% × 20% = 3%; Waste 10% × 40% = 4% → Total ≈ 35.5% (needs adjustment).
+      Must show how sub-solutions combine and whether they reach 40%.
+    scores:
+      excellent: "Explicit mathematical integration; shows how pieces add to 40%"
+      good: "Integration narrative present; rough numbers given"
+      partial: "Some integration but math not shown"
+      poor: "Sub-solutions listed without integration"
+
+  interaction_analysis:
+    weight: 0.20
+    criteria: >
+      Identifies at least one genuine interaction between sub-problems.
+      Examples: EV adoption reduces transportation emissions but increases electricity
+      demand → buildings/energy sub-problem must account for this; green building
+      improvements may reduce heating needs but require upfront capital affecting budget.
+    scores:
+      excellent: "Specific interaction identified with impact on integrated plan"
+      good: "Interaction identified but impact not quantified or traced"
+      partial: "Interaction vaguely mentioned"
+      poor: "No interactions identified"
+
+reference_solution: |
+  DECOMPOSITION:
+
+  Sub-problem 1: Transportation (45% of emissions)
+  Intervention: EV transition incentive program ($150M) + expanded public transit ($100M)
+  - $150M in EV rebates + charging infrastructure → target 35% of vehicles electric by year 10
+  - $100M for bus rapid transit on 5 major corridors
+  Estimated reduction: 35% of 45% sector = 15.75% of total → round to 30% sector reduction
+  = 0.30 × 0.45 = 13.5% total reduction
+  Cost: $250M
+
+  Sub-problem 2: Buildings (30% of emissions)
+  Intervention: Weatherization and heat pump retrofit program ($120M)
+  - Subsidize insulation + heat pump installation for 15,000 buildings
+  - Update building code for new construction (zero-cost, policy lever)
+  Estimated reduction: 50% of buildings sector → 0.50 × 0.30 = 15% total reduction
+  Cost: $120M
+
+  Sub-problem 3: Industry (15% of emissions)
+  Intervention: Industrial efficiency grants + renewable energy procurement ($80M)
+  - $80M in matched grants for efficiency upgrades; renewable procurement mandates
+  Estimated reduction: 25% of industry sector → 0.25 × 0.15 = 3.75% total reduction
+  Cost: $80M
+
+  Sub-problem 4: Waste (10% of emissions)
+  Intervention: Methane capture from landfills + expanded composting ($30M)
+  - Methane capture turns waste from source to partial energy generation
+  Estimated reduction: 40% of waste sector → 0.40 × 0.10 = 4% total reduction
+  Cost: $30M
+
+  INTEGRATION:
+  Total reduction: 13.5% + 15% + 3.75% + 4% = 36.25% (slightly below 40% target)
+  Total cost: $250M + $120M + $80M + $30M = $480M (within $500M budget ✓)
+  Gap to close: 3.75% additional reduction needed
+  Solution: Use remaining $20M to target "quick wins" — LED street lighting, municipal
+  fleet electrification — to close the gap.
+
+  INTERACTIONS:
+  Key interaction: EV adoption (Sub-problem 1) increases electricity demand by ~15%.
+  This interacts with Sub-problem 2: if buildings get heat pumps (also electric), grid
+  demand rises further. The plan must ensure electricity supply is greened (renewable
+  energy procurement in Sub-problem 3 helps). If the electricity grid remains
+  carbon-heavy, EV and heat pump gains are partially offset. Synergy: the renewable
+  procurement mandate (Sub-problem 3) enables the full benefit of electrification
+  in Sub-problems 1 and 2.
+
+  Employment impact: Industrial efficiency might displace some workers, but EV
+  charging installation and retrofitting create ~3,000 local construction jobs.
+  Net employment effect: neutral to slightly positive. ✓
+
+grader_type: model
+tags: [decomposition_and_integration, planning, system_thinking, carbon_policy]

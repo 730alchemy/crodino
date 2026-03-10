@@ -1,0 +1,95 @@
+---
+element_id: logical_coherence
+element_name: "Logical Coherence"
+category: reasoning_invariants
+
+prompt: |
+  Consider the following three statements about a proposed renewable energy policy:
+
+  Statement A: "Solar panels require rare earth minerals to manufacture, and mining those
+  minerals causes significant environmental damage."
+
+  Statement B: "Renewable energy is always better for the environment than fossil fuels
+  because it produces no harmful byproducts."
+
+  Statement C: "This solar panel policy will reduce environmental harm by replacing
+  coal plants."
+
+  A policy advocate uses all three statements together to argue for the solar panel policy.
+  Analyze whether these statements can be held simultaneously without contradiction.
+  If there is a contradiction, identify it precisely and explain what revision would
+  restore logical coherence.
+
+success_criteria:
+  - Identifies the contradiction between Statement A and Statement B (solar panels
+    DO have environmental byproducts via mining, contradicting "no harmful byproducts")
+  - Notes that Statement C may still be valid even if B is false (net benefit argument)
+  - Suggests a coherence-restoring revision (e.g., qualify Statement B to compare
+    net harm rather than claim zero harm)
+  - Does not introduce new contradictions in the analysis
+
+rubric:
+  contradiction_identification:
+    weight: 0.40
+    criteria: >
+      Clearly and precisely identifies that Statement B contradicts Statement A.
+      A response earns full credit by naming exactly which statements conflict and
+      why (B claims "no harmful byproducts" while A establishes there are harmful
+      byproducts from manufacturing). Partial credit for identifying tension without
+      precision.
+    scores:
+      excellent: "Precisely identifies B vs A contradiction with clear logical chain"
+      good: "Identifies contradiction but explanation is somewhat imprecise"
+      partial: "Notes tension but doesn't clearly articulate the logical conflict"
+      poor: "Misses the contradiction or identifies a non-existent one"
+
+  consistency_of_analysis:
+    weight: 0.30
+    criteria: >
+      The analysis itself is internally consistent — doesn't simultaneously assert
+      conflicting things. Response must not affirm both that B is true and that B
+      contradicts A.
+    scores:
+      excellent: "Analysis maintains strict internal consistency throughout"
+      good: "Mostly consistent with minor lapses"
+      partial: "Some internal inconsistency in the analysis"
+      poor: "Analysis itself contains contradictions"
+
+  revision_quality:
+    weight: 0.30
+    criteria: >
+      Proposes a specific, logically sound revision that resolves the contradiction
+      without losing the core policy argument. Good revisions include: qualifying
+      B to say "on net," "compared to fossil fuels," or replacing B with a more
+      accurate claim.
+    scores:
+      excellent: "Proposes specific, logically sound revision that preserves the argument"
+      good: "Suggests revision direction but lacks specificity"
+      partial: "Suggests revising something but the suggestion is vague or incomplete"
+      poor: "No revision suggested or revision doesn't resolve the contradiction"
+
+reference_solution: |
+  The three statements cannot be held simultaneously without contradiction.
+
+  The contradiction is between Statement A and Statement B:
+  - Statement A asserts that manufacturing solar panels causes significant
+    environmental damage (via rare earth mineral mining).
+  - Statement B asserts that renewable energy produces "no harmful byproducts."
+
+  Statement A provides a specific counterexample to Statement B's universal claim:
+  solar energy production *does* produce harmful byproducts (mining damage), just
+  not at the point of energy generation. Statement B's claim is therefore false as
+  stated, making the set {A, B, C} internally inconsistent.
+
+  Statement C (net environmental benefit by replacing coal) can still be true even
+  if B is false — the argument shifts from "zero harm" to "less harm on net." This
+  is the coherence-restoring move: replace B with "Renewable energy typically produces
+  less total environmental harm than fossil fuels across the full lifecycle, even
+  accounting for manufacturing."
+
+  The advocate should drop Statement B's universal claim and replace it with a
+  comparative net-harm argument, which is both defensible and sufficient to support
+  Statement C.
+
+grader_type: model
+tags: [contradiction, consistency, revision, argument_analysis]

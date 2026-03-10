@@ -1,0 +1,134 @@
+---
+element_id: evaluation
+element_name: "Evaluation"
+category: metacognitive_controls
+
+prompt: |
+  Solve the following problem, then evaluate your own solution before finalizing it.
+  Your evaluation must happen DURING the solution process, not just at the end.
+
+  Problem: A consulting firm has been hired to recommend whether a mid-sized city
+  (population 200,000) should build a new light rail system. The city has the
+  following data:
+  - Current daily bus ridership: 15,000 riders
+  - Projected light rail ridership: 25,000-40,000 riders (range due to uncertainty)
+  - Construction cost: $800 million
+  - Annual operating cost (rail): $45 million
+  - Annual operating cost (bus, current): $20 million
+  - Ticket revenue projection (rail): $18 million/year
+  - Typical lifespan of light rail infrastructure: 30 years
+  - The city's current annual transportation budget: $30 million
+
+  Requirements for your response:
+  1. Begin your analysis
+  2. At least once during your analysis, explicitly pause and evaluate: "Am I on the
+     right track? What might I be missing? Is my current approach appropriate?"
+  3. Revise or continue based on that evaluation
+  4. Provide a final recommendation
+  5. End with a brief assessment of how confident you are in your recommendation
+     and what additional data would most change it
+
+success_criteria:
+  - Contains at least one explicit mid-process evaluation (not just a final caveat)
+  - The evaluation genuinely affects the analysis (leads to revision, added
+    consideration, or confirmed direction)
+  - Financial analysis is roughly correct (net cost calculation, budget impact)
+  - Final recommendation is justified by the analysis
+  - Confidence assessment identifies specific data gaps
+
+rubric:
+  mid_process_evaluation:
+    weight: 0.35
+    criteria: >
+      The response contains an explicit, substantive mid-process evaluation that
+      is not merely performative. It should raise a genuine concern, identify a
+      gap, or reframe the approach. The evaluation must visibly influence what
+      follows.
+    scores:
+      excellent: "Substantive evaluation that identifies a real gap and leads to visible change"
+      good: "Evaluation present and genuine but impact on analysis is slight"
+      partial: "Evaluation is superficial or formulaic ('let me double-check...')"
+      poor: "No mid-process evaluation; only a final caveat"
+
+  financial_reasoning:
+    weight: 0.35
+    criteria: >
+      Correctly calculates key financial dimensions:
+      - Net annual operating cost delta (rail: $45M operating - $18M revenue = $27M net
+        vs. bus $20M → extra $7M/year)
+      - Budget impact ($30M budget vs. $45M operating cost — budget shortfall)
+      - 30-year operating cost (roughly: 30 × $27M = $810M net operating, plus $800M
+        construction = ~$1.6B)
+      Directional accuracy is required; exact figures not critical.
+    scores:
+      excellent: "Key financial figures computed correctly with relevant comparisons"
+      good: "Most figures correct; minor computational errors"
+      partial: "Some financial reasoning but key figures missing or wrong"
+      poor: "No meaningful financial analysis"
+
+  recommendation_quality:
+    weight: 0.20
+    criteria: >
+      Recommendation is actionable and justified by the analysis. May recommend
+      for, against, or "defer pending additional data" — all are valid if justified.
+    scores:
+      excellent: "Clear recommendation with explicit connection to analysis"
+      good: "Recommendation present with reasonable justification"
+      partial: "Vague recommendation ('it depends') without clear conclusion"
+      poor: "No recommendation or recommendation contradicts the analysis"
+
+  confidence_assessment:
+    weight: 0.10
+    criteria: >
+      Final confidence assessment names specific data that would most change
+      the recommendation (not just "more data"). Examples: actual ridership survey,
+      federal grant availability, comparison cities' actual vs. projected ridership.
+    scores:
+      excellent: "Specific data gaps identified with reasoning about how they'd change the call"
+      good: "Some specific gaps identified"
+      partial: "Generic 'need more data' without specifics"
+      poor: "No confidence assessment"
+
+reference_solution: |
+  Initial analysis: Let me calculate the financial baseline.
+
+  Net annual operating cost of rail: $45M - $18M revenue = $27M net cost
+  Current bus net cost: $20M - (assume negligible bus revenue) ≈ $20M net
+  Incremental cost of rail over bus: $7M/year additional
+
+  The city's current transportation budget is $30M. Rail operating alone costs $45M —
+  that's $15M over budget annually before construction debt service.
+
+  [MID-PROCESS EVALUATION]
+  Wait — I'm focusing purely on operating costs, but I'm missing the construction
+  financing structure. $800M in upfront capital needs to come from somewhere: bonds,
+  federal grants, or a combination. Federal transit grants (FTA) often cover 40-60%
+  of capital costs. I should flag this because if federal grants cover $400M, the
+  city's financed amount halves. I'm also not considering the ridership upside —
+  25,000-40,000 riders is a wide range. At 40,000 riders, revenue could be higher
+  than projected. Let me revise to account for these.
+
+  [REVISED ANALYSIS]
+  Scenario A (pessimistic: no grants, low ridership):
+  Construction: $800M financed at ~4% over 30 years ≈ $46M/year debt service
+  Net annual cost: $27M operating + $46M debt = $73M/year vs. $30M budget → untenable
+
+  Scenario B (optimistic: 50% federal grant, high ridership):
+  Construction financed: $400M at 4% ≈ $23M/year
+  Revenue at 40,000 riders: potentially $25M+
+  Net annual cost: $45M - $25M + $23M = $43M/year → still $13M over current budget
+
+  RECOMMENDATION: Do not proceed with current financing assumptions. The city's
+  $30M budget cannot absorb rail operating costs without significant additional
+  revenue sources (tax increment, federal grants, parking fees). Recommend:
+  (1) Pursue federal grant applications before committing capital
+  (2) Conduct actual ridership survey to narrow the 25K-40K uncertainty
+  (3) Explore bus rapid transit (BRT) as a lower-cost alternative
+
+  CONFIDENCE: Medium-low. The recommendation could reverse if:
+  - Federal grants cover >60% of construction (would make debt service manageable)
+  - Ridership exceeds 40,000 (not captured in projections — any regional growth data?)
+  - The city can implement a dedicated transit tax levy
+
+grader_type: model
+tags: [evaluation, self_monitoring, financial_reasoning, metacognition]
